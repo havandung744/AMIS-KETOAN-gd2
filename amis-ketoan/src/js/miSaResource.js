@@ -10,7 +10,6 @@ export const miSaResource = {
         function: "Chức năng đang phát triên!",
         deleteMany: "Bạn có thực sự muốn xóa những nhân viên đã chọn không?",
         infoNotNull: "Thông tin không được để trống",
-        InvalidEmailFormat: "Email không đúng định dạng",
-        checkgit: "test github"
+        InvalidEmailFormat: "Email không đúng định dạng"
     }
 };
