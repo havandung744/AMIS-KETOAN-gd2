@@ -13,6 +13,19 @@
         </div>
         <button class="deleteMany" v-show="isShowDeleteMany" @click="deleteMany">Xóa</button>
       </button>
+       <select name="" id="" @change="onChangeBankName($event)">
+        <option value="">chọn ngân hàng</option>
+        <option value="ACB">ACB</option>
+        <option value="Agribank">Agribank</option>
+        <option value="BIDV">BIDV</option>
+        <option value="VPBank">VPBank</option>
+      </select>
+      <select name="" id="" @change="onChangeGender($event)">
+        <option value="">chọn giới tính</option>
+        <option value="1">Nam</option>
+        <option value="0">Nữ</option>
+        <option value="2">Khác</option>
+      </select>
       <div class="d-toolbar-left">
         <input type="text" class="d-input" v-on:keyup="autoSearch" v-model="textSearch"
           placeholder="Tìm kiếm theo mã, tên nhân viên" style="font-size: 12px;" />
@@ -195,6 +208,21 @@ export default {
   },
 
   methods: {
+
+    // onChangeBankName(event){
+    //    var Gender = event.target.value;
+    //    this.pagination1(this.pageSize, this.pageNumberSelected, this.textSearch, bankName);
+    // },
+
+    onChangeBankName(event){
+       var bankName = event.target.value;
+       this.pagination1(this.pageSize, this.pageNumberSelected, this.textSearch, bankName);
+    },
+    // onChangeBankName(event){
+    //    var bankName = event.target.value;
+    //    this.pagination1(this.pageSize, this.pageNumberSelected, this.textSearch, bankName);
+    // },
+
     /**
      * Thực hiện thay đổi danh sách id của nhân viên
      * @param {mảng id của nhân viên} value
@@ -320,6 +348,35 @@ export default {
           .then((response) => {
             console.log(response.data);
             me.employees = response.data.Data;
+            me.totalPages = response.data.TotalPages;
+            me.count = response.data.TotalRecords;
+            // thực hiện hiển thị icon và text không có dữ liệu khi tìm kiếm
+            if (me.totalPages == 0)
+              me.checkTotalEmployee = true;
+            else
+              me.checkTotalEmployee = false;
+            console.log(me.textSearch);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        me.isLoading = false;
+      } catch (error) {
+        me.isLoading = false;
+        console.log(error);
+      }
+    },
+
+     async pagination1(pageSize, pageNumber, textSearch, bankName) {
+      var me = this;
+      try {
+        me.isLoading = true;
+        await axios
+          .get(`http://localhost:22454/api/v1/Employees/filter?pageSize=${pageSize}&pageNumber=${pageNumber}&employeeFilter=${textSearch}&bankName=${bankName}`)
+          .then((response) => {
+            console.log(response.data);
+            me.employees = response.data.Data;
+            console.log(me.employees);
             me.totalPages = response.data.TotalPages;
             me.count = response.data.TotalRecords;
             // thực hiện hiển thị icon và text không có dữ liệu khi tìm kiếm

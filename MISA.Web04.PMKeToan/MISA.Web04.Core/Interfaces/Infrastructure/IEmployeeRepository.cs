@@ -9,7 +9,7 @@ namespace MISA.Web04.Core.Interfaces.Infrastructure
 {
     public interface IEmployeeRepository : IBaseRepository<Employee>
     {
-        object GetPaging(int? pageSize, int? pageIndex, string? textSearch);
+        object GetPaging(int? pageSize, int? pageIndex, string? textSearch, string? bankName, int? gender, Guid? departmentId);
         int DeleteMultiEmployeeById(string employeeIdList);
     }
 }

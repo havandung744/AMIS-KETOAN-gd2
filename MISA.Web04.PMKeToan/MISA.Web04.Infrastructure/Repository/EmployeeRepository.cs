@@ -42,11 +42,14 @@ namespace MISA.Web04.Infrastructure.Repository
         /// <exception cref="NotImplementedException"></exception>
         /// CreatedBy: HVDUNG(20/06/2022)
 
-        public object GetPaging(int? pageSize, int? pageIndex, string? employeeFilter)
+        public object GetPaging(int? pageSize, int? pageIndex, string? employeeFilter, string? bankName, int? gender, Guid? departmentId)
         {
             Parameters.Add("@m_PageIndex", pageIndex);
             Parameters.Add("@m_PageSize", pageSize);
             Parameters.Add("@m_EmployeeFilter", employeeFilter);
+            Parameters.Add("@m_BankName", bankName);
+            Parameters.Add("@m_Gender", gender);
+            Parameters.Add("@m_DepartmentId", departmentId);
             Parameters.Add("@m_TotalRecords", direction: ParameterDirection.Output, dbType: DbType.Int32);
             Parameters.Add("@m_TotalPages", direction: ParameterDirection.Output, dbType: DbType.Int32);
 

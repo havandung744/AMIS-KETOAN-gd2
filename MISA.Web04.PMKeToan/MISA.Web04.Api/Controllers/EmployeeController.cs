@@ -225,9 +225,9 @@ namespace MISA.Web04.Api.Controllers
         /// <returns>danh sách nhân viên</returns>
         /// CreatedBy: HVDUNG (20/06/2022)
         [HttpGet("/api/v1/[controller]/filter")]
-        public IActionResult employeeFilter(int pageSize, int pageNumber, string? employeeFilter)
+        public IActionResult employeeFilter(int pageSize, int pageNumber, string? employeeFilter, string? bankName, int? gender, Guid? departmentId)
         {
-            var employees = _employeeRepository.GetPaging(pageSize, pageNumber, employeeFilter);
+            var employees = _employeeRepository.GetPaging(pageSize, pageNumber, employeeFilter, bankName, gender, departmentId);
             return Ok(employees);
         }
 
