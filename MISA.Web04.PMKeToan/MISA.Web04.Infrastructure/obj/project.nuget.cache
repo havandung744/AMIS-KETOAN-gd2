@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "boozYbZml+pjyi0RP1ZZQswaAmJC1PYaDkdkn0l+iPrfCWMdo0ihZI1RAnQywGhM0H3qOm+kfE68VAaMfwKvcA==",
+  "dgSpecHash": "zm3i7/3wMg6Zgz5QEqsXxfSjyKRTzZf/OjCnUCz16TBo/hOIUhYUikY7gvv/bZA4277ZT2d5DiOnNcDDoHuo8Q==",
   "success": true,
-  "projectFilePath": "C:\\Misa\\baitapkhoi\\C#\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\MISA.Web04.Infrastructure.csproj",
+  "projectFilePath": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\MISA.Web04.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hdung\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\hdung\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wmJ5IFddwoMitALgFGObgvmdEZaJzPvuBH2RWSKF1+Yy1VNBG2DULCzL8mXp2Twvqn6314LkCHih+e2ttITjxQ==",
+  "dgSpecHash": "T+XSi5LfUu+PcwJKULYx+pohV3GUoJ8CFk+oceZw+tR1NwVSkZfAzuhZLQ37poknleAqJgJX4i/Y4wm7W2MsXg==",
   "success": true,
-  "projectFilePath": "C:\\Misa\\baitapkhoi\\C#\\MISA.Web04.PMKeToan\\MISA.Web04.Api\\MISA.Web04.Api.csproj",
+  "projectFilePath": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Api\\MISA.Web04.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hdung\\.nuget\\packages\\closedxml\\0.95.4\\closedxml.0.95.4.nupkg.sha512",
     "C:\\Users\\hdung\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",

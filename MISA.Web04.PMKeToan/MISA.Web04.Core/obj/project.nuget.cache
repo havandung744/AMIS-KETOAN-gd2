@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "G5zP8hA8EY1YEc/aOY6Fb6eas3zIWO00loQ5GbhzhyV1B8jHOBmjkHbM9lZPUHx0Idey2m11lHcuIxZfg38y4w==",
+  "dgSpecHash": "WD2PFQf2Aq0bFbxIhhR1QIYJoYYHaweHUhGLLkh8MGCtoGBiftuJlgAXRjERjbWDV9uiFcJ9C2k5mTYrc8itxQ==",
   "success": true,
-  "projectFilePath": "C:\\Misa\\baitapkhoi\\C#\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj",
+  "projectFilePath": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hdung\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\hdung\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",

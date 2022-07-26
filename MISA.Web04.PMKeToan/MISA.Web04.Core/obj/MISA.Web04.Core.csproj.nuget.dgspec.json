@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Misa\\baitapkhoi\\C#\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj": {}
+    "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj": {}
   },
   "projects": {
-    "C:\\Misa\\baitapkhoi\\C#\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj": {
+    "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Misa\\baitapkhoi\\C#\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj",
+        "projectUniqueName": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj",
         "projectName": "MISA.Web04.Core",
-        "projectPath": "C:\\Misa\\baitapkhoi\\C#\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj",
+        "projectPath": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj",
         "packagesPath": "C:\\Users\\hdung\\.nuget\\packages\\",
-        "outputPath": "C:\\Misa\\baitapkhoi\\C#\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\obj\\",
+        "outputPath": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hdung\\AppData\\Roaming\\NuGet\\NuGet.Config",
