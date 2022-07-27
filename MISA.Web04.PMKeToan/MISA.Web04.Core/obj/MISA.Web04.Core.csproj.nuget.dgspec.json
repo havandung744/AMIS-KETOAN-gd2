@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\hvdung\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj": {}
+    "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj": {}
   },
   "projects": {
-    "E:\\hvdung\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj": {
+    "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\hvdung\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj",
+        "projectUniqueName": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj",
         "projectName": "MISA.Web04.Core",
-        "projectPath": "E:\\hvdung\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj",
-        "packagesPath": "C:\\Users\\hvdung\\.nuget\\packages\\",
-        "outputPath": "E:\\hvdung\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\obj\\",
+        "projectPath": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj",
+        "packagesPath": "C:\\Users\\hdung\\.nuget\\packages\\",
+        "outputPath": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hvdung\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hdung\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,6 +39,16 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.2.5, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -49,7 +59,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -14,8 +14,8 @@ namespace MISA.Web04.Api.Controllers
     [ApiController]
     public class EmployeesController : MISABaseController<Employee>
     {
-        private readonly IEmployeeRepository _employeeRepository;
-        private readonly IEmployeeService _employeeService;
+        IEmployeeRepository _employeeRepository;
+        IEmployeeService _employeeService;
 
         /// <summary>
         /// Thực hiện khởi tạo đối tượng
@@ -245,6 +245,8 @@ namespace MISA.Web04.Api.Controllers
             var res = _employeeRepository.DeleteMultiEmployeeById(employeeIdList);
             return Ok(res);
         }
+
+
 
     }
 }

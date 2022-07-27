@@ -27,40 +27,15 @@ namespace MISA.Web04.Infrastructure.Repository
         /// <typeparam name="Entity">type của object</typeparam>
         /// <returns>Danh sách object</returns>
         /// CreatedBy: HVDUNG(15/06/2022)
-        //public IEnumerable<Entity> GetAll()
-        //{
-        //    var className = typeof(Entity).Name;
-        //    using (SqlConnection = new MySqlConnection(ConnectionString))
-        //    {
-        //        var entities = SqlConnection.Query<Entity>(sql: $"Proc_Get{className}s", commandType: System.Data.CommandType.StoredProcedure);
-        //        return entities;
-        //    }
-        //}
-        // public IEnumerable<Entity> GetAll()
-        //{
-        //    //var className = typeof(Entity).Name;
-        //    using (SqlConnection = new MySqlConnection(ConnectionString))
-        //    {
-        //        Parameters.Add("@m_PageIndex", pageIndex);
-        //        Parameters.Add("@m_PageSize", pageSize);
-        //        Parameters.Add("@m_EmployeeFilter", employeeFilter);
-        //        Parameters.Add("@m_BankName", bankName);
-        //        Parameters.Add("@m_Gender", gender);
-        //        Parameters.Add("@m_DepartmentId", departmentId);
-        //        Parameters.Add("@m_TotalRecords", direction: ParameterDirection.Output, dbType: DbType.Int32);
-        //        Parameters.Add("@m_TotalPages", direction: ParameterDirection.Output, dbType: DbType.Int32);
-
-        //        using (SqlConnection = new MySqlConnection(ConnectionString))
-        //        {
-        //            var employeesPaging = SqlConnection.Query<Employee>(
-        //                 "Proc_pagingEmployee",
-        //                 param: Parameters,
-        //                 commandType: CommandType.StoredProcedure
-        //             );
-        //            return employeesPaging;
-        //        }
-        //    }
-        //}
+        public IEnumerable<Entity> GetAll()
+        {
+            var className = typeof(Entity).Name;
+            using (SqlConnection = new MySqlConnection(ConnectionString))
+            {
+                var entities = SqlConnection.Query<Entity>(sql: $"Proc_Get{className}s", commandType: System.Data.CommandType.StoredProcedure);
+                return entities;
+            }
+        }
 
         /// <summary>
         /// Lấy dữ liệu theo Id
