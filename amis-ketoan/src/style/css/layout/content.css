@@ -34,6 +34,19 @@
     background-color: #fafafa;
 }
 
+.d-page-toolbar-left {
+    position: absolute;
+    left: 40px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.d-page-toolbar-left .m-2 {
+    margin-right: 16px;
+}
+
 .d-content .d-page-toolbar .d-toolbar-left {
     display: flex;
     align-items: center;
@@ -152,9 +165,9 @@
 }
 
 #batch-execution {
-    background-color: yellow;
+    /* background-color: yellow;
     position: absolute;
-    left: 40px;
+    left: 40px; */
     padding: 0 32px 0px 16px;
     border: 2px solid #3b3c3f;
     border-radius: 30px;
@@ -166,6 +179,7 @@
     width: 183px;
     height: 36px;
     font-family: GoogleSans SemiBold;
+    margin-right: 16px;
 }
 
 .icon-expand-more-box {

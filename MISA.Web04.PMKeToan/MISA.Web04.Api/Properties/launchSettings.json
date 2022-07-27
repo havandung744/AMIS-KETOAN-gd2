@@ -1,5 +1,4 @@
-﻿{
-  "$schema": "https://json.schemastore.org/launchsettings.json",
+{
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
@@ -8,16 +7,17 @@
       "sslPort": 0
     }
   },
+  "$schema": "https://json.schemastore.org/launchsettings.json",
   "profiles": {
     "MISA.Web04.Api": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5099",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5099"
     },
     "IIS Express": {
       "commandName": "IISExpress",

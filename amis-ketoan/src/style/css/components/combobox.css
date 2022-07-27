@@ -10,3 +10,20 @@ select.d-combobox {
 select.d-combobox:focus {
     border-color: #019160;
 }
+
+.m-2 .el-input__wrapper {
+    border-radius: 30px !important;
+    width: 150px !important;
+}
+
+.m-2.el-select .el-input.is-focus .el-input__wrapper {
+    box-shadow: 0 0 0 1px rgb(44, 160, 28) !important;
+}
+
+.m-2.el-select .el-input__wrapper.is-focus {
+    box-shadow: 0 0 0 1px rgb(44, 160, 28) !important;
+}
+
+.el-select-dropdown__item.selected {
+    color: #019160 !important;
+}
