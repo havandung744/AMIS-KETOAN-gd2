@@ -2,33 +2,83 @@
   <div class="d-content">
     <div class="d-page-header">
       <div class="d-page-title">Nhân viên</div>
-      <button class="d-btn d-btn" id="d-btn-add-employee" @click="btnAddOnclick">
+      <button
+        class="d-btn d-btn"
+        id="d-btn-add-employee"
+        @click="btnAddOnclick"
+      >
         Thêm mới nhân viên
       </button>
     </div>
+
     <div class="d-page-toolbar">
-      <button id="batch-execution" @click="btnOnClickBatchExecution">Thực hiện hàng loạt
-        <div class="icon-expand-more-box">
-          <div class="icon_expand_more"></div>
-        </div>
-        <button class="deleteMany" v-show="isShowDeleteMany" @click="deleteMany">Xóa</button>
-      </button>
-       <select name="" id="" @change="onChangeBankName($event)">
-        <option value="">chọn ngân hàng</option>
-        <option value="ACB">ACB</option>
-        <option value="Agribank">Agribank</option>
-        <option value="BIDV">BIDV</option>
-        <option value="VPBank">VPBank</option>
-      </select>
-      <select name="" id="" @change="onChangeGender($event)">
-        <option value="">chọn giới tính</option>
-        <option value="1">Nam</option>
-        <option value="0">Nữ</option>
-        <option value="2">Khác</option>
-      </select>
+      <div class="d-page-toolbar-left">
+        <button id="batch-execution" @click="btnOnClickBatchExecution">
+          Thực hiện hàng loạt
+          <div class="icon-expand-more-box">
+            <div class="icon_expand_more"></div>
+          </div>
+          <button
+            class="deleteMany"
+            v-show="isShowDeleteMany"
+            @click="deleteMany"
+          >
+            Xóa
+          </button>
+        </button>
+
+        <el-select
+          v-model="this.departmentId"
+          placeholder="Chọn phòng ban"
+          @change="onChangeDepartmentId()"
+          class="m-2"
+        >
+          <el-option
+            v-for="item in this.departments"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+
+        <el-select
+          v-model="this.bankName"
+          placeholder="Chọn ngân hàng"
+          @change="onChangeBankName()"
+          class="m-2"
+        >
+          <el-option
+            v-for="item in this.bankNames"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+
+        <el-select
+          v-model="this.gender"
+          placeholder="Chọn giới tính"
+          @change="onChangeGender()"
+          class="m-2"
+        >
+          <el-option
+            v-for="item in this.genders"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </div>
+
       <div class="d-toolbar-left">
-        <input type="text" class="d-input" v-on:keyup="autoSearch" v-model="textSearch"
-          placeholder="Tìm kiếm theo mã, tên nhân viên" style="font-size: 12px;" />
+        <input
+          type="text"
+          class="d-input"
+          v-on:keyup="autoSearch"
+          v-model="textSearch"
+          placeholder="Tìm kiếm theo mã, tên nhân viên"
+          style="font-size: 12px"
+        />
         <div class="icon_search"></div>
       </div>
       <div class="icon_refresh" @click="btnRefreshOnClick"></div>
@@ -43,45 +93,38 @@
               <!-- <th class="text-align-left ok">STT</th> -->
               <!-- <th class="text-align-center"><input type="checkbox"></th> -->
               <th class="text-align-center">
-                <input type="checkbox" id="checkAll" @click="getAllEmployees($event)" />
+                <input
+                  type="checkbox"
+                  id="checkAll"
+                  @click="getAllEmployees($event)"
+                />
               </th>
-              <th class="text-align-left">
-                MÃ NHÂN VIÊN
-              </th>
-              <th class="text-align-left">
-                TÊN NHÂN VIÊN
-              </th>
-              <th class="text-align-left">
-                GIỚI TÍNH
-              </th>
+              <th class="text-align-left">MÃ NHÂN VIÊN</th>
+              <th class="text-align-left">TÊN NHÂN VIÊN</th>
+              <th class="text-align-left">GIỚI TÍNH</th>
               <th class="text-align-center">NGÀY SINH</th>
-              <th class="text-align-left">
-                SỐ CMND
-              </th>
-              <th class="text-align-left">
-                CHỨC DANH
-              </th>
-              <th class="text-align-left">
-                TÊN ĐƠN VỊ
-              </th>
-              <th class="text-align-left">
-                SỐ TÀI KHOẢN
-              </th>
-              <th class="text-align-left">
-                TÊN NGÂN HÀNG
-              </th>
-              <th class="text-align-left">
-                CHI NHÁNH TK NGÂN HÀNG
-              </th>
-              <th class="text-align-center" style="min-width: 119px;">
+              <th class="text-align-left">SỐ CMND</th>
+              <th class="text-align-left">CHỨC DANH</th>
+              <th class="text-align-left">TÊN ĐƠN VỊ</th>
+              <th class="text-align-left">SỐ TÀI KHOẢN</th>
+              <th class="text-align-left">TÊN NGÂN HÀNG</th>
+              <th class="text-align-left">CHI NHÁNH TK NGÂN HÀNG</th>
+              <th class="text-align-center" style="min-width: 119px">
                 CHỨC NĂNG
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="employee in employees" :key="employee.EmployeeId" @dblclick="trOnDoubleClick(employee)">
+            <tr
+              v-for="employee in employees"
+              :key="employee.EmployeeId"
+              @dblclick="trOnDoubleClick(employee)"
+            >
               <td id="d-td" class="text-align-center">
-                <input type="checkbox" @change="check($event, employee.EmployeeId)" />
+                <input
+                  type="checkbox"
+                  @change="check($event, employee.EmployeeId)"
+                />
               </td>
               <td class="text-align-left">{{ employee.EmployeeCode }}</td>
               <td class="text-align-left">{{ employee.EmployeeName }}</td>
@@ -98,7 +141,10 @@
               <td class="text-align-center">
                 <div class="d-function">
                   <div class="d-text">Sửa</div>
-                  <div class="d-dropdown_box" @click="dropdownClick(employee, $event)">
+                  <div
+                    class="d-dropdown_box"
+                    @click="dropdownClick(employee, $event)"
+                  >
                     <div class="icon_dropdown"></div>
                   </div>
                 </div>
@@ -106,7 +152,9 @@
             </tr>
           </tbody>
         </table>
-        <DialogNoEmployee v-show="checkTotalEmployee == true"></DialogNoEmployee>
+        <DialogNoEmployee
+          v-show="checkTotalEmployee == true"
+        ></DialogNoEmployee>
       </div>
       <div class="d-paging" v-show="checkTotalEmployee == false">
         <div class="d-paging-left">
@@ -124,7 +172,10 @@
             </select>
           </div>
           <div class="d-row">
-            <PaginateList :totalPages=totalPages @pageNumber="pageNumber"></PaginateList>
+            <PaginateList
+              :totalPages="totalPages"
+              @pageNumber="pageNumber"
+            ></PaginateList>
           </div>
         </div>
       </div>
@@ -132,22 +183,51 @@
     <!-- showDialog là props của file detail, giá trị nhận là isShowDialog của file EmployeeList -->
     <!-- @isShowDialog là cách ta định nghĩa một phương thức để từ bên detail có thể gọi sang bên list thông qua $emit -->
     <!-- "employee" là cách ta truyền trực tiếp từ cliend chứ không thông qua server-->
-    <EmployeeDetail @changeValueEmployees="changeValueEmployees" @changeValueFormMode="changeValueFormMode"
-      :checkReplication="checkReplication" v-show="isShowDialog" @isShowDialog="toggleEmployeeDialog"
-      :employeeIdSelected="employeeIdSelected" :formMode="formDetailMode" :pageNumberSelected="pageNumberSelected"
-      :pageSize="pageSize" @changeCount="changeCount" :textSearch="textSearch">
+    <EmployeeDetail
+      @changeValueEmployees="changeValueEmployees"
+      @changeValueFormMode="changeValueFormMode"
+      :checkReplication="checkReplication"
+      v-show="isShowDialog"
+      @isShowDialog="toggleEmployeeDialog"
+      :employeeIdSelected="employeeIdSelected"
+      :formMode="formDetailMode"
+      :pageNumberSelected="pageNumberSelected"
+      :pageSize="pageSize"
+      @changeCount="changeCount"
+      :textSearch="textSearch"
+      :bankName="bankName"
+      :gender="gender"
+      :departmentId="departmentId"
+    >
     </EmployeeDetail>
     <!-- thực hiện hiển thị thông báo khi validate không hợp lệ-->
     <DialogNotice></DialogNotice>
     <!-- thực hiện hiển thị cảnh báo khi thực hiện xóa nhân viên-->
-    <DialogDelete @changeValueEmployees="changeValueEmployees" :employeeIdForDelete="employeeIdForDelete"
-      @arrayEmployeeId="changeArrayEmployeeId" :arrayEmployeeId="arrayEmployeeId" @pageNumber="pageNumber"
-      :pageNumberSelected="pageNumberSelected" :pageSize="pageSize" :textSearch="textSearch" @changeCount="changeCount">
+    <DialogDelete
+      @changeValueEmployees="changeValueEmployees"
+      :employeeIdForDelete="employeeIdForDelete"
+      @arrayEmployeeId="changeArrayEmployeeId"
+      :arrayEmployeeId="arrayEmployeeId"
+      @pageNumber="pageNumber"
+      :pageNumberSelected="pageNumberSelected"
+      :pageSize="pageSize"
+      :textSearch="textSearch"
+      :bankName="bankName"
+      :gender="gender"
+      :departmentId="departmentId"
+      @changeCount="changeCount"
+    >
     </DialogDelete>
 
     <!-- thực hiện hiển thị dropdown khi click -->
-    <DropDown v-show="isShowDropDown" @isShowDropDown="toggleDropDown" @employeeIdSelected="changeEmployeeIdSelected"
-      id="d-dropDown" :employeeCodeForDelete="employeeCodeForDelete" @isShowDialog="toggleEmployeeDialog"></DropDown>
+    <DropDown
+      v-show="isShowDropDown"
+      @isShowDropDown="toggleDropDown"
+      @employeeIdSelected="changeEmployeeIdSelected"
+      id="d-dropDown"
+      :employeeCodeForDelete="employeeCodeForDelete"
+      @isShowDialog="toggleEmployeeDialog"
+    ></DropDown>
     <!-- thành phần thực hiện loading -->
     <div class="loading" v-show="isLoading">
       <div class="loading-icon"></div>
@@ -160,10 +240,10 @@ import DropDown from "../page/DropDownList.vue";
 import axios from "axios";
 import EmployeeDetail from "./EmployeeDetail.vue";
 import DialogNotice from "../dialog/DialogNotice.vue";
-import PaginateList from '../common/PaginateList.vue';
-import DialogDelete from '../dialog/DialogDelete.vue';
-import DialogNoEmployee from '../dialog/DialogNoEmployee.vue';
-import {miSaResource} from "../../js/miSaResource";
+import PaginateList from "../common/PaginateList.vue";
+import DialogDelete from "../dialog/DialogDelete.vue";
+import DialogNoEmployee from "../dialog/DialogNoEmployee.vue";
+import { miSaResource } from "../../js/miSaResource";
 export default {
   name: "EmployeeList",
   components: {
@@ -172,7 +252,7 @@ export default {
     DialogNotice,
     PaginateList,
     DialogDelete,
-    DialogNoEmployee
+    DialogNoEmployee,
   },
 
   /**
@@ -181,7 +261,7 @@ export default {
    */
   created() {
     // giá trị khởi tạo ban đầu dành cho việc hiển thị
-    this.pagination(10, 1, "");
+    this.pagination(10, 1, "", "", "", "");
   },
 
   watch: {
@@ -192,41 +272,71 @@ export default {
 
     // thực hiện focus nhiều lần vào cùng 1 tr thì không bị mất focus
     isShowDialog: function () {
-      if (this.isShowDialog == false)
-        this.employeeIdSelected = null;
+      if (this.isShowDialog == false) this.employeeIdSelected = null;
     },
 
     // kiểm tra sự thay đổi của pageSize và cập nhật lại dữ liệu
     pageSize: function (value) {
-      this.pagination(value, 1, this.textSearch);
+      this.pagination(
+        value,
+        1,
+        this.textSearch,
+        this.bankName,
+        this.gender,
+        this.departmentId
+      );
     },
 
     // kiểm tra sự thay đổi của pageNumberSelected và cập nhật lại dữ liệu
     pageNumberSelected: function (value) {
-      this.pagination(this.pageSize, value, this.textSearch);
-    }
+      this.pagination(
+        this.pageSize,
+        value,
+        this.textSearch,
+        this.bankName,
+        this.gender,
+        this.departmentId
+      );
+    },
   },
 
   methods: {
-
-    // onChangeBankName(event){
-    //    var Gender = event.target.value;
-    //    this.pagination1(this.pageSize, this.pageNumberSelected, this.textSearch, bankName);
-    // },
-
-    onChangeBankName(event){
-       var bankName = event.target.value;
-       this.pagination1(this.pageSize, this.pageNumberSelected, this.textSearch, bankName);
+    onChangeDepartmentId() {
+      this.pagination(
+        this.pageSize,
+        this.pageNumberSelected,
+        this.textSearch,
+        this.bankName,
+        this.gender,
+        this.departmentId
+      );
     },
-    // onChangeBankName(event){
-    //    var bankName = event.target.value;
-    //    this.pagination1(this.pageSize, this.pageNumberSelected, this.textSearch, bankName);
-    // },
+
+    onChangeBankName() {
+      this.pagination(
+        this.pageSize,
+        this.pageNumberSelected,
+        this.textSearch,
+        this.bankName,
+        this.gender,
+        this.departmentId
+      );
+    },
+    onChangeGender() {
+      this.pagination(
+        this.pageSize,
+        this.pageNumberSelected,
+        this.textSearch,
+        this.bankName,
+        this.gender,
+        this.departmentId
+      );
+    },
 
     /**
      * Thực hiện thay đổi danh sách id của nhân viên
      * @param {mảng id của nhân viên} value
-     * Author: HVDUNG(19/07/2022) 
+     * Author: HVDUNG(19/07/2022)
      */
     changeArrayEmployeeId(value) {
       this.arrayEmployeeId = value;
@@ -236,7 +346,7 @@ export default {
      * Thực hiện xóa nhiều
      * checked all mọi checkbox khi click vào input checkbox
      * lấy ra danh sách id của mọi employee được checkbox
-     * @param {} event 
+     * @param {} event
      * Author: HVDUNG(19/07/2022)
      */
     getAllEmployees(event) {
@@ -245,7 +355,14 @@ export default {
         checkboxes.forEach(function (checkbox) {
           checkbox.checked = true;
         });
-        this.pagination(this.pageSize, this.pageNumberSelected, this.textSearch);
+        this.pagination(
+          this.pageSize,
+          this.pageNumberSelected,
+          this.textSearch,
+          this.bankName,
+          this.gender,
+          this.departmentId
+        );
         for (var emp of this.employees) {
           this.arrayEmployeeId.push(emp.EmployeeId);
         }
@@ -264,12 +381,10 @@ export default {
      * Author: HVDUNG(17/07/2022)
      */
     check(e, value) {
-      if (e.target.checked)
-        this.arrayEmployeeId.push(value);
+      if (e.target.checked) this.arrayEmployeeId.push(value);
       else {
         var index = this.arrayEmployeeId.indexOf(value);
-        if (index !== -1)
-          this.arrayEmployeeId.splice(index, 1);
+        if (index !== -1) this.arrayEmployeeId.splice(index, 1);
       }
     },
 
@@ -280,8 +395,7 @@ export default {
     btnOnClickBatchExecution() {
       if (this.arrayEmployeeId.length > 1)
         this.isShowDeleteMany = !this.isShowDeleteMany;
-      else
-        this.isShowDeleteMany = false;
+      else this.isShowDeleteMany = false;
     },
 
     /**
@@ -290,8 +404,12 @@ export default {
      */
     async deleteMany() {
       this.employeeIdForDelete = null;
-      let noticeDialog = document.getElementsByClassName("d-dialog-box-delete")[0];
-      let bodyTextNoticeDialog = noticeDialog.querySelector(".d-dialog-box-delete .d-dialog-body");
+      let noticeDialog = document.getElementsByClassName(
+        "d-dialog-box-delete"
+      )[0];
+      let bodyTextNoticeDialog = noticeDialog.querySelector(
+        ".d-dialog-box-delete .d-dialog-body"
+      );
       bodyTextNoticeDialog.innerHTML = miSaResource.VI.deleteMany;
       document.getElementsByClassName("d-dialog-box-delete")[0].style.display =
         "block";
@@ -299,7 +417,7 @@ export default {
 
     /**
      * Thực hiện thay đổi giá trị employeeIdSelected
-     * @param {*} value 
+     * @param {*} value
      * Author: HVDUNG(15/07/2022)
      */
     changeEmployeeIdSelected(value) {
@@ -314,8 +432,8 @@ export default {
       this.toggleDropDown();
       var x = event.pageX - 105;
       var y = event.pageY + 12;
-      document.getElementById('d-dropDown').style.left = `${x}px`;
-      document.getElementById('d-dropDown').style.top = `${y}px`;
+      document.getElementById("d-dropDown").style.left = `${x}px`;
+      document.getElementById("d-dropDown").style.top = `${y}px`;
       this.employeeIdForDelete = employee.EmployeeId;
       this.employeeCodeForDelete = employee.EmployeeCode;
       this.employeeIdSelected = this.employeeIdForDelete;
@@ -337,42 +455,52 @@ export default {
      * @param {int} pageSize số bản ghi/trang
      * @param {int} pageNumber trang thứ bao nhiêu
      * @param {string} textSearch nội dung tìm kiếm
-     * Author: HVDUNG(08/06/2022) 
+     * Author: HVDUNG(08/06/2022)
      */
-    async pagination(pageSize, pageNumber, textSearch) {
-      var me = this;
-      try {
-        me.isLoading = true;
-        await axios
-          .get(`http://localhost:22454/api/v1/Employees/filter?pageSize=${pageSize}&pageNumber=${pageNumber}&employeeFilter=${textSearch}`)
-          .then((response) => {
-            console.log(response.data);
-            me.employees = response.data.Data;
-            me.totalPages = response.data.TotalPages;
-            me.count = response.data.TotalRecords;
-            // thực hiện hiển thị icon và text không có dữ liệu khi tìm kiếm
-            if (me.totalPages == 0)
-              me.checkTotalEmployee = true;
-            else
-              me.checkTotalEmployee = false;
-            console.log(me.textSearch);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-        me.isLoading = false;
-      } catch (error) {
-        me.isLoading = false;
-        console.log(error);
-      }
-    },
+    // async pagination(pageSize, pageNumber, textSearch) {
+    //   var me = this;
+    //   try {
+    //     me.isLoading = true;
+    //     await axios
+    //       .get(
+    //         `http://localhost:22454/api/v1/Employees/filter?pageSize=${pageSize}&pageNumber=${pageNumber}&employeeFilter=${textSearch}`
+    //       )
+    //       .then((response) => {
+    //         console.log(response.data);
+    //         me.employees = response.data.Data;
+    //         me.totalPages = response.data.TotalPages;
+    //         me.count = response.data.TotalRecords;
+    //         // thực hiện hiển thị icon và text không có dữ liệu khi tìm kiếm
+    //         if (me.totalPages == 0) me.checkTotalEmployee = true;
+    //         else me.checkTotalEmployee = false;
+    //         console.log(me.textSearch);
+    //       })
+    //       .catch(function (error) {
+    //         console.log(error);
+    //       });
+    //     me.isLoading = false;
+    //   } catch (error) {
+    //     me.isLoading = false;
+    //     console.log(error);
+    //   }
+    // },
 
-     async pagination1(pageSize, pageNumber, textSearch, bankName) {
+    async pagination(
+      pageSize,
+      pageNumber,
+      textSearch,
+      bankName,
+      gender,
+      departmentId
+    ) {
       var me = this;
       try {
         me.isLoading = true;
         await axios
-          .get(`http://localhost:22454/api/v1/Employees/filter?pageSize=${pageSize}&pageNumber=${pageNumber}&employeeFilter=${textSearch}&bankName=${bankName}`)
+          .get(
+            `http://localhost:22454/api/v1/Employees/filter?pageSize=${pageSize}
+            &pageNumber=${pageNumber}&employeeFilter=${textSearch}&bankName=${bankName}&gender=${gender}&departmentId=${departmentId}`
+          )
           .then((response) => {
             console.log(response.data);
             me.employees = response.data.Data;
@@ -380,10 +508,8 @@ export default {
             me.totalPages = response.data.TotalPages;
             me.count = response.data.TotalRecords;
             // thực hiện hiển thị icon và text không có dữ liệu khi tìm kiếm
-            if (me.totalPages == 0)
-              me.checkTotalEmployee = true;
-            else
-              me.checkTotalEmployee = false;
+            if (me.totalPages == 0) me.checkTotalEmployee = true;
+            else me.checkTotalEmployee = false;
             console.log(me.textSearch);
           })
           .catch(function (error) {
@@ -408,10 +534,24 @@ export default {
         }
         me.globalTimeout = setTimeout(function () {
           me.globalTimeout = null;
-          me.pagination(me.pageSize, 1, me.textSearch);
+          me.pagination(
+            me.pageSize,
+            1,
+            me.textSearch,
+            me.bankName,
+            me.gender,
+            me.departmentId
+          );
         }, 500);
       } else
-        me.pagination(me.pageSize, me.pageNumberSelected, "");
+        me.pagination(
+          me.pageSize,
+          me.pageNumberSelected,
+          "",
+          me.bankName,
+          me.gender,
+          me.departmentId
+        );
     },
 
     /**
@@ -423,9 +563,9 @@ export default {
     },
 
     /**
-    * thực hiện gán lại value cho formMode
-    * Author: HVDUNG(06/06/2022)
-    */
+     * thực hiện gán lại value cho formMode
+     * Author: HVDUNG(06/06/2022)
+     */
     changeValueFormMode(value) {
       this.formDetailMode = value;
     },
@@ -497,34 +637,49 @@ export default {
      */
     btnRefreshOnClick() {
       if (this.textSearch == "") {
-        this.pagination(this.pageSize, this.pageNumberSelected, "");
+        this.pagination(
+          this.pageSize,
+          this.pageNumberSelected,
+          "",
+          this.bankName,
+          this.gender,
+          this.departmentId
+        );
       } else {
-        this.pagination(this.pageSize, 1, this.textSearch);
+        this.pagination(
+          this.pageSize,
+          1,
+          this.textSearch,
+          this.bankName,
+          this.gender,
+          this.departmentId
+        );
       }
     },
 
     /**
-    * Thực hiện xuất file excel
-    * Author: HVDUNG(25/06/2022)
-    */
+     * Thực hiện xuất file excel
+     * Author: HVDUNG(25/06/2022)
+     */
     btnExportExcel() {
       try {
-         axios
-        .get("http://localhost:22454/api/v1/Employees/excel", {
-          responseType: "blob",
-        })
-        .then((res) => {
-          const url = URL.createObjectURL(new Blob([res.data]));
-          const link = document.createElement("a");
+        axios
+          .get("http://localhost:22454/api/v1/Employees/excel", {
+            responseType: "blob",
+          })
+          .then((res) => {
+            const url = URL.createObjectURL(new Blob([res.data]));
+            const link = document.createElement("a");
 
-          link.href = url;
-          link.setAttribute("download", "Danh sách nhân viên.xlsx");
+            link.href = url;
+            link.setAttribute("download", "Danh sách nhân viên.xlsx");
 
-          document.body.appendChild(link);
-          link.click();
-        }).catch((res) =>{
-          console.log(res);
-        });     
+            document.body.appendChild(link);
+            link.click();
+          })
+          .catch((res) => {
+            console.log(res);
+          });
       } catch (error) {
         console.log(error);
       }
@@ -558,6 +713,9 @@ export default {
   data() {
     return {
       textSearch: "",
+      bankName: "",
+      gender: "",
+      departmentId: "",
       employees: {},
       isShowDialog: false,
       isLoading: true,
@@ -576,7 +734,69 @@ export default {
       checkTotalEmployee: false,
       checkReplication: false,
       arrayEmployeeId: [],
-      isShowDeleteMany: false
+      isShowDeleteMany: false,
+      departments: [
+        {
+          value: "",
+          label: "Chọn phòng ban",
+        },
+        {
+          value: "142cb08f-7c31-21fa-8e90-67245e8b283e",
+          label: "Phòng đào tạo",
+        },
+        {
+          value: "17120d02-6ab5-3e43-18cb-66948daf6128",
+          label: "Phòng nhân sự",
+        },
+        {
+          value: "469b3ece-744a-45d5-957d-e8c757976496",
+          label: "Phòng sản xuất",
+        },
+        {
+          value: "4e272fc4-7875-78d6-7d32-6a1673ffca7c",
+          label: "Phòng kế toán",
+        },
+      ],
+      bankNames: [
+        {
+          value: "",
+          label: "Chọn ngân hàng",
+        },
+        {
+          value: "ACB",
+          label: "ACB",
+        },
+        {
+          value: "AgriBank",
+          label: "AgriBank",
+        },
+        {
+          value: "BIDV",
+          label: "BIDV",
+        },
+        {
+          value: "VPBank",
+          label: "VPBank",
+        },
+      ],
+      genders: [
+        {
+          value: "",
+          label: "Chọn giới tính",
+        },
+        {
+          value: "1",
+          label: "Nam",
+        },
+        {
+          value: "0",
+          label: "Nữ",
+        },
+        {
+          value: "2",
+          label: "Khác",
+        },
+      ],
     };
   },
 };
@@ -584,4 +804,5 @@ export default {
 
 <style scoped>
 @import url(../../style/css/layout/content.css);
+@import url(../../style/css/components/combobox.css);
 </style>

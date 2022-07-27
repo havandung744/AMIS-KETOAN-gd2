@@ -9,6 +9,7 @@
     border-spacing: 0;
     display: table;
     border-bottom: 1px solid #bbbbbb;
+    width: 100%;
 }
 
 .d-table th {

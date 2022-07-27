@@ -195,7 +195,7 @@ export default {
   components: {
     //  Datepicker
   },
-  props: ["employeeIdSelected", "formMode", "pageSize", "pageNumberSelected", "textSearch", "checkReplication"],
+  props: ["employeeIdSelected", "formMode", "pageSize", "pageNumberSelected", "textSearch","bankName", "gender", "departmentId", "checkReplication"],
   data() {
     return {
       // dateTime: new Date(2016, 0, 1),
@@ -478,7 +478,8 @@ export default {
       // thực hiện cập nhật lại dữ liệu lên giao diện
       try {
         await axios
-          .get(`http://localhost:22454/api/v1/Employees/filter?pageSize=${me.pageSize}&pageNumber=${me.pageNumberSelected}&employeeFilter=${me.textSearch}`)
+          .get(`http://localhost:22454/api/v1/Employees/filter?pageSize=${me.pageSize}&pageNumber=${me.pageNumberSelected}&employeeFilter=${me.textSearch}
+          &bankName=${me.bankName}&gender=${me.gender}&departmentId=${me.departmentId}`)
           .then((response) => {
             me.employees = response.data.Data;
             me.$emit("changeValueEmployees", me.employees);
@@ -560,7 +561,7 @@ export default {
 
 </script>
 
-<style scoped>
+<style>
 @import url(../../style/css/page/employee-info.css);
 @import url(../../style/css/icon/icon.css);
 </style>
