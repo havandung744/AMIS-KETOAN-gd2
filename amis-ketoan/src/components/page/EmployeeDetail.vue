@@ -9,7 +9,7 @@
             <div class="header-checkbox-content">Là khách hàng</div>
           </div>
           <div class="header-checkbox">
-            <input type="checkbox" style="width: 18px; height: 18px" />
+            <input type="checkbox" style="width: 18px; height: 18px"  @change="checkSupplier($event)"/>
             <div class="header-checkbox-content">Là nhà cung cấp</div>
           </div>
         </div>
@@ -82,7 +82,7 @@
                 <label for="" style="margin-left: 4px">Giới tính</label><br />
                 <div class="info-input-box">
                   <div class="info-input-item">
-                    <input name="gender" type="radio" value="1" tabindex="4" v-model="employee.Gender" />
+                    <input name="gender" type="radio" value="1" tabindex="4" v-model="employee.Gender"/>
                     <label for="" style="margin-right: 8px">Nam</label>
                   </div>
                   <div class="info-input-item">
@@ -162,6 +162,23 @@
                 style="width: 235px" />
             </div>
           </div>
+          <div class="info-input-tr" v-show="this.isShowSupplier">
+            <div class="info-input">
+              <label for="">Tên tổ chức</label><br />
+              <input type="text" class="d-input" id="EmployeeCode" v-model="employee.BankAccountNumber" tabindex="16"
+                style="width: 150px" />
+            </div>
+            <div class="info-input">
+              <label for="">Mã số thuế</label><br />
+              <input type="text" class="d-input" id="EmployeeName" v-model="employee.BankName" tabindex="17"
+                style="width: 235px" />
+            </div>
+            <div class="info-input">
+              <label for="">Địa chỉ tổ chức</label><br />
+              <input type="text" class="d-input" id="EmployeeName" v-model="employee.BankBranchName" tabindex="18"
+                style="width: 235px" />
+            </div>
+          </div>
         </div>
         <div class="footer">
           <div class="footer-line"></div>
@@ -202,6 +219,7 @@ export default {
       // dateTime: new Date(employee.date),
       employee: {},
       employees: {},
+      isShowSupplier: false,
     };
   },
   watch: {
@@ -222,6 +240,14 @@ export default {
   },
 
   methods: {
+
+    checkSupplier(event){
+      if(event.currentTarget.checked)
+        this.isShowSupplier = true;
+      else
+        this.isShowSupplier = false;
+    },
+
     /**
     * Thực hiện lấy dữ liệu từ cliend và trả về cho form chi tiết
     * @param {object} value là employeeId nhân được khi click
@@ -257,6 +283,8 @@ export default {
       else {
         //gán lại employee là rỗng khi thêm mới
         me.employee = {};
+        // gán mặc định giới tính là nam
+        me.employee.Gender = 1;
         // lấy mã nhân viên mới
         await me.getNewEmployeeCode();
       }
@@ -502,6 +530,7 @@ export default {
       document.getElementsByClassName("loading")[0].style.display = "block";
       // gán một positionId mặc định cho employee
       // me.employee.PositionId = "25c6c36e-1668-7d10-6e09-bf1378b8dc91";
+      // gán giá trị mặc định cho gender
       await axios
         .post("http://localhost:22454/api/v1/Employees", me.employee)
         .then(function (res) {

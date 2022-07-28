@@ -261,7 +261,17 @@ export default {
    */
   created() {
     // giá trị khởi tạo ban đầu dành cho việc hiển thị
-    this.pagination(10, 1, "", "", "", "");
+    // this.pagination(10, 1, "", "", "", "");
+    this.bankName = localStorage.getItem('bankName');
+    this.gender = localStorage.getItem('gender');
+    this.departmentId = localStorage.getItem('departmentId');
+    if(!this.bankName)
+    this.bankName='';
+    if(!this.gender)
+    this.gender='';
+    if(!this.departmentId)
+    this.departmentId='';
+    this.pagination(10, 1, "", this.bankName, this.gender, this.departmentId);
   },
 
   watch: {
@@ -302,6 +312,7 @@ export default {
 
   methods: {
     onChangeDepartmentId() {
+        localStorage.setItem('departmentId',this.departmentId);
       this.pagination(
         this.pageSize,
         1,
@@ -313,6 +324,7 @@ export default {
     },
 
     onChangeBankName() {
+      localStorage.setItem('bankName',this.bankName);
       this.pagination(
         this.pageSize,
         1,
@@ -323,6 +335,7 @@ export default {
       );
     },
     onChangeGender() {
+        localStorage.setItem('gender',this.gender);
       this.pagination(
         this.pageSize,
         1,
