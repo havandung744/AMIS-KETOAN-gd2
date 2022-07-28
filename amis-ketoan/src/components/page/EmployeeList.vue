@@ -68,6 +68,20 @@
             :value="item.value"
           />
         </el-select>
+        <el-select
+          v-model="this.checkOrganization"
+          placeholder="Chọn vai trò"
+          @change="onChangeOrganization()"
+          class="m-2"
+        >
+          <el-option
+            v-for="item in this.organizations"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+
       </div>
 
       <div class="d-toolbar-left">
@@ -109,6 +123,9 @@
               <th class="text-align-left">SỐ TÀI KHOẢN</th>
               <th class="text-align-left">TÊN NGÂN HÀNG</th>
               <th class="text-align-left">CHI NHÁNH TK NGÂN HÀNG</th>
+              <th class="text-align-left">TÊN TỔ CHỨC</th>
+              <th class="text-align-left">MÃ SỐ THUẾ</th>
+              <th class="text-align-left">ĐỊA CHỈ TỔ CHỨC</th>
               <th class="text-align-center" style="min-width: 119px">
                 CHỨC NĂNG
               </th>
@@ -138,6 +155,9 @@
               <td class="text-align-left">{{ employee.BankAccountNumber }}</td>
               <td class="text-align-left">{{ employee.BankName }}</td>
               <td class="text-align-left">{{ employee.BankBranchName }}</td>
+              <td class="text-align-left">{{ employee.OrganizationName }}</td>
+              <td class="text-align-left">{{ employee.TaxCode }}</td>
+              <td class="text-align-left">{{ employee.OrganizationAddress }}</td>
               <td class="text-align-center">
                 <div class="d-function">
                   <div class="d-text">Sửa</div>
@@ -271,6 +291,8 @@ export default {
     this.gender='';
     if(!this.departmentId)
     this.departmentId='';
+    if(!this.checkOrganization)
+    this.checkOrganization=false;
     this.pagination(10, 1, "", this.bankName, this.gender, this.departmentId);
   },
 
@@ -336,6 +358,17 @@ export default {
     },
     onChangeGender() {
         localStorage.setItem('gender',this.gender);
+      this.pagination(
+        this.pageSize,
+        1,
+        this.textSearch,
+        this.bankName,
+        this.gender,
+        this.departmentId
+      );
+    },
+    onChangeOrganization() {
+      localStorage.setItem('checkOrganization',this.checkOrganization);
       this.pagination(
         this.pageSize,
         1,
@@ -730,6 +763,7 @@ export default {
       textSearch: "",
       bankName: "",
       gender: "",
+      checkOrganization: false,
       departmentId: "",
       employees: {},
       isShowDialog: false,
@@ -810,6 +844,20 @@ export default {
         {
           value: "2",
           label: "Khác",
+        },
+      ],
+      organizations: [
+        {
+          value: "",
+          label: "Chọn vai trò",
+        },
+        {
+          value: false,
+          label: "Khách hàng",
+        },
+        {
+          value: true,
+          label: "Nhà cung cấp",
         },
       ],
     };

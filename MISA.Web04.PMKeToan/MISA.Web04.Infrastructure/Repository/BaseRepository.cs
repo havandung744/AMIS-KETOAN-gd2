@@ -38,7 +38,7 @@ namespace MISA.Web04.Infrastructure.Repository
             }
         }
 
-        public IEnumerable<Entity> GetAll(int? pageSize, int? pageIndex, string? employeeFilter, string? bankName, int? gender, Guid? departmentId)
+        public IEnumerable<Entity> GetAll(int? pageSize, int? pageIndex, string? employeeFilter, string? bankName, int? gender, Guid? departmentId, Boolean? IsOrganizations)
         {
             var className = typeof(Entity).Name;
             Parameters.Add("@m_PageIndex", null);
@@ -48,6 +48,7 @@ namespace MISA.Web04.Infrastructure.Repository
             Parameters.Add("@m_BankName", bankName);
             Parameters.Add("@m_Gender", gender);
             Parameters.Add("@m_DepartmentId", departmentId);
+            Parameters.Add("@m_IsOrganizations", IsOrganizations);
             Parameters.Add("@m_TotalRecords", direction: ParameterDirection.Output, dbType: DbType.Int32);
             Parameters.Add("@m_TotalPages", direction: ParameterDirection.Output, dbType: DbType.Int32);
 

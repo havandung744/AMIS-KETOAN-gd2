@@ -53,5 +53,11 @@ namespace MISA.Web04.Core.Entities
         }
         public string? DepartmentName { get; set; }
         //public string? PositionName { get; set; }
+        public string? OrganizationName { get; set; }
+        public string? TaxCode { get; set; }
+        public string? OrganizationAddress { get; set; }
+        public Boolean IsOrganizations { get; set; }
+
+
     }
 }

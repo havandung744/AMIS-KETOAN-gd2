@@ -116,7 +116,7 @@ namespace MISA.Web04.Api.Controllers
         /// <returns>file excel</returns>
         /// Author: HVDUNG (25/06/2022)
         [HttpGet("excel")]
-        public IActionResult ExportExcel(int? pageSize, int? pageIndex, string? employeeFilter, string? bankName, int? gender, Guid? departmentId)
+        public IActionResult ExportExcel(int? pageSize, int? pageIndex, string? employeeFilter, string? bankName, int? gender, Guid? departmentId, Boolean? IsOrganizations)
         {
             using (var workbook = new XLWorkbook())
             {
@@ -143,7 +143,7 @@ namespace MISA.Web04.Api.Controllers
                 }
 
                 // Thực hiện lấy data và đưa vào file
-                var employees = _employeeRepository.GetAll(pageSize, pageIndex, employeeFilter, bankName, gender, departmentId);
+                var employees = _employeeRepository.GetAll(pageSize, pageIndex, employeeFilter, bankName, gender, departmentId, IsOrganizations);
                 int currentRow = 4;
                 foreach (var (employee, index) in employees.Select((employee, index) => (employee, index)))
                 {
@@ -225,9 +225,9 @@ namespace MISA.Web04.Api.Controllers
         /// <returns>danh sách nhân viên</returns>
         /// CreatedBy: HVDUNG (20/06/2022)
         [HttpGet("/api/v1/[controller]/filter")]
-        public IActionResult employeeFilter(int pageSize, int pageNumber, string? employeeFilter, string? bankName, int? gender, Guid? departmentId)
+        public IActionResult employeeFilter(int pageSize, int pageNumber, string? employeeFilter, string? bankName, int? gender, Guid? departmentId, bool IsOrganizations)
         {
-            var employees = _employeeRepository.GetPaging(pageSize, pageNumber, employeeFilter, bankName, gender, departmentId);
+            var employees = _employeeRepository.GetPaging(pageSize, pageNumber, employeeFilter, bankName, gender, departmentId, IsOrganizations);
             return Ok(employees);
         }
 

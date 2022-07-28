@@ -165,17 +165,17 @@
           <div class="info-input-tr" v-show="this.isShowSupplier">
             <div class="info-input">
               <label for="">Tên tổ chức</label><br />
-              <input type="text" class="d-input" id="EmployeeCode" v-model="employee.BankAccountNumber" tabindex="16"
+              <input type="text" class="d-input" id="EmployeeCode" v-model="employee.OrganizationName" tabindex="16"
                 style="width: 150px" />
             </div>
             <div class="info-input">
               <label for="">Mã số thuế</label><br />
-              <input type="text" class="d-input" id="EmployeeName" v-model="employee.BankName" tabindex="17"
+              <input type="text" class="d-input" id="EmployeeName" v-model="employee.TaxCode" tabindex="17"
                 style="width: 235px" />
             </div>
             <div class="info-input">
               <label for="">Địa chỉ tổ chức</label><br />
-              <input type="text" class="d-input" id="EmployeeName" v-model="employee.BankBranchName" tabindex="18"
+              <input type="text" class="d-input" id="EmployeeName" v-model="employee.OrganizationAddress" tabindex="18"
                 style="width: 235px" />
             </div>
           </div>
@@ -242,10 +242,16 @@ export default {
   methods: {
 
     checkSupplier(event){
-      if(event.currentTarget.checked)
+      if(event.currentTarget.checked){
         this.isShowSupplier = true;
-      else
+        this.employee.IsOrganizations = true;
+      }
+      else{
         this.isShowSupplier = false;
+        this.employee.IsOrganizations = false;
+      }
+        console.log(this.employee);
+      
     },
 
     /**
