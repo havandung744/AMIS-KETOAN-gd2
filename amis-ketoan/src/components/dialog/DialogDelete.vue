@@ -10,7 +10,7 @@
       </div>
       <div class="d-dialog-footer">
         <div class="d-dialog-footer-line"></div>
-        <button class="d-btn" id="d-save" @click="btnCloseOnClick">Không</button>
+        <button class="d-btn" id="d-close" @click="btnCloseOnClick">Không</button>
         <button class="d-btn" id="d-save" @click="btnSaveOnClick">Có</button>
       </div>
     </div>
@@ -118,4 +118,11 @@ export default {
 .d-dialog-body {
   margin-top: 20px;
 }
+
+#d-close{
+  color: #000000;
+  background-color: #fff;
+  border: 1px solid #bbbbbb;
+}
+
 </style>>

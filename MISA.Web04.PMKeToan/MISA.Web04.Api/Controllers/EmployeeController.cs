@@ -116,7 +116,7 @@ namespace MISA.Web04.Api.Controllers
         /// <returns>file excel</returns>
         /// Author: HVDUNG (25/06/2022)
         [HttpGet("excel")]
-        public IActionResult ExportExcel()
+        public IActionResult ExportExcel(int? pageSize, int? pageIndex, string? employeeFilter, string? bankName, int? gender, Guid? departmentId)
         {
             using (var workbook = new XLWorkbook())
             {
@@ -143,7 +143,7 @@ namespace MISA.Web04.Api.Controllers
                 }
 
                 // Thực hiện lấy data và đưa vào file
-                var employees = _employeeRepository.GetAll();
+                var employees = _employeeRepository.GetAll(pageSize, pageIndex, employeeFilter, bankName, gender, departmentId);
                 int currentRow = 4;
                 foreach (var (employee, index) in employees.Select((employee, index) => (employee, index)))
                 {

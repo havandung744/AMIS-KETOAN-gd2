@@ -304,7 +304,7 @@ export default {
     onChangeDepartmentId() {
       this.pagination(
         this.pageSize,
-        this.pageNumberSelected,
+        1,
         this.textSearch,
         this.bankName,
         this.gender,
@@ -315,7 +315,7 @@ export default {
     onChangeBankName() {
       this.pagination(
         this.pageSize,
-        this.pageNumberSelected,
+        1,
         this.textSearch,
         this.bankName,
         this.gender,
@@ -325,7 +325,7 @@ export default {
     onChangeGender() {
       this.pagination(
         this.pageSize,
-        this.pageNumberSelected,
+        1,
         this.textSearch,
         this.bankName,
         this.gender,
@@ -542,6 +542,7 @@ export default {
             me.gender,
             me.departmentId
           );
+          console.log(me.textSearch.length);
         }, 500);
       } else
         me.pagination(
@@ -664,7 +665,8 @@ export default {
     btnExportExcel() {
       try {
         axios
-          .get("http://localhost:22454/api/v1/Employees/excel", {
+          .get(`http://localhost:22454/api/v1/Employees/excel?employeeFilter=${this.textSearch}
+          &bankName=${this.bankName}&gender=${this.gender}&departmentId=${this.departmentId}`, {
             responseType: "blob",
           })
           .then((res) => {

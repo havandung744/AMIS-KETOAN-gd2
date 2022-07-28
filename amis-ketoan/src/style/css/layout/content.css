@@ -195,8 +195,8 @@
 
 .deleteMany {
     position: absolute;
-    bottom: -33px;
-    right: 20px;
+    bottom: -28px;
+    left: 90px;
     z-index: 999;
     padding: 5px 10px;
     box-sizing: border-box;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,6 +35,31 @@ namespace MISA.Web04.Infrastructure.Repository
             {
                 var entities = SqlConnection.Query<Entity>(sql: $"Proc_Get{className}s", commandType: System.Data.CommandType.StoredProcedure);
                 return entities;
+            }
+        }
+
+        public IEnumerable<Entity> GetAll(int? pageSize, int? pageIndex, string? employeeFilter, string? bankName, int? gender, Guid? departmentId)
+        {
+            var className = typeof(Entity).Name;
+            Parameters.Add("@m_PageIndex", null);
+            Parameters.Add("@m_PageSize", null);
+            //employeeFilter = employeeFilter.Trim();
+            Parameters.Add("@m_EmployeeFilter", employeeFilter);
+            Parameters.Add("@m_BankName", bankName);
+            Parameters.Add("@m_Gender", gender);
+            Parameters.Add("@m_DepartmentId", departmentId);
+            Parameters.Add("@m_TotalRecords", direction: ParameterDirection.Output, dbType: DbType.Int32);
+            Parameters.Add("@m_TotalPages", direction: ParameterDirection.Output, dbType: DbType.Int32);
+
+            using (SqlConnection = new MySqlConnection(ConnectionString))
+            {
+                var employeesPaging = SqlConnection.Query<Entity>(
+                     $"Proc_paging{className}",
+                     param: Parameters,
+                     commandType: CommandType.StoredProcedure
+                 );
+
+                return employeesPaging;
             }
         }
 
