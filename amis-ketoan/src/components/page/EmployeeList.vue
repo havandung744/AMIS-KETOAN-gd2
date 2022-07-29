@@ -81,7 +81,6 @@
             :value="item.value"
           />
         </el-select>
-
       </div>
 
       <div class="d-toolbar-left">
@@ -157,7 +156,9 @@
               <td class="text-align-left">{{ employee.BankBranchName }}</td>
               <td class="text-align-left">{{ employee.OrganizationName }}</td>
               <td class="text-align-left">{{ employee.TaxCode }}</td>
-              <td class="text-align-left">{{ employee.OrganizationAddress }}</td>
+              <td class="text-align-left">
+                {{ employee.OrganizationAddress }}
+              </td>
               <td class="text-align-center">
                 <div class="d-function">
                   <div class="d-text">Sửa</div>
@@ -218,6 +219,7 @@
       :bankName="bankName"
       :gender="gender"
       :departmentId="departmentId"
+      :checkOrganization="checkOrganization"
     >
     </EmployeeDetail>
     <!-- thực hiện hiển thị thông báo khi validate không hợp lệ-->
@@ -235,6 +237,7 @@
       :bankName="bankName"
       :gender="gender"
       :departmentId="departmentId"
+      :checkOrganization="checkOrganization"
       @changeCount="changeCount"
     >
     </DialogDelete>
@@ -282,19 +285,23 @@ export default {
   created() {
     // giá trị khởi tạo ban đầu dành cho việc hiển thị
     // this.pagination(10, 1, "", "", "", "");
-    this.bankName = localStorage.getItem('bankName');
-    this.gender = localStorage.getItem('gender');
-    this.departmentId = localStorage.getItem('departmentId');
-    this.checkOrganization = localStorage.getItem('checkOrganization');
-    if(!this.bankName)
-    this.bankName='';
-    if(!this.gender)
-    this.gender='';
-    if(!this.departmentId)
-    this.departmentId='';
-    if(!this.checkOrganization)
-    this.checkOrganization='';
-    this.pagination(10, 1, "", this.bankName, this.gender, this.departmentId, this.checkOrganization);
+    this.bankName = localStorage.getItem("bankName");
+    this.gender = localStorage.getItem("gender");
+    this.departmentId = localStorage.getItem("departmentId");
+    this.checkOrganization = localStorage.getItem("checkOrganization");
+    if (!this.bankName) this.bankName = "";
+    if (!this.gender) this.gender = "";
+    if (!this.departmentId) this.departmentId = "";
+    if (!this.checkOrganization) this.checkOrganization = "false";
+    this.pagination(
+      10,
+      1,
+      "",
+      this.bankName,
+      this.gender,
+      this.departmentId,
+      this.checkOrganization
+    );
   },
 
   watch: {
@@ -316,7 +323,8 @@ export default {
         this.textSearch,
         this.bankName,
         this.gender,
-        this.departmentId
+        this.departmentId,
+        this.checkOrganization
       );
     },
 
@@ -328,15 +336,15 @@ export default {
         this.textSearch,
         this.bankName,
         this.gender,
-        this.departmentId
+        this.departmentId,
+        this.checkOrganization
       );
     },
   },
 
   methods: {
-
     onChangeDepartmentId() {
-        localStorage.setItem('departmentId',this.departmentId);
+      localStorage.setItem("departmentId", this.departmentId);
       this.pagination(
         this.pageSize,
         1,
@@ -349,7 +357,7 @@ export default {
     },
 
     onChangeBankName() {
-      localStorage.setItem('bankName',this.bankName);
+      localStorage.setItem("bankName", this.bankName);
       this.pagination(
         this.pageSize,
         1,
@@ -361,7 +369,7 @@ export default {
       );
     },
     onChangeGender() {
-        localStorage.setItem('gender',this.gender);
+      localStorage.setItem("gender", this.gender);
       this.pagination(
         this.pageSize,
         1,
@@ -373,7 +381,7 @@ export default {
       );
     },
     onChangeOrganization() {
-      localStorage.setItem('checkOrganization',this.checkOrganization);
+      localStorage.setItem("checkOrganization", this.checkOrganization);
       this.pagination(
         this.pageSize,
         1,
@@ -413,7 +421,8 @@ export default {
           this.textSearch,
           this.bankName,
           this.gender,
-          this.departmentId
+          this.departmentId,
+          this.checkOrganization
         );
         for (var emp of this.employees) {
           this.arrayEmployeeId.push(emp.EmployeeId);
@@ -593,7 +602,8 @@ export default {
             me.textSearch,
             me.bankName,
             me.gender,
-            me.departmentId
+            me.departmentId,
+            me.checkOrganization
           );
           console.log(me.textSearch.length);
         }, 500);
@@ -604,7 +614,8 @@ export default {
           "",
           me.bankName,
           me.gender,
-          me.departmentId
+          me.departmentId,
+          me.checkOrganization
         );
     },
 
@@ -644,6 +655,9 @@ export default {
       // thực hiện xóa đi đường viền đỏ
       document.getElementById("EmployeeCode").classList.remove("d-input-error");
       document.getElementById("EmployeeName").classList.remove("d-input-error");
+      document.getElementById("IdentityNumber").classList.remove("d-input-error");
+      document.getElementById("EmployeePosition").classList.remove("d-input-error");
+
       // thực hiện ẩn form dropdown nếu đang mở
       document.getElementsByClassName("dropdown")[0].style.display = "none";
       // thực hiện hiển thị form chi tiết
@@ -666,6 +680,9 @@ export default {
       // thực hiện xóa đi đường viền đỏ
       document.getElementById("EmployeeCode").classList.remove("d-input-error");
       document.getElementById("EmployeeName").classList.remove("d-input-error");
+      document.getElementById("IdentityNumber").classList.remove("d-input-error");
+      document.getElementById("EmployeePosition").classList.remove("d-input-error");
+
       // thực hiện ẩn form dropdown nếu đang mở
       document.getElementsByClassName("dropdown")[0].style.display = "none";
       // hiển thị form chi tiết
@@ -697,7 +714,8 @@ export default {
           "",
           this.bankName,
           this.gender,
-          this.departmentId
+          this.departmentId,
+          this.checkOrganization
         );
       } else {
         this.pagination(
@@ -706,7 +724,8 @@ export default {
           this.textSearch,
           this.bankName,
           this.gender,
-          this.departmentId
+          this.departmentId,
+          this.checkOrganization
         );
       }
     },
@@ -718,10 +737,13 @@ export default {
     btnExportExcel() {
       try {
         axios
-          .get(`http://localhost:22454/api/v1/Employees/excel?employeeFilter=${this.textSearch}
-          &bankName=${this.bankName}&gender=${this.gender}&departmentId=${this.departmentId}`, {
-            responseType: "blob",
-          })
+          .get(
+            `http://localhost:22454/api/v1/Employees/excel?employeeFilter=${this.textSearch}
+          &bankName=${this.bankName}&gender=${this.gender}&departmentId=${this.departmentId}&IsOrganizations=${this.checkOrganization}`,
+            {
+              responseType: "blob",
+            }
+          )
           .then((res) => {
             const url = URL.createObjectURL(new Blob([res.data]));
             const link = document.createElement("a");
@@ -855,11 +877,11 @@ export default {
       ],
       organizations: [
         {
-          value: false,
+          value: "false",
           label: "Khách hàng",
         },
         {
-          value: true,
+          value: "true",
           label: "Nhà cung cấp",
         },
       ],

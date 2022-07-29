@@ -38,7 +38,7 @@ namespace MISA.Web04.Infrastructure.Repository
             }
         }
 
-        public IEnumerable<Entity> GetAll(int? pageSize, int? pageIndex, string? employeeFilter, string? bankName, int? gender, Guid? departmentId, Boolean? IsOrganizations)
+        public IEnumerable<Entity> GetAll(int? pageSize, int? pageIndex, string? employeeFilter, string? bankName, int? gender, Guid? departmentId, bool IsOrganizations)
         {
             var className = typeof(Entity).Name;
             Parameters.Add("@m_PageIndex", null);

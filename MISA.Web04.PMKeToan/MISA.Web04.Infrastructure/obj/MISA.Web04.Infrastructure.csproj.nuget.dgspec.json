@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\hvdung\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\MISA.Web04.Infrastructure.csproj": {}
+    "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\MISA.Web04.Infrastructure.csproj": {}
   },
   "projects": {
-    "E:\\hvdung\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj": {
+    "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\hvdung\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj",
+        "projectUniqueName": "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj",
         "projectName": "MISA.Web04.Core",
-        "projectPath": "E:\\hvdung\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj",
+        "projectPath": "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj",
         "packagesPath": "C:\\Users\\hvdung\\.nuget\\packages\\",
-        "outputPath": "E:\\hvdung\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\obj\\",
+        "outputPath": "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hvdung\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -68,14 +68,14 @@
         }
       }
     },
-    "E:\\hvdung\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\MISA.Web04.Infrastructure.csproj": {
+    "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\MISA.Web04.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\hvdung\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\MISA.Web04.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\MISA.Web04.Infrastructure.csproj",
         "projectName": "MISA.Web04.Infrastructure",
-        "projectPath": "E:\\hvdung\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\MISA.Web04.Infrastructure.csproj",
+        "projectPath": "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\MISA.Web04.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\hvdung\\.nuget\\packages\\",
-        "outputPath": "E:\\hvdung\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hvdung\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -92,8 +92,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "E:\\hvdung\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj": {
-                "projectPath": "E:\\hvdung\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj"
+              "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj": {
+                "projectPath": "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj"
               }
             }
           }

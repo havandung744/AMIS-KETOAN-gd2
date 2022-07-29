@@ -5,11 +5,18 @@
         <div class="header-text">THÔNG TIN NHÂN VIÊN</div>
         <div class="header-content">
           <div class="header-checkbox">
-            <input type="checkbox" style="width: 18px; height: 18px" />
-            <div class="header-checkbox-content">Là khách hàng</div>
+            <input type="checkbox" id="check1" @click="selectOnlyCheckbox($event)" style="width: 18px; height: 18px" />
+            <div class="header-checkbox-content"
+            >Là khách hàng</div>
           </div>
           <div class="header-checkbox">
-            <input type="checkbox" style="width: 18px; height: 18px"  @change="checkSupplier($event)"/>
+            <input
+              type="checkbox"
+               id="check2"
+              style="width: 18px; height: 18px"           
+              @change="checkSupplier($event)"
+              @click="selectOnlyCheckbox($event)"
+            />
             <div class="header-checkbox-content">Là nhà cung cấp</div>
           </div>
         </div>
@@ -20,21 +27,43 @@
           <div class="content-info-left">
             <div class="info-input-tr">
               <div class="info-input">
-                <label for="">Mã nhân viên&nbsp;<span style="color: red">*</span></label><br />
-                <input type="text" v-model="employee.EmployeeCode" class="d-input" id="EmployeeCode"
-                  @blur="validateCheckInput" tabindex="1" style="width: 150px" />
+                <label for=""
+                  >Mã nhân viên&nbsp;<span style="color: red">*</span></label
+                ><br />
+                <input
+                  type="text"
+                  v-model="employee.EmployeeCode"
+                  class="d-input"
+                  id="EmployeeCode"
+                  @blur="validateCheckInput"
+                  tabindex="1"
+                  style="width: 150px"
+                />
               </div>
               <div class="info-input">
-                <label for="">Họ tên&nbsp;<span style="color: red">*</span></label><br />
-                <input type="text" v-model="employee.EmployeeName" class="d-input" id="EmployeeName"
-                  @blur="validateCheckInput" tabindex="2" style="width: 235px" />
+                <label for=""
+                  >Họ tên&nbsp;<span style="color: red">*</span></label
+                ><br />
+                <input
+                  type="text"
+                  v-model="employee.EmployeeName"
+                  class="d-input"
+                  id="EmployeeName"
+                  @blur="validateCheckInput"
+                  tabindex="2"
+                  style="width: 235px"
+                />
               </div>
             </div>
             <div class="info-input-tr">
               <div class="info-input">
                 <label for="">Đơn vị</label><br />
 
-                <select tabindex="7" v-model="employee.DepartmentId" class="cbxDepartment">
+                <select
+                  tabindex="7"
+                  v-model="employee.DepartmentId"
+                  class="cbxDepartment"
+                >
                   <option value="142cb08f-7c31-21fa-8e90-67245e8b283e">
                     Phòng đào tạo
                   </option>
@@ -61,9 +90,16 @@
             </div>
             <div class="info-input-tr">
               <div class="info-input">
-                <label for="">Chức danh</label><br />
-                <input type="input" class="d-input" v-model="employee.EmployeePosition" tabindex="10"
-                  style="width: 391px" />
+                <label for="">Chức danh&nbsp;<span style="color: red">*</span></label><br />
+                <input
+                  type="input"
+                  class="d-input"
+                  id="EmployeePosition"
+                  @blur="validateCheckInput"
+                  v-model="employee.EmployeePosition"
+                  tabindex="10"
+                  style="width: 391px"
+                />
               </div>
             </div>
           </div>
@@ -73,24 +109,55 @@
                 <label for="">Ngày sinh</label><br />
                 <!-- <input type="date" id="date_timepicker_end" v-model="employee.DateOfBirth" class="d-input" tabindex="3"
                   style="width: 161px" /> -->
-                <el-date-picker id="date_timepicker_end" tabindex="3" v-model="employee.DateOfBirth" type="date"
-                  placeholder="DD/MM/YYYY" format="DD/MM/YYYY" value-format="YYYY-MM-DD"
-                  style="width: 161px; height: 32px; padding-right: 12px; margin-top: 4px; font-family: GoogleSans; font-size: 13px; " />
-
+                <el-date-picker
+                  id="date_timepicker_end"
+                  tabindex="3"
+                  v-model="employee.DateOfBirth"
+                  type="date"
+                  placeholder="DD/MM/YYYY"
+                  format="DD/MM/YYYY"
+                  value-format="YYYY-MM-DD"
+                  style="
+                    width: 161px;
+                    height: 32px;
+                    padding-right: 12px;
+                    margin-top: 4px;
+                    font-family: GoogleSans;
+                    font-size: 13px;
+                  "
+                />
               </div>
               <div class="info-input" id="d-radio">
                 <label for="" style="margin-left: 4px">Giới tính</label><br />
                 <div class="info-input-box">
                   <div class="info-input-item">
-                    <input name="gender" type="radio" value="1" tabindex="4" v-model="employee.Gender"/>
+                    <input
+                      name="gender"
+                      type="radio"
+                      value="1"
+                      tabindex="4"
+                      v-model="employee.Gender"
+                    />
                     <label for="" style="margin-right: 8px">Nam</label>
                   </div>
                   <div class="info-input-item">
-                    <input name="gender" type="radio" value="0" tabindex="5" v-model="employee.Gender" />
+                    <input
+                      name="gender"
+                      type="radio"
+                      value="0"
+                      tabindex="5"
+                      v-model="employee.Gender"
+                    />
                     <label for="" style="margin-right: 8px">Nữ</label>
                   </div>
                   <div class="info-input-item">
-                    <input name="gender" type="radio" value="2" tabindex="6" v-model="employee.Gender" />
+                    <input
+                      name="gender"
+                      type="radio"
+                      value="2"
+                      tabindex="6"
+                      v-model="employee.Gender"
+                    />
                     <label for="">Khác</label>
                   </div>
                 </div>
@@ -99,98 +166,203 @@
             <div class="info-input-tr">
               <div class="info-input">
                 <label for="">Số CMND</label><br />
-                <input type="input" v-model="employee.IdentityNumber" class="d-input" tabindex="8"
-                  style="width: 245px" />
+                <input
+                  type="input"
+                  id="IdentityNumber"
+                  v-model="employee.IdentityNumber"
+                  @blur="validateCheckIdentityNumber"
+                  class="d-input"
+                  tabindex="8"
+                  style="width: 245px"
+                />
               </div>
               <div class="info-input">
                 <label for="">Ngày cấp</label><br />
                 <!-- <input type="date" id="date_time_IdentityDate" v-model="employee.IdentityDate" class="d-input"
                   tabindex="9" style="width: 140px" /> -->
-                <el-date-picker id="date_time_IdentityDate" tabindex="9" v-model="employee.IdentityDate" type="date"
-                  placeholder="DD/MM/YYYY" format="DD/MM/YYYY" value-format="YYYY-MM-DD" style="width: 152px; height: 32px; padding-right: 12px; margin-top: 4px;
-                   font-family: GoogleSans; font-size: 13px;" />
+                <el-date-picker
+                  id="date_time_IdentityDate"
+                  tabindex="9"
+                  v-model="employee.IdentityDate"
+                  type="date"
+                  placeholder="DD/MM/YYYY"
+                  format="DD/MM/YYYY"
+                  value-format="YYYY-MM-DD"
+                  style="
+                    width: 152px;
+                    height: 32px;
+                    padding-right: 12px;
+                    margin-top: 4px;
+                    font-family: GoogleSans;
+                    font-size: 13px;
+                  "
+                />
               </div>
             </div>
             <div class="info-input-tr">
               <div class="info-input">
                 <label for="">Nơi cấp</label><br />
-                <input type="input" v-model="employee.IdentityPlace" class="d-input" tabindex="11"
-                  style="width: 391px" />
+                <input
+                  type="input"
+                  v-model="employee.IdentityPlace"
+                  class="d-input"
+                  tabindex="11"
+                  style="width: 391px"
+                />
               </div>
             </div>
           </div>
         </div>
+        <div class="info-input-tr" v-show="this.isShowSupplier" id="isShowSupplier">
+            <div class="info-input">
+              <label for="">Tên tổ chức&nbsp;<span style="color: red">*</span></label><br />
+              <input
+                type="text"
+                class="d-input"
+                id="EmployeeCode"
+                v-model="employee.OrganizationName"
+                 @blur="validateCheckInput"
+                tabindex="16"
+                style="width: 150px"
+              />
+            </div>
+            <div class="info-input">
+              <label for="">Mã số thuế&nbsp;<span style="color: red">*</span></label><br />
+              <input
+                type="text"
+                class="d-input"
+                id="EmployeeName"
+                v-model="employee.TaxCode"
+                 @blur="validateCheckInput"
+                tabindex="17"
+                style="width: 235px"
+              />
+            </div>
+            <div class="info-input">
+              <label for="">Địa chỉ tổ chức&nbsp;<span style="color: red">*</span></label><br />
+              <input
+                type="text"
+                class="d-input"
+                id="EmployeeName"
+                v-model="employee.OrganizationAddress"
+                 @blur="validateCheckInput"
+                tabindex="18"
+                style="width: 235px"
+              />
+            </div>
+          </div>
         <div class="info-input-tr" style="margin-top: 40px">
           <div class="info-input">
             <label for="">Địa chỉ</label>
-            <input type="input" class="d-input" v-model="employee.Address" tabindex="12" style="width: 812px" />
+            <input
+              type="input"
+              class="d-input"
+              v-model="employee.Address"
+              tabindex="12"
+              style="width: 812px"
+            />
           </div>
         </div>
         <div class="content-info-bottom">
           <div class="info-input-tr">
             <div class="info-input">
               <label for="">ĐT di động</label><br />
-              <input type="text" v-model="employee.PhoneNumber" class="d-input" id="EmployeeCode" tabindex="13"
-                style="width: 150px" />
+              <input
+                type="text"
+                v-model="employee.PhoneNumber"
+                class="d-input"
+                id="EmployeeCode"
+                tabindex="13"
+                style="width: 150px"
+              />
             </div>
             <div class="info-input">
               <label for="">ĐT cố định</label><br />
-              <input type="text" class="d-input" id="EmployeeName" v-model="employee.TelephoneNumber" tabindex="14"
-                style="width: 235px" />
+              <input
+                type="text"
+                class="d-input"
+                id="EmployeeName"
+                v-model="employee.TelephoneNumber"
+                tabindex="14"
+                style="width: 235px"
+              />
             </div>
             <div class="info-input">
               <label for="">Email</label><br />
-              <input type="text" v-model="employee.Email" class="d-input" id="EmployeeName" tabindex="15"
-                @blur="validateCheckEmail" style="width: 235px" />
+              <input
+                type="text"
+                v-model="employee.Email"
+                class="d-input"
+                id="EmployeeName"
+                tabindex="15"
+                @blur="validateCheckEmail"
+                style="width: 235px"
+              />
             </div>
           </div>
 
           <div class="info-input-tr">
             <div class="info-input">
               <label for="">Tài khoản ngân hàng</label><br />
-              <input type="text" class="d-input" id="EmployeeCode" v-model="employee.BankAccountNumber" tabindex="16"
-                style="width: 150px" />
+              <input
+                type="text"
+                class="d-input"
+                id="EmployeeCode"
+                v-model="employee.BankAccountNumber"
+                tabindex="16"
+                style="width: 150px"
+              />
             </div>
             <div class="info-input">
               <label for="">Tên ngân hàng</label><br />
-              <input type="text" class="d-input" id="EmployeeName" v-model="employee.BankName" tabindex="17"
-                style="width: 235px" />
+              <input
+                type="text"
+                class="d-input"
+                id="EmployeeName"
+                v-model="employee.BankName"
+                tabindex="17"
+                style="width: 235px"
+              />
             </div>
             <div class="info-input">
               <label for="">Chi nhánh</label><br />
-              <input type="text" class="d-input" id="EmployeeName" v-model="employee.BankBranchName" tabindex="18"
-                style="width: 235px" />
-            </div>
-          </div>
-          <div class="info-input-tr" v-show="this.isShowSupplier">
-            <div class="info-input">
-              <label for="">Tên tổ chức</label><br />
-              <input type="text" class="d-input" id="EmployeeCode" v-model="employee.OrganizationName" tabindex="16"
-                style="width: 150px" />
-            </div>
-            <div class="info-input">
-              <label for="">Mã số thuế</label><br />
-              <input type="text" class="d-input" id="EmployeeName" v-model="employee.TaxCode" tabindex="17"
-                style="width: 235px" />
-            </div>
-            <div class="info-input">
-              <label for="">Địa chỉ tổ chức</label><br />
-              <input type="text" class="d-input" id="EmployeeName" v-model="employee.OrganizationAddress" tabindex="18"
-                style="width: 235px" />
+              <input
+                type="text"
+                class="d-input"
+                id="EmployeeName"
+                v-model="employee.BankBranchName"
+                tabindex="18"
+                style="width: 235px"
+              />
             </div>
           </div>
         </div>
         <div class="footer">
           <div class="footer-line"></div>
           <div class="footer-button">
-            <button class="d-btn d-btn-cancel d-btn-footer-left" id="d-btn-close" tabindex="21" @blur="focusInputFirst"
-              @click="btnCloseOnClick">
+            <button
+              class="d-btn d-btn-cancel d-btn-footer-left"
+              id="d-btn-close"
+              tabindex="21"
+              @blur="focusInputFirst"
+              @click="btnCloseOnClick"
+            >
               Hủy
             </button>
-            <button class="d-btn d-btn-save" id="d-btn-save" tabindex="20" @click="btnSaveOnClick">
+            <button
+              class="d-btn d-btn-save"
+              id="d-btn-save"
+              tabindex="20"
+              @click="btnSaveOnClick"
+            >
               Cất
             </button>
-            <button class="d-btn d-btn-save-add" id="d-btn-save-add" tabindex="19" @click="btnSaveAndAdd">
+            <button
+              class="d-btn d-btn-save-add"
+              id="d-btn-save-add"
+              tabindex="19"
+              @click="btnSaveAndAdd"
+            >
               Cất và Thêm
             </button>
           </div>
@@ -212,7 +384,18 @@ export default {
   components: {
     //  Datepicker
   },
-  props: ["employeeIdSelected", "formMode", "pageSize", "pageNumberSelected", "textSearch","bankName", "gender", "departmentId", "checkReplication"],
+  props: [
+    "employeeIdSelected",
+    "formMode",
+    "pageSize",
+    "pageNumberSelected",
+    "textSearch",
+    "bankName",
+    "gender",
+    "departmentId",
+    "checkOrganization",
+    "checkReplication",
+  ],
   data() {
     return {
       // dateTime: new Date(2016, 0, 1),
@@ -241,24 +424,44 @@ export default {
 
   methods: {
 
-    checkSupplier(event){
-      if(event.currentTarget.checked){
-        this.isShowSupplier = true;
-        this.employee.IsOrganizations = true;
-      }
-      else{
+    /**
+     * Thực hiện focus vào ô checkbox này thì ô checkbox kia không được focus nữa
+     * thông tin ẩn hiện theo checkbox lựa chọn
+     * @param {*} event 
+     * Author: HVDUNG(29/07/2022) 
+     */
+    selectOnlyCheckbox(event){
+      if(event.target.id==="check1" && document.getElementById("check1").checked===true){
+        document.getElementById("check2").checked=false;
         this.isShowSupplier = false;
         this.employee.IsOrganizations = false;
       }
-        console.log(this.employee);
-      
+      if(event.target.id==="check2" && document.getElementById("check2").checked===true){
+        document.getElementById("check1").checked=false;
+      }
+    },
+
+     /**
+     * Thực hiện kiểm tra có checked checkbox là nhà cung cấp hay không
+     * show thêm trường thông tin khi click checkbox này
+     * @param {*} event 
+     * Author: HVDUNG (19/07/2022)
+     */
+    checkSupplier(event) {
+      if (event.currentTarget.checked) {
+        this.isShowSupplier = true;
+        this.employee.IsOrganizations = true;
+      } else {
+        this.isShowSupplier = false;
+        this.employee.IsOrganizations = false;
+      }
     },
 
     /**
-    * Thực hiện lấy dữ liệu từ cliend và trả về cho form chi tiết
-    * @param {object} value là employeeId nhân được khi click
-    * Author: HVDUNG(05/06/2022)
-    */
+     * Thực hiện lấy dữ liệu từ cliend và trả về cho form chi tiết
+     * @param {object} value là employeeId nhân được khi click
+     * Author: HVDUNG(05/06/2022)
+     */
     async getEmployeeInfo(value) {
       // kiểm tra xem id có tồn tại hay không
       var me = this;
@@ -266,7 +469,8 @@ export default {
       if (value) {
         await axios
           .get(
-            `http://localhost:22454/api/v1/Employees/${me.employeeIdSelected}`)
+            `http://localhost:22454/api/v1/Employees/${me.employeeIdSelected}`
+          )
           .then(function (res) {
             switch (res.status) {
               case 200:
@@ -316,9 +520,9 @@ export default {
     },
 
     /**
-    * Thực hiện lưu khi người dùng click nút lưu đồng thời reset value cho form detail
-    * Author: HVDUNG (02/06/2022)
-    */
+     * Thực hiện lưu khi người dùng click nút lưu đồng thời reset value cho form detail
+     * Author: HVDUNG (02/06/2022)
+     */
     async btnSaveAndAdd() {
       var me = this;
       //1. thực hiện việc validate
@@ -342,18 +546,18 @@ export default {
     },
 
     /**
-   * Thực hiện đóng form chi tiết khi click
-   * Author: HVDUNG(05/06/2022)
-   */
+     * Thực hiện đóng form chi tiết khi click
+     * Author: HVDUNG(05/06/2022)
+     */
     btnCloseOnClick() {
       //Thực hiện đống form chi tiết
       this.$emit("isShowDialog");
     },
 
     /**
-    * thực hiện focus vào ô nhập liệu đầu tiên khi nó đến input cuối cùng
-    * Author: HVDUNG (03/06/2022)
-    */
+     * thực hiện focus vào ô nhập liệu đầu tiên khi nó đến input cuối cùng
+     * Author: HVDUNG (03/06/2022)
+     */
     focusInputFirst() {
       document.getElementById("EmployeeCode").focus();
     },
@@ -371,10 +575,7 @@ export default {
         // thêm class vào trong input
         event.currentTarget.classList.add("d-input-error");
         // thêm câu cảnh báo khi hover
-        event.currentTarget.setAttribute(
-          "title",
-          miSaResource.VI.infoNotNull
-        );
+        event.currentTarget.setAttribute("title", miSaResource.VI.infoNotNull);
       } else {
         event.currentTarget.classList.remove("d-input-error");
         event.currentTarget.setAttribute("title", "");
@@ -383,7 +584,7 @@ export default {
 
     /**
      * Thực hiện kiểm tra xem email đã đúng định dạng hay chưa
-     * @param {event} event đối tượng được xây dựng sẵn trong Vue 
+     * @param {event} event đối tượng được xây dựng sẵn trong Vue
      * Author: HVDUNG (11/06/2022)
      */
     validateCheckEmail(event) {
@@ -406,13 +607,53 @@ export default {
     },
 
     /**
+     * Thực hiện kiểm tra xem email đã đúng định dạng hay chưa
+     * @param {event} event đối tượng được xây dựng sẵn trong Vue
+     * Author: HVDUNG (11/06/2022)
+     */
+    validateCheckIdentityNumber(event) {
+      //theo cách dùng thuần
+      //1. lấy ra giá trị input nhập vào
+      let value = event.currentTarget.value;
+      //  2. kiểm tra value có đụng định dạng hay không
+      if (value.trim() != "" && !this.checkIdentityNumber(value)) {
+        // thêm class vào trong input
+        event.currentTarget.classList.add("d-input-error");
+        // thêm câu cảnh báo khi hover
+        event.currentTarget.setAttribute(
+          "title",
+          miSaResource.VI.InvalidIdentityFormat
+        );
+      } else {
+        event.currentTarget.classList.remove("d-input-error");
+        event.currentTarget.setAttribute("title", "");
+      }
+    },
+
+    /**
      * Thực hiện kiểm tra email có đúng định dạng hay không
-     * @param {string} email email cuả nhân viên 
-     * Author: HVDUNG (11./06/2022)
+     * @param {string} email email cuả nhân viên
+     * Author: HVDUNG (11/06/2022)
      */
     checkEmail(email) {
       var res = /\S+@\S+\.\S+/;
       return res.test(email);
+    },
+
+    /**
+     * Thực hiện kiểm tra identity có đúng định dạng hay không
+     * @param {string} identityNumber identityNumber cuả nhân viên
+     * Author: HVDUNG (11/06/2022)
+     */
+    checkIdentityNumber(identityNumber) {
+      if (identityNumber.length != 12 || !this.isNumeric(identityNumber))
+        return false;
+      return true;
+    },
+     isNumeric(str) {
+        if (typeof str != "string") return false // we only process strings!  
+        return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+         !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
     },
 
     /**
@@ -448,44 +689,64 @@ export default {
      */
     validate() {
       var me = this;
-      //1. validate dữ liệu
       var isValid = true;
+      //1. validate dữ liệu
       var arrayErrors = [];
       if (!me.employee.EmployeeCode) {
-        isValid = false;
         arrayErrors.push(miSaResource.VI["EmployeeCodeNotNull"]);
       }
 
       if (!me.employee.EmployeeName) {
-        isValid = false;
         arrayErrors.push(miSaResource.VI.EmployeeNameNotNull);
       }
       if (!me.employee.DepartmentId) {
-        isValid = false;
         arrayErrors.push(miSaResource.VI.DepartmentNameNotNull);
+      }
+       if (!me.employee.EmployeePosition) {
+        arrayErrors.push(miSaResource.VI.EmployeePositionNotNull);
       }
       // convert về dạng ngày tháng thì mới có thể so sánh được
       var dateCurrent = document.getElementById("date_timepicker_end").value;
       dateCurrent = dateCurrent.split("/").reverse().join("-");
       dateCurrent = new Date(dateCurrent);
       if (dateCurrent > new Date()) {
-        isValid = false;
         arrayErrors.push(miSaResource.VI.CheckDateOfBirth);
       }
       // convert về dạng ngày tháng thì mới có thể so sánh được
-      var dateCurrentIdentityDate = document.getElementById("date_time_IdentityDate").value;
-      dateCurrentIdentityDate = dateCurrentIdentityDate.split("/").reverse().join("-");
+      var dateCurrentIdentityDate = document.getElementById(
+        "date_time_IdentityDate"
+      ).value;
+      dateCurrentIdentityDate = dateCurrentIdentityDate
+        .split("/")
+        .reverse()
+        .join("-");
       dateCurrentIdentityDate = new Date(dateCurrentIdentityDate);
       if (dateCurrentIdentityDate > new Date()) {
-        isValid = false;
         arrayErrors.push(miSaResource.VI.CheckIdentityDate);
       }
 
       if (me.employee.Email && !me.checkEmail(me.employee.Email)) {
-        isValid = false;
         arrayErrors.push(miSaResource.VI.CheckEmail);
       }
-      if (!isValid) {
+      if (me.employee.IdentityNumber && !me.checkIdentityNumber(me.employee.IdentityNumber)) {
+        arrayErrors.push(miSaResource.VI.InvalidIdentityFormat);
+      }
+
+      // thực hiện validate các trường khi là nhà cung cấp
+      if(me.employee.IsOrganizations){
+         if (!me.employee.OrganizationName) {
+        arrayErrors.push(miSaResource.VI["OrganizationNameNotNull"]);
+      }
+         if (!me.employee.TaxCode) {
+        arrayErrors.push(miSaResource.VI["TaxCodeNotNull"]);
+      }
+         if (!me.employee.OrganizationAddress) {
+        arrayErrors.push(miSaResource.VI["OrganizationAddressNotNull"]);
+      }
+      }
+
+      if (arrayErrors.length>0) {
+        isValid = false;
         //hiển thị thông báo validate không hợp lệ
         let noticeDialog = document.getElementsByClassName("d-dialog-box")[0];
         let bodyTextNoticeDialog = noticeDialog.querySelector(".d-dialog-body");
@@ -512,8 +773,10 @@ export default {
       // thực hiện cập nhật lại dữ liệu lên giao diện
       try {
         await axios
-          .get(`http://localhost:22454/api/v1/Employees/filter?pageSize=${me.pageSize}&pageNumber=${me.pageNumberSelected}&employeeFilter=${me.textSearch}
-          &bankName=${me.bankName}&gender=${me.gender}&departmentId=${me.departmentId}`)
+          .get(
+            `http://localhost:22454/api/v1/Employees/filter?pageSize=${me.pageSize}&pageNumber=${me.pageNumberSelected}&employeeFilter=${me.textSearch}
+          &bankName=${me.bankName}&gender=${me.gender}&departmentId=${me.departmentId}&IsOrganizations=${me.checkOrganization}`
+          )
           .then((response) => {
             me.employees = response.data.Data;
             me.$emit("changeValueEmployees", me.employees);
@@ -591,9 +854,7 @@ export default {
       document.getElementsByClassName("loading")[0].style.display = "none";
     },
   },
-
 };
-
 </script>
 
 <style>

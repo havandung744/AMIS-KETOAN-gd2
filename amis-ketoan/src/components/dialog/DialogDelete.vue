@@ -20,7 +20,7 @@
 <script>
 import axios from "axios";
 export default {
-  props: ["employeeIdForDelete","arrayEmployeeId", "pageNumberSelected", "pageSize", "textSearch", "bankName", "gender", "departmentId"],
+  props: ["employeeIdForDelete","arrayEmployeeId", "pageNumberSelected", "pageSize", "textSearch", "bankName", "gender", "departmentId", "checkOrganization"],
   name: "DialogDelete",
   methods: {
     /**
@@ -72,7 +72,7 @@ export default {
         document.getElementsByClassName("loading")[0].style.display = "block";
         await axios
           .get(`http://localhost:22454/api/v1/Employees/filter?pageSize=${me.pageSize}&pageNumber=${me.pageNumberSelected}&employeeFilter=${me.textSearch}
-          &bankName=${me.bankName}&gender=${me.gender}&departmentId=${me.departmentId}`)
+          &bankName=${me.bankName}&gender=${me.gender}&departmentId=${me.departmentId}&IsOrganizations=${me.checkOrganization}`)
           .then((response) => {
             me.employees = response.data.Data;
             me.$emit("changeValueEmployees", me.employees);

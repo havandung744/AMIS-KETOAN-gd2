@@ -116,7 +116,7 @@ namespace MISA.Web04.Api.Controllers
         /// <returns>file excel</returns>
         /// Author: HVDUNG (25/06/2022)
         [HttpGet("excel")]
-        public IActionResult ExportExcel(int? pageSize, int? pageIndex, string? employeeFilter, string? bankName, int? gender, Guid? departmentId, Boolean? IsOrganizations)
+        public IActionResult ExportExcel(int? pageSize, int? pageIndex, string? employeeFilter, string? bankName, int? gender, Guid? departmentId, bool IsOrganizations)
         {
             using (var workbook = new XLWorkbook())
             {

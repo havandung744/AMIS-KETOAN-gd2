@@ -9,7 +9,7 @@ namespace MISA.Web04.Core.Interfaces.Infrastructure
     public interface IBaseRepository<Entity>
     {
         IEnumerable<Entity> GetAll();
-        IEnumerable<Entity> GetAll(int? pageSize, int? pageIndex, string? employeeFilter, string? bankName, int? gender, Guid? departmentId, Boolean? IsOrganizations);
+        IEnumerable<Entity> GetAll(int? pageSize, int? pageIndex, string? employeeFilter, string? bankName, int? gender, Guid? departmentId, bool IsOrganizations);
         Entity GetById(Guid EntityId);
         int DeleteById(Guid EntityId);
         int Insert(Entity entity);
