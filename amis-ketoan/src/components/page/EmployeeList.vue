@@ -285,6 +285,7 @@ export default {
     this.bankName = localStorage.getItem('bankName');
     this.gender = localStorage.getItem('gender');
     this.departmentId = localStorage.getItem('departmentId');
+    this.checkOrganization = localStorage.getItem('checkOrganization');
     if(!this.bankName)
     this.bankName='';
     if(!this.gender)
@@ -292,8 +293,8 @@ export default {
     if(!this.departmentId)
     this.departmentId='';
     if(!this.checkOrganization)
-    this.checkOrganization=false;
-    this.pagination(10, 1, "", this.bankName, this.gender, this.departmentId);
+    this.checkOrganization='';
+    this.pagination(10, 1, "", this.bankName, this.gender, this.departmentId, this.checkOrganization);
   },
 
   watch: {
@@ -333,6 +334,7 @@ export default {
   },
 
   methods: {
+
     onChangeDepartmentId() {
         localStorage.setItem('departmentId',this.departmentId);
       this.pagination(
@@ -341,7 +343,8 @@ export default {
         this.textSearch,
         this.bankName,
         this.gender,
-        this.departmentId
+        this.departmentId,
+        this.checkOrganization
       );
     },
 
@@ -353,7 +356,8 @@ export default {
         this.textSearch,
         this.bankName,
         this.gender,
-        this.departmentId
+        this.departmentId,
+        this.checkOrganization
       );
     },
     onChangeGender() {
@@ -364,7 +368,8 @@ export default {
         this.textSearch,
         this.bankName,
         this.gender,
-        this.departmentId
+        this.departmentId,
+        this.checkOrganization
       );
     },
     onChangeOrganization() {
@@ -375,7 +380,8 @@ export default {
         this.textSearch,
         this.bankName,
         this.gender,
-        this.departmentId
+        this.departmentId,
+        this.checkOrganization
       );
     },
 
@@ -537,7 +543,8 @@ export default {
       textSearch,
       bankName,
       gender,
-      departmentId
+      departmentId,
+      checkOrganization
     ) {
       var me = this;
       try {
@@ -545,7 +552,7 @@ export default {
         await axios
           .get(
             `http://localhost:22454/api/v1/Employees/filter?pageSize=${pageSize}
-            &pageNumber=${pageNumber}&employeeFilter=${textSearch}&bankName=${bankName}&gender=${gender}&departmentId=${departmentId}`
+            &pageNumber=${pageNumber}&employeeFilter=${textSearch}&bankName=${bankName}&gender=${gender}&departmentId=${departmentId}&IsOrganizations=${checkOrganization}`
           )
           .then((response) => {
             console.log(response.data);
@@ -763,7 +770,7 @@ export default {
       textSearch: "",
       bankName: "",
       gender: "",
-      checkOrganization: false,
+      checkOrganization: "",
       departmentId: "",
       employees: {},
       isShowDialog: false,
@@ -847,10 +854,6 @@ export default {
         },
       ],
       organizations: [
-        {
-          value: "",
-          label: "Chọn vai trò",
-        },
         {
           value: false,
           label: "Khách hàng",
