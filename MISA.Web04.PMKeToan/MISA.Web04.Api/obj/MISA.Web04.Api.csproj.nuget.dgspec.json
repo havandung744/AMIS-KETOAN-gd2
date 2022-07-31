@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Api\\MISA.Web04.Api.csproj": {}
+    "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Api\\MISA.Web04.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Api\\MISA.Web04.Api.csproj": {
+    "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Api\\MISA.Web04.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Api\\MISA.Web04.Api.csproj",
+        "projectUniqueName": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Api\\MISA.Web04.Api.csproj",
         "projectName": "MISA.Web04.Api",
-        "projectPath": "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Api\\MISA.Web04.Api.csproj",
-        "packagesPath": "C:\\Users\\hvdung\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Api\\obj\\",
+        "projectPath": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Api\\MISA.Web04.Api.csproj",
+        "packagesPath": "C:\\Users\\hdung\\.nuget\\packages\\",
+        "outputPath": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hvdung\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hdung\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,11 +28,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj": {
-                "projectPath": "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj"
+              "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj": {
+                "projectPath": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj"
               },
-              "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\MISA.Web04.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\MISA.Web04.Infrastructure.csproj"
+              "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\MISA.Web04.Infrastructure.csproj": {
+                "projectPath": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\MISA.Web04.Infrastructure.csproj"
               }
             }
           }
@@ -86,21 +86,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj": {
+    "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj",
+        "projectUniqueName": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj",
         "projectName": "MISA.Web04.Core",
-        "projectPath": "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj",
-        "packagesPath": "C:\\Users\\hvdung\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\obj\\",
+        "projectPath": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj",
+        "packagesPath": "C:\\Users\\hdung\\.nuget\\packages\\",
+        "outputPath": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hvdung\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hdung\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -150,21 +150,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\MISA.Web04.Infrastructure.csproj": {
+    "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\MISA.Web04.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\MISA.Web04.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\MISA.Web04.Infrastructure.csproj",
         "projectName": "MISA.Web04.Infrastructure",
-        "projectPath": "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\MISA.Web04.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\hvdung\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\obj\\",
+        "projectPath": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\MISA.Web04.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\hdung\\.nuget\\packages\\",
+        "outputPath": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hvdung\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hdung\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -178,8 +178,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj": {
-                "projectPath": "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj"
+              "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj": {
+                "projectPath": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj"
               }
             }
           }
@@ -218,7 +218,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

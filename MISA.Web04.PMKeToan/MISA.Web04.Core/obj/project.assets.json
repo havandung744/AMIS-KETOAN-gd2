@@ -3873,19 +3873,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hvdung\\.nuget\\packages\\": {}
+    "C:\\Users\\hdung\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj",
+      "projectUniqueName": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj",
       "projectName": "MISA.Web04.Core",
-      "projectPath": "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj",
-      "packagesPath": "C:\\Users\\hvdung\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hvdung\\Documents\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\obj\\",
+      "projectPath": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\MISA.Web04.Core.csproj",
+      "packagesPath": "C:\\Users\\hdung\\.nuget\\packages\\",
+      "outputPath": "C:\\Misa\\git\\AMIS-KETOAN-gd2\\MISA.Web04.PMKeToan\\MISA.Web04.Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\hvdung\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hdung\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3935,7 +3935,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

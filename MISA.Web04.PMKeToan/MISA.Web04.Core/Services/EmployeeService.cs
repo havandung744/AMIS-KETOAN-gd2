@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using MISA.Web04.Core.Resources;
 using MISA.Web04.Core.Exceptions;
 using MISA.Web04.Core.Interfaces.Infrastructure;
@@ -29,7 +28,7 @@ namespace MISA.Web04.Core.Services
         /// false - validate thất bại
         /// </returns>
         /// CreateBy: HVDUNG (20/06/2022)
-        protected override bool Validate(Employee employee)
+        protected override async Task<bool> Validate(Employee employee)
         {
             // 1.1 thông tin mã nhân viên không đươc phép để trống
             if (string.IsNullOrEmpty(employee.EmployeeCode))
@@ -55,7 +54,7 @@ namespace MISA.Web04.Core.Services
             // 1.5 mã nhân viên không được phép trùng lặp
             if (employee.EmployeeCode != null)
             {
-                var isDuplicate = _employeeRepository.CheckDuplicateCode(employee.EmployeeCode);
+                var isDuplicate =  await _employeeRepository.CheckDuplicateCode(employee.EmployeeCode);
                 if (isDuplicate == true)
                     ErrorData.Add("EmployeeCode", string.Format(Core.Resources.ResourceVN.NotExistProp, "EmployeeCode"));
             }
@@ -85,7 +84,7 @@ namespace MISA.Web04.Core.Services
         /// false - validate thất bại
         /// </returns>
         /// CreateBy: HVDUNG (20/06/2022)
-        protected override bool ValidateForUpdate(Guid employeeId, Employee employee)
+        protected override async Task<bool> ValidateForUpdate(Guid employeeId, Employee employee)
         {        // 1.1 thông tin mã nhân viên không đươc phép để trống
             if (string.IsNullOrEmpty(employee.EmployeeCode))
             {
@@ -94,8 +93,8 @@ namespace MISA.Web04.Core.Services
                 return false;
             }
             // kiểm tra mã nhân viên có bị trùng lặp hay không (không tính chính nó)
-            var getEmployeeCode = _employeeRepository.GetEntityCode(employeeId);
-            var isDuplicate = _employeeRepository.CheckDuplicateCode(employee.EmployeeCode);
+            var getEmployeeCode = await _employeeRepository.GetEntityCode(employeeId);
+            var isDuplicate = await _employeeRepository.CheckDuplicateCode(employee.EmployeeCode);
             if (getEmployeeCode != employee.EmployeeCode && isDuplicate == true)
                 ErrorData.Add("EmployeeCode", string.Format(Core.Resources.ResourceVN.NotExistProp, "EmployeeCode"));
 

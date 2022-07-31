@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MISA.Web04.Core.Services
 {
@@ -35,14 +34,14 @@ namespace MISA.Web04.Core.Services
         /// </returns>
         /// <exception cref="ValidateException"></exception>
         /// CreatedBy: HVDUNG (20/06/2022)
-        public int InsertService(Entity entity)
+        public async Task<int> InsertService(Entity entity)
         {
             // thực hiện validate dữ liệu
-            var isValid = Validate(entity);
+            var isValid = await Validate(entity);
             // thực hiện thêm mới vào databse
             if (isValid)
             {
-                var res = Repository.Insert(entity);
+                var res = await Repository.Insert(entity);
                 return res;
             }
             else
@@ -59,14 +58,14 @@ namespace MISA.Web04.Core.Services
         /// </returns>
         /// <exception cref="ValidateException"></exception>
         /// CreatedBy: HVDUNG (20/06/2022)
-        public int UpdateService(Guid entityId, Entity entity)
+        public async Task<int> UpdateService(Guid entityId, Entity entity)
         {
             // thực hiện validate dữ liệu
-            var isValid = ValidateForUpdate(entityId, entity);
+            var isValid = await ValidateForUpdate(entityId, entity);
             // thực hiện thêm mới vào databse
             if (isValid)
             {
-                var res = Repository.Update(entityId, entity);
+                var res = await Repository.Update(entityId, entity);
                 return res;
             }
             else
@@ -82,7 +81,7 @@ namespace MISA.Web04.Core.Services
         /// flase = validate thất bại
         /// </returns>
         ///  CreatedBy: HVDUNG (20/06/2022)
-        protected virtual bool Validate(Entity entity)
+        protected virtual async Task<bool> Validate(Entity entity)
         {
             return true;
         }
@@ -96,8 +95,8 @@ namespace MISA.Web04.Core.Services
         /// flase = validate thất bại
         /// </returns>
         ///  CreatedBy: HVDUNG (20/06/2022)
-        protected virtual bool ValidateForUpdate(Guid entityId, Entity entity)
-        {
+        protected virtual async Task<bool> ValidateForUpdate(Guid entityId, Entity entity)
+        { 
             return true;
         }
 

@@ -219,10 +219,10 @@
               <input
                 type="text"
                 class="d-input"
-                id="EmployeeCode"
+                id="OrganizationName"
                 v-model="employee.OrganizationName"
                  @blur="validateCheckInput"
-                tabindex="16"
+                tabindex="12"
                 style="width: 150px"
               />
             </div>
@@ -231,10 +231,10 @@
               <input
                 type="text"
                 class="d-input"
-                id="EmployeeName"
+                id="TaxCode"
                 v-model="employee.TaxCode"
                  @blur="validateCheckInput"
-                tabindex="17"
+                tabindex="13"
                 style="width: 235px"
               />
             </div>
@@ -243,10 +243,10 @@
               <input
                 type="text"
                 class="d-input"
-                id="EmployeeName"
+                id="OrganizationAddress"
                 v-model="employee.OrganizationAddress"
                  @blur="validateCheckInput"
-                tabindex="18"
+                tabindex="14"
                 style="width: 235px"
               />
             </div>
@@ -258,7 +258,7 @@
               type="input"
               class="d-input"
               v-model="employee.Address"
-              tabindex="12"
+              tabindex="15"
               style="width: 812px"
             />
           </div>
@@ -272,7 +272,7 @@
                 v-model="employee.PhoneNumber"
                 class="d-input"
                 id="EmployeeCode"
-                tabindex="13"
+                tabindex="16"
                 style="width: 150px"
               />
             </div>
@@ -283,7 +283,7 @@
                 class="d-input"
                 id="EmployeeName"
                 v-model="employee.TelephoneNumber"
-                tabindex="14"
+                tabindex="17"
                 style="width: 235px"
               />
             </div>
@@ -294,7 +294,7 @@
                 v-model="employee.Email"
                 class="d-input"
                 id="EmployeeName"
-                tabindex="15"
+                tabindex="18"
                 @blur="validateCheckEmail"
                 style="width: 235px"
               />
@@ -309,7 +309,7 @@
                 class="d-input"
                 id="EmployeeCode"
                 v-model="employee.BankAccountNumber"
-                tabindex="16"
+                tabindex="19"
                 style="width: 150px"
               />
             </div>
@@ -320,7 +320,7 @@
                 class="d-input"
                 id="EmployeeName"
                 v-model="employee.BankName"
-                tabindex="17"
+                tabindex="20"
                 style="width: 235px"
               />
             </div>
@@ -331,7 +331,7 @@
                 class="d-input"
                 id="EmployeeName"
                 v-model="employee.BankBranchName"
-                tabindex="18"
+                tabindex="21"
                 style="width: 235px"
               />
             </div>
@@ -343,7 +343,7 @@
             <button
               class="d-btn d-btn-cancel d-btn-footer-left"
               id="d-btn-close"
-              tabindex="21"
+              tabindex="24"
               @blur="focusInputFirst"
               @click="btnCloseOnClick"
             >
@@ -352,7 +352,7 @@
             <button
               class="d-btn d-btn-save"
               id="d-btn-save"
-              tabindex="20"
+              tabindex="23"
               @click="btnSaveOnClick"
             >
               Cất
@@ -360,7 +360,7 @@
             <button
               class="d-btn d-btn-save-add"
               id="d-btn-save-add"
-              tabindex="19"
+              tabindex="22"
               @click="btnSaveAndAdd"
             >
               Cất và Thêm
@@ -733,7 +733,8 @@ export default {
       }
 
       // thực hiện validate các trường khi là nhà cung cấp
-      if(me.employee.IsOrganizations){
+      // if(me.employee.IsOrganizations){
+        if(document.getElementById("check2").checked==true){
          if (!me.employee.OrganizationName) {
         arrayErrors.push(miSaResource.VI["OrganizationNameNotNull"]);
       }

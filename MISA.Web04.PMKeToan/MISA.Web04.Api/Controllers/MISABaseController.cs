@@ -31,9 +31,9 @@ namespace MISA.Web04.Api.Controllers
         /// <returns>danh sách các đối tượng</returns>
         /// CreatedBy: HVDUNG (20/06/2022)
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var entitys = _baseRepository.GetAll();
+            var entitys = await _baseRepository.GetAll();
             return Ok(entitys);
         }
 
@@ -44,9 +44,9 @@ namespace MISA.Web04.Api.Controllers
         /// <returns>Thông tin đối tượng</returns>
         /// CreatedBy: HVDUNG (20/06/2022)
         [HttpGet("{entityId}")]
-        public IActionResult Get(Guid entityId)
+        public async Task<IActionResult> Get(Guid entityId)
         {
-            var entity = _baseRepository.GetById(entityId);
+            var entity = await _baseRepository.GetById(entityId);
             return Ok(entity);
         }
 
@@ -60,9 +60,9 @@ namespace MISA.Web04.Api.Controllers
         /// </returns>
         /// CreatedBy: HVDUNG (20/06/2022)
         [HttpDelete("{entityId}")]
-        public IActionResult Delete(Guid entityId)
+        public async Task<IActionResult> Delete(Guid entityId)
         {
-            var res = _baseRepository.DeleteById(entityId);
+            var res = await _baseRepository.DeleteById(entityId);
             return Ok(res);
         }
 
@@ -76,10 +76,10 @@ namespace MISA.Web04.Api.Controllers
         /// </returns>
         /// CreatedBy: HVDUNG (20/06/2022)
         [HttpPost]
-        public IActionResult Post(Entity entity)
+        public async Task<IActionResult> Post(Entity entity)
         {
             // thêm mới vào database
-            var res = _baseService.InsertService(entity);
+            var res = await _baseService.InsertService(entity);
             return StatusCode(201, res);
         }
 
@@ -93,9 +93,9 @@ namespace MISA.Web04.Api.Controllers
         /// </returns>
         /// CreatedBy: HVDUNG (20/06/2022)
         [HttpPut("{entityId}")]
-        public IActionResult Put(Guid entityId, Entity entity)
+        public async Task<IActionResult> Put(Guid entityId, Entity entity)
         {
-            var res = _baseService.UpdateService(entityId, entity);
+            var res = await _baseService.UpdateService(entityId, entity);
             return Ok(res);
         }
     }

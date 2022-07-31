@@ -17,7 +17,7 @@ namespace MISA.Web04.Core.Interfaces.Services
         /// 0 -> thất bại
         /// </returns>
         /// CreatedBy: HVDUNG (13/06/2022)
-        int InsertService(Entity entity);
+        Task<int> InsertService(Entity entity);
         /// <summary>
         /// Cập nhật dữ liệu
         /// </summary>
@@ -26,6 +26,6 @@ namespace MISA.Web04.Core.Interfaces.Services
         /// 1 -> thành công
         /// 0 -> thất bại
         /// </returns>
-        int UpdateService(Guid entityId, Entity entity);
+        Task<int> UpdateService(Guid entityId, Entity entity);
     }
 }

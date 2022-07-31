@@ -38,9 +38,9 @@ namespace MISA.Web04.Api.Controllers
         /// </returns>
         /// CreatedBy: HVDUNG (20/06/2022)
         [HttpGet("NewEmployeeCode")]
-        public IActionResult NewEntityCode()
+        public async Task<IActionResult> NewEntityCode()
         {
-            var res = _employeeRepository.GetNewEntityCode();
+            var res = await _employeeRepository.GetNewEntityCode();
             return Ok(res);
         }
 
@@ -116,7 +116,7 @@ namespace MISA.Web04.Api.Controllers
         /// <returns>file excel</returns>
         /// Author: HVDUNG (25/06/2022)
         [HttpGet("excel")]
-        public IActionResult ExportExcel(int? pageSize, int? pageIndex, string? employeeFilter, string? bankName, int? gender, Guid? departmentId, bool IsOrganizations)
+        public async Task<IActionResult> ExportExcel(int? pageSize, int? pageIndex, string? employeeFilter, string? bankName, int? gender, Guid? departmentId, bool IsOrganizations)
         {
             using (var workbook = new XLWorkbook())
             {
@@ -143,7 +143,7 @@ namespace MISA.Web04.Api.Controllers
                 }
 
                 // Thực hiện lấy data và đưa vào file
-                var employees = _employeeRepository.GetAll(pageSize, pageIndex, employeeFilter, bankName, gender, departmentId, IsOrganizations);
+                var employees = await _employeeRepository.GetAll(pageSize, pageIndex, employeeFilter, bankName, gender, departmentId, IsOrganizations);
                 int currentRow = 4;
                 foreach (var (employee, index) in employees.Select((employee, index) => (employee, index)))
                 {
@@ -225,9 +225,9 @@ namespace MISA.Web04.Api.Controllers
         /// <returns>danh sách nhân viên</returns>
         /// CreatedBy: HVDUNG (20/06/2022)
         [HttpGet("/api/v1/[controller]/filter")]
-        public IActionResult employeeFilter(int pageSize, int pageNumber, string? employeeFilter, string? bankName, int? gender, Guid? departmentId, bool IsOrganizations)
+        public async Task<IActionResult> employeeFilter(int pageSize, int pageNumber, string? employeeFilter, string? bankName, int? gender, Guid? departmentId, bool IsOrganizations)
         {
-            var employees = _employeeRepository.GetPaging(pageSize, pageNumber, employeeFilter, bankName, gender, departmentId, IsOrganizations);
+            var employees = await _employeeRepository.GetPaging(pageSize, pageNumber, employeeFilter, bankName, gender, departmentId, IsOrganizations);
             return Ok(employees);
         }
 
@@ -240,9 +240,9 @@ namespace MISA.Web04.Api.Controllers
         /// số bản ghi = 0: Xóa thất bại
         /// </returns>
         [HttpDelete("/api/v1/[controller]/DeleteMultiEmployee")]
-        public IActionResult DeleteMultiEmployee(string employeeIdList)
+        public async Task<IActionResult> DeleteMultiEmployee(string employeeIdList)
         {
-            var res = _employeeRepository.DeleteMultiEmployeeById(employeeIdList);
+            var res = await _employeeRepository.DeleteMultiEmployeeById(employeeIdList);
             return Ok(res);
         }
 

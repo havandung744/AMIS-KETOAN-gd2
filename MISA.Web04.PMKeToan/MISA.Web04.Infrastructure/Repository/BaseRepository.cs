@@ -28,17 +28,18 @@ namespace MISA.Web04.Infrastructure.Repository
         /// <typeparam name="Entity">type của object</typeparam>
         /// <returns>Danh sách object</returns>
         /// CreatedBy: HVDUNG(15/06/2022)
-        public IEnumerable<Entity> GetAll()
+        public async Task<IEnumerable<Entity>> GetAll()
         {
             var className = typeof(Entity).Name;
+            //await
             using (SqlConnection = new MySqlConnection(ConnectionString))
             {
-                var entities = SqlConnection.Query<Entity>(sql: $"Proc_Get{className}s", commandType: System.Data.CommandType.StoredProcedure);
-                return entities;
+                var entities = await SqlConnection.QueryAsync<Entity>(sql: $"Proc_Get{className}s", commandType: System.Data.CommandType.StoredProcedure);
+                return (IEnumerable<Entity>)entities;
             }
         }
 
-        public IEnumerable<Entity> GetAll(int? pageSize, int? pageIndex, string? employeeFilter, string? bankName, int? gender, Guid? departmentId, bool IsOrganizations)
+        public async Task<IEnumerable<Entity>> GetAll(int? pageSize, int? pageIndex, string? employeeFilter, string? bankName, int? gender, Guid? departmentId, bool IsOrganizations)
         {
             var className = typeof(Entity).Name;
             Parameters.Add("@m_PageIndex", null);
@@ -54,7 +55,7 @@ namespace MISA.Web04.Infrastructure.Repository
 
             using (SqlConnection = new MySqlConnection(ConnectionString))
             {
-                var employeesPaging = SqlConnection.Query<Entity>(
+                var employeesPaging = await SqlConnection.QueryAsync<Entity>(
                      $"Proc_paging{className}",
                      param: Parameters,
                      commandType: CommandType.StoredProcedure
@@ -70,7 +71,7 @@ namespace MISA.Web04.Infrastructure.Repository
         /// <param name="EntityId">id của đối tượng</param>
         /// <returns>thông tin đối tượng trả về</returns>
         /// CreateBy: HVDUNG(18/06/2022)
-        public Entity GetById(Guid EntityId)
+        public async Task<Entity> GetById(Guid EntityId)
         {
             var className = typeof(Entity).Name;
             using (SqlConnection = new MySqlConnection(ConnectionString))
@@ -78,7 +79,7 @@ namespace MISA.Web04.Infrastructure.Repository
                 //var sqlCommand = $"SELECT * FROM {className} WHERE {className}Id = @{className}Id";
                 var sqlCommand = $"Proc_Get{className}ById";
                 Parameters.Add($"@d_{className}Id", EntityId);
-                var entity = SqlConnection.QueryFirstOrDefault<Entity>(sql: sqlCommand, param: Parameters, commandType: System.Data.CommandType.StoredProcedure);
+                var entity = await SqlConnection.QueryFirstOrDefaultAsync<Entity>(sql: sqlCommand, param: Parameters, commandType: System.Data.CommandType.StoredProcedure);
                 // 4.trả kết quả cho cliend
                 return entity;
             }
@@ -89,24 +90,29 @@ namespace MISA.Web04.Infrastructure.Repository
         /// </summary>
         /// <returns>Id lớn nhất + 1 </returns>
         /// CreateBy: HVDUNG(18/06/2022)
-        public string GetNewEntityCode()
+        public async Task<object> GetNewEntityCode()
         {
             var className = typeof(Entity).Name;
             using (SqlConnection = new MySqlConnection(ConnectionString))
             {
-                var commandText = $"SELECT MAX({className}Code) from {className}";
-                var maxEntityCode = SqlConnection.QueryFirstOrDefault<string>(commandText);
-                var entityCode = string.Join(" ", maxEntityCode);
-                for (int i = 0; i < maxEntityCode.Length; i++)
-                {
-                    if (entityCode[i] == '-')
-                    {
-                        string text = entityCode.Substring(0, i + 1);
-                        int code = Int32.Parse(entityCode.Substring(i + 1)) + 1;
-                        entityCode = text + code;
-                    }
-                }
-            return entityCode;
+                //var commandText = $"SELECT MAX({className}Code) from {className}";
+                //var maxEntityCode = SqlConnection.QueryFirstOrDefault<string>(commandText);
+                //var entityCode = string.Join(" ", maxEntityCode);
+                //for (int i = 0; i < maxEntityCode.Length; i++)
+                //{
+                //    if (entityCode[i] == '-')
+                //    {
+                //        string text = entityCode.Substring(0, i + 1);
+                //        int code = Int32.Parse(entityCode.Substring(i + 1)) + 1;
+                //        entityCode = text + code;
+                //    }
+                //}
+
+                var sqlCommand = $"Proc_GetNew{className}Code";
+                var newEntityCodes = await SqlConnection.QueryFirstOrDefaultAsync(sql: sqlCommand, commandType: System.Data.CommandType.StoredProcedure);
+                // 4.trả kết quả cho cliend
+                return newEntityCodes.NewEmployeeCode;
+
             }
            
         }
@@ -120,14 +126,14 @@ namespace MISA.Web04.Infrastructure.Repository
         /// 1 -> xóa hành công
         /// </returns>
         /// CreatedBy: HVDUNG (18/06/2022)
-        public int DeleteById(Guid EntityId)
+        public async Task<int> DeleteById(Guid EntityId)
         {
             var className = typeof(Entity).Name;
             using (SqlConnection = new MySqlConnection(ConnectionString))
             {
                 var sqlCommand = $"Proc_Delete{className}ById";
                 Parameters.Add($"@d_{className}Id", EntityId);
-                var res = SqlConnection.Execute(sql: sqlCommand, param: Parameters, commandType: System.Data.CommandType.StoredProcedure);
+                var res = await SqlConnection.ExecuteAsync(sql: sqlCommand, param: Parameters, commandType: System.Data.CommandType.StoredProcedure);
                 // 4.trả kết quả cho cliend
                 return res;
             }
@@ -143,14 +149,14 @@ namespace MISA.Web04.Infrastructure.Repository
         /// 1 -> thêm hành công
         /// </returns>
         /// CreatedBy: HVDUNG (18/06/2022)
-        public int Insert(Entity entity)
+        public async Task<int> Insert(Entity entity)
         {
             var className = typeof(Entity).Name;
             using (SqlConnection = new MySqlConnection(ConnectionString))
             {
                 // 3. Thực hiện thêm mới dữ liệu vào database
                 var sqlCommandText = $"Proc_Add{className}";
-                var res = SqlConnection.Execute(sql: sqlCommandText, param: entity, commandType: System.Data.CommandType.StoredProcedure);
+                var res = await SqlConnection.ExecuteAsync(sql: sqlCommandText, param: entity, commandType: System.Data.CommandType.StoredProcedure);
                 // 4. trả về thông tin cho client
                 return res;
             }
@@ -166,14 +172,14 @@ namespace MISA.Web04.Infrastructure.Repository
         /// 1 -> cập nhật thành công
         /// </returns>
         /// CreatedBy: HVDUNG(18/06/2022)
-        public virtual int Update(Guid entityId, Entity entity)
+        public virtual async Task<int> Update(Guid entityId, Entity entity)
         {
             var className = typeof(Entity).Name;
             using (SqlConnection = new MySqlConnection(ConnectionString))
             {
                 // 3. Thực hiện cập nhật dữ liệu
                 var sqlCommandText = $"Proc_Update{className}";
-                var res = SqlConnection.Execute(sql: sqlCommandText, param: entity, commandType: System.Data.CommandType.StoredProcedure);
+                var res = await SqlConnection.ExecuteAsync(sql: sqlCommandText, param: entity, commandType: System.Data.CommandType.StoredProcedure);
                 // 4. trả về thông tin cho client
                 return res;
             }
@@ -188,14 +194,14 @@ namespace MISA.Web04.Infrastructure.Repository
         /// false -> không trùng lặp
         /// </returns>
         /// CreatedBy: HVDUNG(18/06/2022)
-        public bool CheckDuplicateCode(string entityCode)
+        public async Task<bool> CheckDuplicateCode(string entityCode)
         {
             var className = typeof(Entity).Name;
             using (SqlConnection = new MySqlConnection(ConnectionString))
             {
                 var sqlCheck = $"select {className}Code from {className} where {className}Code=@{className}Code";
                 Parameters.Add($"@{className}Code", entityCode);
-                var res = SqlConnection.QueryFirstOrDefault<string>(sql: sqlCheck, param: Parameters);
+                var res = await SqlConnection.QueryFirstOrDefaultAsync<string>(sql: sqlCheck, param: Parameters);
                 if (res != null)
                     return true;
                 return false;
@@ -208,7 +214,7 @@ namespace MISA.Web04.Infrastructure.Repository
         /// <param name="entityId">id của đối tượng</param>
         /// <returns>mã của đối tượng</returns>
         /// CreatedBy: HVDUNG(18/06/2022)
-        public string GetEntityCode(Guid entityId)
+        public async Task<string> GetEntityCode(Guid entityId)
         {
             var className = typeof(Entity).Name;
             using (SqlConnection = new MySqlConnection(ConnectionString))
@@ -216,9 +222,10 @@ namespace MISA.Web04.Infrastructure.Repository
                 var sqlCommand = $"select {className}Code from {className} where {className}Id = @{className}Id";
                 DynamicParameters dynamicParameters = new DynamicParameters();
                 dynamicParameters.Add($"@{className}Id",entityId);
-                var res = SqlConnection.QueryFirstOrDefault<string>(sql: sqlCommand, param: dynamicParameters);
+                var res = await SqlConnection.QueryFirstOrDefaultAsync<string>(sql: sqlCommand, param: dynamicParameters);
                 return res;
             }
         }
+
     }
 }

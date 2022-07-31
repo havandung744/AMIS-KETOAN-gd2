@@ -27,3 +27,16 @@ select.d-combobox:focus {
 .el-select-dropdown__item.selected {
     color: #019160 !important;
 }
+
+.m-1 .el-input__wrapper {
+    border-radius: 4x !important;
+    min-width: 200px !important;
+}
+
+.m-1.el-select .el-input.is-focus .el-input__wrapper {
+    box-shadow: 0 0 0 1px rgb(44, 160, 28) !important;
+}
+
+.m-1.el-select .el-input__wrapper.is-focus {
+    box-shadow: 0 0 0 1px rgb(44, 160, 28) !important;
+}

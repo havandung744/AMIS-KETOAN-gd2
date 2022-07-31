@@ -19,14 +19,14 @@ namespace MISA.Web04.Infrastructure.Repository
         }
 
 
-        public int DeleteMultiEmployeeById(string employeeIdList)
+        public async Task<int> DeleteMultiEmployeeById(string employeeIdList)
         {
             using (SqlConnection = new MySqlConnection(ConnectionString))
             {
                 // Thực hiện xóa danh sách nhân viên được chọn dữ liệu
                 var sqlCommandText = $"Proc_DeleteMultiEmployeeById";
                 Parameters.Add("@m_StringEmployeeId", employeeIdList);
-                var res = SqlConnection.Execute(sql: sqlCommandText, param:Parameters, commandType: System.Data.CommandType.StoredProcedure);
+                var res = await SqlConnection.ExecuteAsync(sql: sqlCommandText, param:Parameters, commandType: System.Data.CommandType.StoredProcedure);
                 // trả về thông tin cho client
                 return res;
             }
@@ -42,7 +42,7 @@ namespace MISA.Web04.Infrastructure.Repository
         /// <exception cref="NotImplementedException"></exception>
         /// CreatedBy: HVDUNG(20/06/2022)
 
-        public object GetPaging(int? pageSize, int? pageIndex, string? employeeFilter, string? bankName, int? gender, Guid? departmentId, bool IsOrganizations)
+        public async Task<object> GetPaging(int? pageSize, int? pageIndex, string? employeeFilter, string? bankName, int? gender, Guid? departmentId, bool IsOrganizations)
         {
             Parameters.Add("@m_PageIndex", pageIndex);
             Parameters.Add("@m_PageSize", pageSize);
@@ -56,7 +56,7 @@ namespace MISA.Web04.Infrastructure.Repository
 
             using (SqlConnection = new MySqlConnection(ConnectionString))
             {
-                var employeesPaging = SqlConnection.Query<Employee>(
+                var employeesPaging = await SqlConnection.QueryAsync<Employee>(
                      "Proc_pagingEmployee",
                      param: Parameters,
                      commandType: CommandType.StoredProcedure
@@ -84,14 +84,14 @@ namespace MISA.Web04.Infrastructure.Repository
         /// 0 -> cập nhật thất bại
         /// </returns>
         /// CreatedBy: HVDUNG (18/06/2022)
-        public override int Update(Guid employeeId, Employee employee)
+        public override async Task<int> Update(Guid employeeId, Employee employee)
         {
             using (SqlConnection = new MySqlConnection(ConnectionString))
             {
                 employee.EmployeeId = employeeId;
                 // 3. Thực hiện cập nhật dữ liệu
                 var sqlCommandText = $"Proc_UpdateEmployee";
-                var res = SqlConnection.Execute(sql: sqlCommandText, param: employee, commandType: System.Data.CommandType.StoredProcedure);
+                var res = await SqlConnection.ExecuteAsync(sql: sqlCommandText, param: employee, commandType: System.Data.CommandType.StoredProcedure);
                 // 4. trả về thông tin cho client
                 return res;
             }

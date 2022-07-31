@@ -68,6 +68,7 @@
             :value="item.value"
           />
         </el-select>
+
         <el-select
           v-model="this.checkOrganization"
           placeholder="Chọn vai trò"
@@ -184,13 +185,25 @@
         <div class="d-paging-center"></div>
         <div class="d-paging-right">
           <div class="d-row">
-            <select class="d-combobox" v-model="pageSize">
+            <!-- <select class="d-combobox" v-model="pageSize">
               <option value="10">10 bản ghi trên 1 trang</option>
               <option value="20">20 bản ghi trên 1 trang</option>
               <option value="30">30 bản ghi trên 1 trang</option>
               <option value="50">50 bản ghi trên 1 trang</option>
               <option value="100">100 bản ghi trên 1 trang</option>
-            </select>
+            </select> -->
+             <el-select
+          v-model="pageSize"
+          placeholder="Chọn số bản ghi/trang"
+          class="m-1"
+        >
+          <el-option
+            v-for="item in this.pageSizes"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
           </div>
           <div class="d-row">
             <PaginateList
@@ -657,6 +670,12 @@ export default {
       document.getElementById("EmployeeName").classList.remove("d-input-error");
       document.getElementById("IdentityNumber").classList.remove("d-input-error");
       document.getElementById("EmployeePosition").classList.remove("d-input-error");
+      document.getElementById("OrganizationName").classList.remove("d-input-error");
+      document.getElementById("TaxCode").classList.remove("d-input-error");
+      document.getElementById("OrganizationAddress").classList.remove("d-input-error");
+      // document.getElementById("check1").checked=false;
+      // document.getElementById("check2").checked=false;
+      
 
       // thực hiện ẩn form dropdown nếu đang mở
       document.getElementsByClassName("dropdown")[0].style.display = "none";
@@ -682,6 +701,11 @@ export default {
       document.getElementById("EmployeeName").classList.remove("d-input-error");
       document.getElementById("IdentityNumber").classList.remove("d-input-error");
       document.getElementById("EmployeePosition").classList.remove("d-input-error");
+      document.getElementById("OrganizationName").classList.remove("d-input-error");
+      document.getElementById("TaxCode").classList.remove("d-input-error");
+      document.getElementById("OrganizationAddress").classList.remove("d-input-error");
+      // document.getElementById("check1").checked=false;
+      // document.getElementById("check2").checked=false;
 
       // thực hiện ẩn form dropdown nếu đang mở
       document.getElementsByClassName("dropdown")[0].style.display = "none";
@@ -884,6 +908,29 @@ export default {
           value: "true",
           label: "Nhà cung cấp",
         },
+      ],
+      pageSizes: [
+        {
+          value: 10,
+          label: "10 bản ghi trên 1 trang",
+        },
+        {
+          value: 20,
+          label: "20 bản ghi trên 1 trang",
+        },
+        {
+          value: 30,
+          label: "30 bản ghi trên 1 trang",
+        },
+        {
+          value: 50,
+          label: "50 bản ghi trên 1 trang",
+        },
+        {
+          value: 100,
+          label: "100 bản ghi trên 1 trang",
+        },
+       
       ],
     };
   },
