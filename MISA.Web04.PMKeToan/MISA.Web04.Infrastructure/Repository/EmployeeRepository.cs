@@ -18,19 +18,12 @@ namespace MISA.Web04.Infrastructure.Repository
         {
         }
 
-
-        public async Task<int> DeleteMultiEmployeeById(string employeeIdList)
+        public Task<int> DeleteMultiEmployeeById(string employeeIdList)
         {
-            using (SqlConnection = new MySqlConnection(ConnectionString))
-            {
-                // Thực hiện xóa danh sách nhân viên được chọn dữ liệu
-                var sqlCommandText = $"Proc_DeleteMultiEmployeeById";
-                Parameters.Add("@m_StringEmployeeId", employeeIdList);
-                var res = await SqlConnection.ExecuteAsync(sql: sqlCommandText, param:Parameters, commandType: System.Data.CommandType.StoredProcedure);
-                // trả về thông tin cho client
-                return res;
-            }
+            throw new NotImplementedException();
         }
+
+
 
         /// <summary>
         /// thực hiện phân trang
@@ -38,9 +31,13 @@ namespace MISA.Web04.Infrastructure.Repository
         /// <param name="pageSize">số bản ghi/trang</param>
         /// <param name="pageIndex">vị trí trang hiện tại</param>
         /// <param name="employeeFilter">nội dung tìm kiếm</param>
+        /// <param name="bankName">Tên ngân hàng</param>
+        /// <param name="gender">Giới tính</param>
+        /// <param name="departmentId">Mã phòng ban</param>
+        /// <param name="IsOrganizations">có phải là nhà cung cấp hay không</param>
         /// <returns>các bản ghi</returns>
         /// <exception cref="NotImplementedException"></exception>
-        /// CreatedBy: HVDUNG(20/06/2022)
+        /// CreatedBy: HVDUNG(20/06/2022) 
 
         public async Task<object> GetPaging(int? pageSize, int? pageIndex, string? employeeFilter, string? bankName, int? gender, Guid? departmentId, bool IsOrganizations)
         {
@@ -73,32 +70,6 @@ namespace MISA.Web04.Infrastructure.Repository
                 };
             }
         }
-
-        /// <summary>
-        /// Thực hiện cập nhật thông tin nhân viên
-        /// </summary>
-        /// <param name="employeeId"></param>
-        /// <param name="employee"></param>
-        /// <returns>
-        /// 1 -> cập nhật thành công
-        /// 0 -> cập nhật thất bại
-        /// </returns>
-        /// CreatedBy: HVDUNG (18/06/2022)
-        public override async Task<int> Update(Guid employeeId, Employee employee)
-        {
-            using (SqlConnection = new MySqlConnection(ConnectionString))
-            {
-                employee.EmployeeId = employeeId;
-                // 3. Thực hiện cập nhật dữ liệu
-                var sqlCommandText = $"Proc_UpdateEmployee";
-                var res = await SqlConnection.ExecuteAsync(sql: sqlCommandText, param: employee, commandType: System.Data.CommandType.StoredProcedure);
-                // 4. trả về thông tin cho client
-                return res;
-            }
-        }
-
-
-
 
     }
 }

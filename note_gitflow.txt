@@ -1,0 +1,28 @@
+qc: quản lí chất lượng
+1. gitflow là gì?
+là framework mạnh mẽ để quản lí dự án
+là quy tắc tạo và merge branch khi các thành viên hoàn thành công việc của mình => cải thiện quá trình làm việc với git.
+
+2. các nhánh trong gitflow
+có 2 loại: 
+	nhánh chính(xuyên suốt) - master: là nhánh chính phản ánh trạng thái của product có thể buil tự động lên thẳng môi trường product mỗi khi có commit ở master.
+				- develop: là nhánh chính phản ánh trạng thái thay đổi mới nhất của sản phẩm => sẵn sàng phát hành khi thi công đầy đủ chức năng và test ổn định. 
+	nhánh phụ (time ngắn)	- feature(tính năng): Tách từ develop, merge vào develop, tên đặt tự do(vd: "login-web-screen")
+				- Release(phát hành): tách từ develop,  merge vào develop và master, tên đặt theo số phiên bản phát hành(vd: "release/r1.2") 
+					=> bản phát hành(vẫn phát triển các feature khác một cách bình thường cho đợt Release tiếp theo)
+				- Hotfix: tách từ master, merge vào develop và master, tên thường là số phiên bản hotfix (vd: hotfix/r1.2.1 là nhánh hotfix cho bản r1.2)
+					=> fix bug nghiêm trọng ở bản production
+			
+3. vai trò và quyền hạn của dev trong gitflow
+	vai trò: Thi công cho các PBI và sửa bug.
+	quyền hạn: tương tác các nhánh: feature, fixbug, release, hotfix.
+
+4. luồng thi công với gitflow
+	- pbi là gì?
+	- lỗi chỗ Giai đoạn triển khai môi trường test nội bộ - QC
+ 	- bước conflict để làm gì
+
+5. một số phần nên tìm hiểu
+
+
+	 

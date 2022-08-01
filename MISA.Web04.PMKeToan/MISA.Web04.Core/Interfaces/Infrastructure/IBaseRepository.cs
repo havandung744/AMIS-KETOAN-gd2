@@ -22,5 +22,6 @@ namespace MISA.Web04.Core.Interfaces.Infrastructure
         Task<string> GetEntityCode(Guid entytyId);
         // thực hiện tự động lấy mã đối tượng mới
         Task<object> GetNewEntityCode();
+        Task<int> DeleteMultiEntityById(string entityIdList);
     }
 }

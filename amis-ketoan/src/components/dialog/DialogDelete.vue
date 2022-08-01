@@ -40,7 +40,7 @@ export default {
          employeeIds = me.employeeIdForDelete;
         }
         await axios
-          .delete(`http://localhost:22454/api/v1/Employees/DeleteMultiEmployee?employeeIdList=${employeeIds}`)
+          .delete(`http://localhost:22454/api/v1/Employees/DeleteMultiEntity?entityIdList=${employeeIds}`)
           .then((response) => {
             console.log(response);
             // thực hiện hide checked sau khi xóa nhiều

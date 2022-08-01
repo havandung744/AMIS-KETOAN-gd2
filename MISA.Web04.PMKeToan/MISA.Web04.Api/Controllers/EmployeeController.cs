@@ -30,20 +30,6 @@ namespace MISA.Web04.Api.Controllers
             _employeeService = employeeService;
         }
 
-        /// <summary>
-        /// thực hiện lấy Id tự động
-        /// </summary>
-        /// <returns>
-        ///Id lớn nhất + 1
-        /// </returns>
-        /// CreatedBy: HVDUNG (20/06/2022)
-        [HttpGet("NewEmployeeCode")]
-        public async Task<IActionResult> NewEntityCode()
-        {
-            var res = await _employeeRepository.GetNewEntityCode();
-            return Ok(res);
-        }
-
         // danh sách cột tiêu đề cho file excel
         private readonly string[] theads = {"STT", "Mã nhân viên", "Tên nhân viên", "Giới tính", "Ngày sinh", "Số CMND",
             "Chức danh", "Tên đơn vị", "Số tài khoản", "Tên ngân hàng", "Chi nhánh TK ngân hàng"};
@@ -215,7 +201,6 @@ namespace MISA.Web04.Api.Controllers
             }
         }
 
-
         /// <summary>
         /// Thực hiện phân trang
         /// </summary>
@@ -230,23 +215,6 @@ namespace MISA.Web04.Api.Controllers
             var employees = await _employeeRepository.GetPaging(pageSize, pageNumber, employeeFilter, bankName, gender, departmentId, IsOrganizations);
             return Ok(employees);
         }
-
-        /// <summary>
-        /// Thực hiện xóa nhiều
-        /// </summary>
-        /// <param name="employeeIdList">danh sách id để thực hiện xóa</param>
-        /// <returns> 
-        /// số bản ghi > 1: xóa thành công
-        /// số bản ghi = 0: Xóa thất bại
-        /// </returns>
-        [HttpDelete("/api/v1/[controller]/DeleteMultiEmployee")]
-        public async Task<IActionResult> DeleteMultiEmployee(string employeeIdList)
-        {
-            var res = await _employeeRepository.DeleteMultiEmployeeById(employeeIdList);
-            return Ok(res);
-        }
-
-
 
     }
 }

@@ -38,6 +38,20 @@ namespace MISA.Web04.Api.Controllers
         }
 
         /// <summary>
+        /// thực hiện lấy Id tự động
+        /// </summary>
+        /// <returns>
+        ///Id lớn nhất + 1
+        /// </returns>
+        /// CreatedBy: HVDUNG (20/06/2022)
+        [HttpGet("NewEmployeeCode")]
+        public async Task<IActionResult> NewEntityCode()
+        {
+            var res = await _baseRepository.GetNewEntityCode();
+            return Ok(res);
+        }
+
+        /// <summary>
         /// thực hiện lấy ra đối tượng dựa vào Id
         /// </summary>
         /// <param name="entityId">Id của đối tượng đó</param>
@@ -98,5 +112,21 @@ namespace MISA.Web04.Api.Controllers
             var res = await _baseService.UpdateService(entityId, entity);
             return Ok(res);
         }
+
+        /// <summary>
+        /// Thực hiện xóa nhiều
+        /// </summary>
+        /// <param name="entityIdList">danh sách id để thực hiện xóa</param>
+        /// <returns> 
+        /// số bản ghi > 1: xóa thành công
+        /// số bản ghi = 0: Xóa thất bại
+        /// </returns>
+        [HttpDelete("/api/v1/[controller]/DeleteMultiEntity")]
+        public async Task<IActionResult> DeleteMultiEntity(string entityIdList)
+        {
+            var res = await _baseRepository.DeleteMultiEntityById(entityIdList);
+            return Ok(res);
+        }
+
     }
 }

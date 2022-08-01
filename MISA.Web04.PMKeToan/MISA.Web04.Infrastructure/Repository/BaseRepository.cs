@@ -39,6 +39,18 @@ namespace MISA.Web04.Infrastructure.Repository
             }
         }
 
+        /// <summary>
+        /// lấy dữ liệu theo bộ lọc
+        /// </summary>
+        /// <param name="pageSize"> số bản ghi/trang</param>
+        /// <param name="pageIndex">trang hiện tại</param>
+        /// <param name="employeeFilter">nội dung tìm kiếm</param>
+        /// <param name="bankName">tên ngân hàng</param>
+        /// <param name="gender">giới tính</param>
+        /// <param name="departmentId">phòng ban</param>
+        /// <param name="IsOrganizations">có phải là nhà cung cấp hay không</param>
+        /// <returns>danh sách object</returns>
+        /// CreatedBy: HVDUNG(01/08/2022)
         public async Task<IEnumerable<Entity>> GetAll(int? pageSize, int? pageIndex, string? employeeFilter, string? bankName, int? gender, Guid? departmentId, bool IsOrganizations)
         {
             var className = typeof(Entity).Name;
@@ -95,24 +107,10 @@ namespace MISA.Web04.Infrastructure.Repository
             var className = typeof(Entity).Name;
             using (SqlConnection = new MySqlConnection(ConnectionString))
             {
-                //var commandText = $"SELECT MAX({className}Code) from {className}";
-                //var maxEntityCode = SqlConnection.QueryFirstOrDefault<string>(commandText);
-                //var entityCode = string.Join(" ", maxEntityCode);
-                //for (int i = 0; i < maxEntityCode.Length; i++)
-                //{
-                //    if (entityCode[i] == '-')
-                //    {
-                //        string text = entityCode.Substring(0, i + 1);
-                //        int code = Int32.Parse(entityCode.Substring(i + 1)) + 1;
-                //        entityCode = text + code;
-                //    }
-                //}
-
                 var sqlCommand = $"Proc_GetNew{className}Code";
                 var newEntityCodes = await SqlConnection.QueryFirstOrDefaultAsync(sql: sqlCommand, commandType: System.Data.CommandType.StoredProcedure);
-                // 4.trả kết quả cho cliend
+                // trả kết quả cho cliend
                 return newEntityCodes.NewEmployeeCode;
-
             }
            
         }
@@ -172,7 +170,7 @@ namespace MISA.Web04.Infrastructure.Repository
         /// 1 -> cập nhật thành công
         /// </returns>
         /// CreatedBy: HVDUNG(18/06/2022)
-        public virtual async Task<int> Update(Guid entityId, Entity entity)
+        public async Task<int> Update(Guid entityId, Entity entity)
         {
             var className = typeof(Entity).Name;
             using (SqlConnection = new MySqlConnection(ConnectionString))
@@ -223,6 +221,29 @@ namespace MISA.Web04.Infrastructure.Repository
                 DynamicParameters dynamicParameters = new DynamicParameters();
                 dynamicParameters.Add($"@{className}Id",entityId);
                 var res = await SqlConnection.QueryFirstOrDefaultAsync<string>(sql: sqlCommand, param: dynamicParameters);
+                return res;
+            }
+        }
+
+        /// <summary>
+        /// Thực hiện xóa nhiều đối tượng
+        /// </summary>
+        /// <param name="entityIdList">danh sách id của nhân viên</param>
+        /// <returns>
+        /// 0: xóa thất bại
+        /// số>0: số bản ghi đã xóa
+        /// </returns>
+        /// CreatedBy: HVDUNG(01/08/2022) 
+        public async Task<int> DeleteMultiEntityById(string entityIdList)
+        {
+            var className = typeof(Entity).Name;
+            using (SqlConnection = new MySqlConnection(ConnectionString))
+            {
+                // Thực hiện xóa danh sách nhân viên được chọn dữ liệu
+                var sqlCommandText = $"Proc_DeleteMulti{className}ById";
+                Parameters.Add($"@m_String{className}Id", entityIdList);
+                var res = await SqlConnection.ExecuteAsync(sql: sqlCommandText, param: Parameters, commandType: System.Data.CommandType.StoredProcedure);
+                // trả về thông tin cho client
                 return res;
             }
         }

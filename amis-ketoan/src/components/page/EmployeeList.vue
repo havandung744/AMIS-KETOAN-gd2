@@ -72,7 +72,7 @@
         <el-select
           v-model="this.checkOrganization"
           placeholder="Chọn vai trò"
-          @change="onChangeOrganization()"
+          @change="onChangeOrganization($event)"
           class="m-2"
         >
           <el-option
@@ -192,18 +192,18 @@
               <option value="50">50 bản ghi trên 1 trang</option>
               <option value="100">100 bản ghi trên 1 trang</option>
             </select> -->
-             <el-select
-          v-model="pageSize"
-          placeholder="Chọn số bản ghi/trang"
-          class="m-1"
-        >
-          <el-option
-            v-for="item in this.pageSizes"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
+            <el-select
+              v-model="pageSize"
+              placeholder="Chọn số bản ghi/trang"
+              class="m-1"
+            >
+              <el-option
+                v-for="item in this.pageSizes"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select>
           </div>
           <div class="d-row">
             <PaginateList
@@ -393,8 +393,11 @@ export default {
         this.checkOrganization
       );
     },
-    onChangeOrganization() {
+    async onChangeOrganization(event) {
       localStorage.setItem("checkOrganization", this.checkOrganization);
+      console.log(event);
+      if (event == "true")  this.checkOrganization = "true";
+       else this.checkOrganization = "false";
       this.pagination(
         this.pageSize,
         1,
@@ -668,14 +671,21 @@ export default {
       // thực hiện xóa đi đường viền đỏ
       document.getElementById("EmployeeCode").classList.remove("d-input-error");
       document.getElementById("EmployeeName").classList.remove("d-input-error");
-      document.getElementById("IdentityNumber").classList.remove("d-input-error");
-      document.getElementById("EmployeePosition").classList.remove("d-input-error");
-      document.getElementById("OrganizationName").classList.remove("d-input-error");
+      document
+        .getElementById("IdentityNumber")
+        .classList.remove("d-input-error");
+      document
+        .getElementById("EmployeePosition")
+        .classList.remove("d-input-error");
+      document
+        .getElementById("OrganizationName")
+        .classList.remove("d-input-error");
       document.getElementById("TaxCode").classList.remove("d-input-error");
-      document.getElementById("OrganizationAddress").classList.remove("d-input-error");
+      document
+        .getElementById("OrganizationAddress")
+        .classList.remove("d-input-error");
       // document.getElementById("check1").checked=false;
       // document.getElementById("check2").checked=false;
-      
 
       // thực hiện ẩn form dropdown nếu đang mở
       document.getElementsByClassName("dropdown")[0].style.display = "none";
@@ -699,11 +709,19 @@ export default {
       // thực hiện xóa đi đường viền đỏ
       document.getElementById("EmployeeCode").classList.remove("d-input-error");
       document.getElementById("EmployeeName").classList.remove("d-input-error");
-      document.getElementById("IdentityNumber").classList.remove("d-input-error");
-      document.getElementById("EmployeePosition").classList.remove("d-input-error");
-      document.getElementById("OrganizationName").classList.remove("d-input-error");
+      document
+        .getElementById("IdentityNumber")
+        .classList.remove("d-input-error");
+      document
+        .getElementById("EmployeePosition")
+        .classList.remove("d-input-error");
+      document
+        .getElementById("OrganizationName")
+        .classList.remove("d-input-error");
       document.getElementById("TaxCode").classList.remove("d-input-error");
-      document.getElementById("OrganizationAddress").classList.remove("d-input-error");
+      document
+        .getElementById("OrganizationAddress")
+        .classList.remove("d-input-error");
       // document.getElementById("check1").checked=false;
       // document.getElementById("check2").checked=false;
 
@@ -930,7 +948,6 @@ export default {
           value: 100,
           label: "100 bản ghi trên 1 trang",
         },
-       
       ],
     };
   },
