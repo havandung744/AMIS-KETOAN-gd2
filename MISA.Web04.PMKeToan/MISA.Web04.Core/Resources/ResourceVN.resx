@@ -126,6 +126,9 @@
   <data name="Error_Exception" xml:space="preserve">
     <value>Có lỗi sảy ra vui lòng liên hệ MISA để được trợ giúp</value>
   </data>
+  <data name="IdentityNumber" xml:space="preserve">
+    <value>Số chứng minh thư nhân dân không đúng định dạng</value>
+  </data>
   <data name="NotEmptyProp" xml:space="preserve">
     <value>{0} không được phép để trống</value>
   </data>

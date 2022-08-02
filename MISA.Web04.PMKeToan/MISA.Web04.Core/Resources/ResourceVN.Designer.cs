@@ -88,6 +88,15 @@ namespace MISA.Web04.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Số chứng minh thư nhân dân không đúng định dạng.
+        /// </summary>
+        public static string IdentityNumber {
+            get {
+                return ResourceManager.GetString("IdentityNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} không được phép để trống.
         /// </summary>
         public static string NotEmptyProp {

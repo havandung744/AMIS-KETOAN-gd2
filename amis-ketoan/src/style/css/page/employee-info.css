@@ -240,3 +240,23 @@ input[type="checkbox"] {
 #isShowSupplier .info-input {
     margin-right: 6px;
 }
+
+.el-input__wrapper.is-focus {
+    box-shadow: 0 0 0 1px rgb(44, 160, 28) inset !important;
+}
+
+.el-date-table td.current:not(.disabled) .el-date-table-cell__text {
+    background-color: #2ca01c !important;
+}
+
+.el-date-table-cell__text:hover {
+    color: #019160 !important;
+}
+
+.el-date-table td.available:hover {
+    color: #019160 !important;
+}
+
+el-date-table tr:hover {
+    background-color: yellow !important;
+}

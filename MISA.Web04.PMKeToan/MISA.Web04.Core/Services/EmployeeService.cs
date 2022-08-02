@@ -71,6 +71,42 @@ namespace MISA.Web04.Core.Services
             //    ErrorData.Add(text, string.Format(Core.Resources.ResourceVN.NotEmptyProp, text));
             //}
 
+            //1.7 chức danh không được phép để trống
+            if (string.IsNullOrEmpty(employee.EmployeePosition))
+            {
+                string text = "EmployeePosition";
+                ErrorData.Add(text, string.Format(Core.Resources.ResourceVN.NotEmptyProp, text));
+            }
+
+            //1.8 các thông tin khi là nhà cung cấp không được phép để trống
+            if (employee.IsOrganizations)
+            {
+                //1.8.1 tên đơn vị không được phép để trống
+                if (string.IsNullOrEmpty(employee.OrganizationName))
+                {
+                    string text = "OrganizationName";
+                    ErrorData.Add(text, string.Format(Core.Resources.ResourceVN.NotEmptyProp, text));
+                }
+                //1.8.2 mã số thuế không được phép để trống
+                if (string.IsNullOrEmpty(employee.TaxCode))
+                {
+                    string text = "TaxCode";
+                    ErrorData.Add(text, string.Format(Core.Resources.ResourceVN.NotEmptyProp, text));
+                }
+                //1.8.3 địa chỉ đơn vị không được phép để trống
+                if (string.IsNullOrEmpty(employee.OrganizationAddress))
+                {
+                    string text = "OrganizationAddress";
+                    ErrorData.Add(text, string.Format(Core.Resources.ResourceVN.NotEmptyProp, text));
+                }
+            }
+
+            //1.9 số chứng minh thư nhân dân phải đúng định dạng
+            if (employee.IdentityNumber != null && !CheckIndentityNumber(employee.IdentityNumber))
+            {
+                ErrorData.Add("IdentityNumber", Resources.ResourceVN.IdentityNumber);
+            }
+
             if (ErrorData.Count > 0) return false;
             else return true;
         }
@@ -178,5 +214,31 @@ namespace MISA.Web04.Core.Services
                 return false;
             return true;
         }
+
+        /// <summary>
+        /// Thực hiện kiểm tra số chứng minh thư nhân dân đã đúng định dạng hay chưa
+        /// </summary>
+        /// <param name="IdentityNumber">số chứng minh thư nhân dân</param>
+        /// <returns>
+        /// true: đúng định dạng
+        /// false: sai định dạng
+        /// </returns>
+        /// Author: HVDUNG(02/08/2022)
+        bool CheckIndentityNumber(string? IdentityNumber)
+        {
+            long n;
+            bool isNumeric = long.TryParse(IdentityNumber, out n);
+            if (IdentityNumber.Length==12 && isNumeric)
+                return true;
+            return false;
+        }
+
+        //bool checkTaxCode(string taxCode)
+        //{
+        //    if (taxCode.Length != 14)
+        //        return false;
+            
+        //}
+
     }
 }

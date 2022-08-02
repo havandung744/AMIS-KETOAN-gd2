@@ -5,15 +5,19 @@
         <div class="header-text">THÔNG TIN NHÂN VIÊN</div>
         <div class="header-content">
           <div class="header-checkbox">
-            <input type="checkbox" id="check1" @click="selectOnlyCheckbox($event)" style="width: 18px; height: 18px" />
-            <div class="header-checkbox-content"
-            >Là khách hàng</div>
+            <input
+              type="checkbox"
+              id="check1"
+              @click="selectOnlyCheckbox($event)"
+              style="width: 18px; height: 18px"
+            />
+            <div class="header-checkbox-content">Là khách hàng</div>
           </div>
           <div class="header-checkbox">
             <input
               type="checkbox"
-               id="check2"
-              style="width: 18px; height: 18px"           
+              id="check2"
+              style="width: 18px; height: 18px"
               @change="checkSupplier($event)"
               @click="selectOnlyCheckbox($event)"
             />
@@ -77,20 +81,13 @@
                     Phòng kế toán
                   </option>
                 </select>
-                <!-- 
-                <el-select v-model="employee.DepartmentId" filterable placeholder="Select">
-    <el-option
-      v-for="item in options"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value"
-    />
-  </el-select> -->
               </div>
             </div>
             <div class="info-input-tr">
               <div class="info-input">
-                <label for="">Chức danh&nbsp;<span style="color: red">*</span></label><br />
+                <label for=""
+                  >Chức danh&nbsp;<span style="color: red">*</span></label
+                ><br />
                 <input
                   type="input"
                   class="d-input"
@@ -213,44 +210,54 @@
             </div>
           </div>
         </div>
-        <div class="info-input-tr" v-show="this.isShowSupplier" id="isShowSupplier">
-            <div class="info-input">
-              <label for="">Tên tổ chức&nbsp;<span style="color: red">*</span></label><br />
-              <input
-                type="text"
-                class="d-input"
-                id="OrganizationName"
-                v-model="employee.OrganizationName"
-                 @blur="validateCheckInput"
-                tabindex="12"
-                style="width: 150px"
-              />
-            </div>
-            <div class="info-input">
-              <label for="">Mã số thuế&nbsp;<span style="color: red">*</span></label><br />
-              <input
-                type="text"
-                class="d-input"
-                id="TaxCode"
-                v-model="employee.TaxCode"
-                 @blur="validateCheckInput"
-                tabindex="13"
-                style="width: 235px"
-              />
-            </div>
-            <div class="info-input">
-              <label for="">Địa chỉ tổ chức&nbsp;<span style="color: red">*</span></label><br />
-              <input
-                type="text"
-                class="d-input"
-                id="OrganizationAddress"
-                v-model="employee.OrganizationAddress"
-                 @blur="validateCheckInput"
-                tabindex="14"
-                style="width: 235px"
-              />
-            </div>
+        <div
+          class="info-input-tr"
+          v-show="this.isShowSupplier"
+          id="isShowSupplier"
+        >
+          <div class="info-input">
+            <label for=""
+              >Tên tổ chức&nbsp;<span style="color: red">*</span></label
+            ><br />
+            <input
+              type="text"
+              class="d-input"
+              id="OrganizationName"
+              v-model="employee.OrganizationName"
+              @blur="validateCheckInput"
+              tabindex="12"
+              style="width: 150px"
+            />
           </div>
+          <div class="info-input">
+            <label for=""
+              >Mã số thuế&nbsp;<span style="color: red">*</span></label
+            ><br />
+            <input
+              type="text"
+              @blur="validateCheckTaxCode"
+              class="d-input"
+              id="TaxCode"
+              v-model="employee.TaxCode"
+              tabindex="13"
+              style="width: 235px"
+            />
+          </div>
+          <div class="info-input">
+            <label for=""
+              >Địa chỉ tổ chức&nbsp;<span style="color: red">*</span></label
+            ><br />
+            <input
+              type="text"
+              class="d-input"
+              id="OrganizationAddress"
+              v-model="employee.OrganizationAddress"
+              @blur="validateCheckInput"
+              tabindex="14"
+              style="width: 235px"
+            />
+          </div>
+        </div>
         <div class="info-input-tr" style="margin-top: 40px">
           <div class="info-input">
             <label for="">Địa chỉ</label>
@@ -376,13 +383,10 @@
 <script>
 import axios from "axios";
 import { miSaResource } from "../../js/miSaResource";
-// import {vi} from 'date-fns/locale';
 
-// import Datepicker from "../common/DatepickerList.vue";
 export default {
   name: "EmployeeDetail",
   components: {
-    //  Datepicker
   },
   props: [
     "employeeIdSelected",
@@ -398,8 +402,6 @@ export default {
   ],
   data() {
     return {
-      // dateTime: new Date(2016, 0, 1),
-      // dateTime: new Date(employee.date),
       employee: {},
       employees: {},
       isShowSupplier: false,
@@ -423,28 +425,44 @@ export default {
   },
 
   methods: {
-
     /**
      * Thực hiện focus vào ô checkbox này thì ô checkbox kia không được focus nữa
      * thông tin ẩn hiện theo checkbox lựa chọn
-     * @param {*} event 
-     * Author: HVDUNG(29/07/2022) 
+     * @param {*} event
+     * Author: HVDUNG(29/07/2022)
      */
-    selectOnlyCheckbox(event){
-      if(event.target.id==="check1" && document.getElementById("check1").checked===true){
-        document.getElementById("check2").checked=false;
+    selectOnlyCheckbox(event) {
+      // gán biến tạm để lưu trữ tạm thời thông tin
+      var temp_OrganizationName = this.employee.OrganizationName;
+      var temp_TaxCode = this.employee.TaxCode;
+      var temp_OrganizationAddress = this.employee.OrganizationAddress;
+
+      if (
+        event.target.id === "check1" &&
+        document.getElementById("check1").checked === true
+      ) {
+        document.getElementById("check2").checked = false;
         this.isShowSupplier = false;
         this.employee.IsOrganizations = false;
+        this.employee.OrganizationName = "";
+        this.employee.TaxCode = "";
+        this.employee.OrganizationAddress = "";
       }
-      if(event.target.id==="check2" && document.getElementById("check2").checked===true){
-        document.getElementById("check1").checked=false;
+      if (
+        event.target.id === "check2" &&
+        document.getElementById("check2").checked === true
+      ) {
+        document.getElementById("check1").checked = false;
+        this.employee.OrganizationName = temp_OrganizationName;
+        this.employee.TaxCode = temp_TaxCode;
+        this.employee.OrganizationAddress = temp_OrganizationAddress;
       }
     },
 
-     /**
+    /**
      * Thực hiện kiểm tra có checked checkbox là nhà cung cấp hay không
      * show thêm trường thông tin khi click checkbox này
-     * @param {*} event 
+     * @param {*} event
      * Author: HVDUNG (19/07/2022)
      */
     checkSupplier(event) {
@@ -630,6 +648,55 @@ export default {
       }
     },
 
+   /**
+    * Thực hiện validate taxCode có bị trống và đã đúng định dạng chưa
+    * @param {event} event 
+    * Author: HVDUNG(02/08/2022)
+    */
+    validateCheckTaxCode(event){
+      let value = event.currentTarget.value;
+      if(value.trim()==''){
+         // thêm class vào trong input
+        event.currentTarget.classList.add("d-input-error");
+        // thêm câu cảnh báo khi hover
+        event.currentTarget.setAttribute("title", miSaResource.VI.infoNotNull);
+      }
+      else if(!this.checkTaxCode(value)){
+         // thêm class vào trong input
+        event.currentTarget.classList.add("d-input-error");
+        // thêm câu cảnh báo khi hover
+        event.currentTarget.setAttribute(
+          "title",
+          miSaResource.VI.TaxCodeFormat
+        );
+      }
+      else {
+        event.currentTarget.classList.remove("d-input-error");
+        event.currentTarget.setAttribute("title", "");
+      }
+
+    },
+
+  /**
+   * Thực hiện kiểm tra mã số thuế có đúng định dạng hay không
+   * @param {string} taxCode 
+   * Author: HVDUNG(02/08/2022)
+   */
+    checkTaxCode(taxCode){
+      // không đủ 14 kí tự hoặc rỗng thì return false
+      if(taxCode.length!=14)
+      return false;
+      else{
+        var temp_start = taxCode.substring(0,10);
+        var temp_end = taxCode.substring(11);
+        var temp_space = taxCode[10];
+        // 10 kí tự đầu và 3 kí tự cuối không phải là số hoặc kí tự ngăn cách không phải '-' thì return false
+        if(!this.isNumeric(temp_start) || !this.isNumeric(temp_end) || temp_space != '-')
+        return false;
+        return true;
+      }
+    },
+
     /**
      * Thực hiện kiểm tra email có đúng định dạng hay không
      * @param {string} email email cuả nhân viên
@@ -650,10 +717,12 @@ export default {
         return false;
       return true;
     },
-     isNumeric(str) {
-        if (typeof str != "string") return false // we only process strings!  
-        return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
-         !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+    isNumeric(str) {
+      if (typeof str != "string") return false; // we only process strings!
+      return (
+        !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+        !isNaN(parseFloat(str))
+      ); // ...and ensure strings of whitespace fail
     },
 
     /**
@@ -702,7 +771,7 @@ export default {
       if (!me.employee.DepartmentId) {
         arrayErrors.push(miSaResource.VI.DepartmentNameNotNull);
       }
-       if (!me.employee.EmployeePosition) {
+      if (!me.employee.EmployeePosition) {
         arrayErrors.push(miSaResource.VI.EmployeePositionNotNull);
       }
       // convert về dạng ngày tháng thì mới có thể so sánh được
@@ -728,25 +797,31 @@ export default {
       if (me.employee.Email && !me.checkEmail(me.employee.Email)) {
         arrayErrors.push(miSaResource.VI.CheckEmail);
       }
-      if (me.employee.IdentityNumber && !me.checkIdentityNumber(me.employee.IdentityNumber)) {
+      if (
+        me.employee.IdentityNumber &&
+        !me.checkIdentityNumber(me.employee.IdentityNumber)
+      ) {
         arrayErrors.push(miSaResource.VI.InvalidIdentityFormat);
       }
 
       // thực hiện validate các trường khi là nhà cung cấp
       // if(me.employee.IsOrganizations){
-        if(document.getElementById("check2").checked==true){
-         if (!me.employee.OrganizationName) {
-        arrayErrors.push(miSaResource.VI["OrganizationNameNotNull"]);
-      }
-         if (!me.employee.TaxCode) {
-        arrayErrors.push(miSaResource.VI["TaxCodeNotNull"]);
-      }
-         if (!me.employee.OrganizationAddress) {
-        arrayErrors.push(miSaResource.VI["OrganizationAddressNotNull"]);
-      }
+      if (document.getElementById("check2").checked == true) {
+        if (!me.employee.OrganizationName) {
+          arrayErrors.push(miSaResource.VI["OrganizationNameNotNull"]);
+        }
+        if (!me.employee.TaxCode) {
+          arrayErrors.push(miSaResource.VI["TaxCodeNotNull"]);
+        }
+        if(!me.checkTaxCode(me.employee.TaxCode)){
+          arrayErrors.push(miSaResource.VI["TaxCodeFormat"]);
+        }
+        if (!me.employee.OrganizationAddress) {
+          arrayErrors.push(miSaResource.VI["OrganizationAddressNotNull"]);
+        }
       }
 
-      if (arrayErrors.length>0) {
+      if (arrayErrors.length > 0) {
         isValid = false;
         //hiển thị thông báo validate không hợp lệ
         let noticeDialog = document.getElementsByClassName("d-dialog-box")[0];
