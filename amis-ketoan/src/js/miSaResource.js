@@ -16,6 +16,5 @@ export const miSaResource = {
         infoNotNull: "Thông tin không được để trống",
         InvalidEmailFormat: "Email không đúng định dạng",
         InvalidIdentityFormat: "Số căn cước công dân không đúng định dạng",
-        phone: "test"
     }
 };
