@@ -57,6 +57,8 @@ namespace MISA.Web04.Infrastructure.Repository
             Parameters.Add("@m_PageIndex", null);
             Parameters.Add("@m_PageSize", null);
             //employeeFilter = employeeFilter.Trim();
+            if(!string.IsNullOrEmpty(employeeFilter))
+                employeeFilter = employeeFilter.Trim();
             Parameters.Add("@m_EmployeeFilter", employeeFilter);
             Parameters.Add("@m_BankName", bankName);
             Parameters.Add("@m_Gender", gender);

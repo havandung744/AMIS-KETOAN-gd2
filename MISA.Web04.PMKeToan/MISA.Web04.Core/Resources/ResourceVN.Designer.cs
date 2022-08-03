@@ -115,6 +115,15 @@ namespace MISA.Web04.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mã số thuế không đúng định dạng.
+        /// </summary>
+        public static string TaxCodeNumber {
+            get {
+                return ResourceManager.GetString("TaxCodeNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dữ liệu đầu vào không hợp lệ.
         /// </summary>
         public static string userMsgs {

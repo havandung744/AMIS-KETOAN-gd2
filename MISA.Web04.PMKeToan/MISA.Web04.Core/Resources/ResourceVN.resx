@@ -135,6 +135,9 @@
   <data name="NotExistProp" xml:space="preserve">
     <value>{0} đã tồn tại trong hệ thống</value>
   </data>
+  <data name="TaxCodeNumber" xml:space="preserve">
+    <value>Mã số thuế không đúng định dạng</value>
+  </data>
   <data name="userMsgs" xml:space="preserve">
     <value>Dữ liệu đầu vào không hợp lệ</value>
   </data>

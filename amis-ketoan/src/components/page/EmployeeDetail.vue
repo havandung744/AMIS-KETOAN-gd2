@@ -300,7 +300,7 @@
                 type="text"
                 v-model="employee.Email"
                 class="d-input"
-                id="EmployeeName"
+                id="Email"
                 tabindex="18"
                 @blur="validateCheckEmail"
                 style="width: 235px"
@@ -404,7 +404,7 @@ export default {
     return {
       employee: {},
       employees: {},
-      isShowSupplier: false,
+      isShowSupplier: false
     };
   },
   watch: {
@@ -432,11 +432,6 @@ export default {
      * Author: HVDUNG(29/07/2022)
      */
     selectOnlyCheckbox(event) {
-      // gán biến tạm để lưu trữ tạm thời thông tin
-      var temp_OrganizationName = this.employee.OrganizationName;
-      var temp_TaxCode = this.employee.TaxCode;
-      var temp_OrganizationAddress = this.employee.OrganizationAddress;
-
       if (
         event.target.id === "check1" &&
         document.getElementById("check1").checked === true
@@ -444,18 +439,19 @@ export default {
         document.getElementById("check2").checked = false;
         this.isShowSupplier = false;
         this.employee.IsOrganizations = false;
-        this.employee.OrganizationName = "";
-        this.employee.TaxCode = "";
-        this.employee.OrganizationAddress = "";
+        // this.employee.OrganizationName = "";
+        // this.employee.TaxCode = "";
+        // this.employee.OrganizationAddress = "";
       }
       if (
         event.target.id === "check2" &&
         document.getElementById("check2").checked === true
       ) {
         document.getElementById("check1").checked = false;
-        this.employee.OrganizationName = temp_OrganizationName;
-        this.employee.TaxCode = temp_TaxCode;
-        this.employee.OrganizationAddress = temp_OrganizationAddress;
+        this.employee.IsOrganizations = true;
+        // this.employee.OrganizationName = this.temp_OrganizationName;
+        // this.employee.TaxCode = this.temp_TaxCode;
+        // this.employee.OrganizationAddress = this.temp_OrganizationAddress;
       }
     },
 
@@ -468,10 +464,10 @@ export default {
     checkSupplier(event) {
       if (event.currentTarget.checked) {
         this.isShowSupplier = true;
-        this.employee.IsOrganizations = true;
+        // this.employee.IsOrganizations = true;
       } else {
         this.isShowSupplier = false;
-        this.employee.IsOrganizations = false;
+        // this.employee.IsOrganizations = false;
       }
     },
 
@@ -568,6 +564,29 @@ export default {
      * Author: HVDUNG(05/06/2022)
      */
     btnCloseOnClick() {
+      this.isShowSupplier=false;
+      // thực hiện xóa đi đường viền đỏ
+      document.getElementById("EmployeeCode").classList.remove("d-input-error");
+      document.getElementById("EmployeeName").classList.remove("d-input-error");
+      document
+        .getElementById("IdentityNumber")
+        .classList.remove("d-input-error");
+      document
+        .getElementById("EmployeePosition")
+        .classList.remove("d-input-error");
+      document
+        .getElementById("OrganizationName")
+        .classList.remove("d-input-error");
+      document.getElementById("TaxCode").classList.remove("d-input-error");
+      document
+        .getElementById("OrganizationAddress")
+        .classList.remove("d-input-error");
+
+      document.getElementById("Email").classList.remove("d-input-error");
+      // thực hiện xóa đi checkbox đã chọn trong form cũ
+      document.getElementById("check1").checked=false;
+      document.getElementById("check2").checked=false;
+      
       //Thực hiện đống form chi tiết
       this.$emit("isShowDialog");
     },
@@ -813,7 +832,7 @@ export default {
         if (!me.employee.TaxCode) {
           arrayErrors.push(miSaResource.VI["TaxCodeNotNull"]);
         }
-        if(!me.checkTaxCode(me.employee.TaxCode)){
+        if(me.employee.TaxCode && !me.checkTaxCode(me.employee.TaxCode)){
           arrayErrors.push(miSaResource.VI["TaxCodeFormat"]);
         }
         if (!me.employee.OrganizationAddress) {
@@ -873,9 +892,11 @@ export default {
     async addEmployee() {
       var me = this;
       document.getElementsByClassName("loading")[0].style.display = "block";
-      // gán một positionId mặc định cho employee
-      // me.employee.PositionId = "25c6c36e-1668-7d10-6e09-bf1378b8dc91";
-      // gán giá trị mặc định cho gender
+      // if(me.IsOrganizations==false){
+      //   me.employee.OrganizationName=null;
+      //   me.employee.TaxCode=null;
+      //   me.employee.OrganizationAddress=null;
+      // }
       await axios
         .post("http://localhost:22454/api/v1/Employees", me.employee)
         .then(function (res) {
@@ -912,6 +933,12 @@ export default {
       var me = this;
       //hiển thị loading
       document.getElementsByClassName("loading")[0].style.display = "block";
+      // thực hiện xóa các trường thông tin khi đối tượng là khách hàng
+       if(me.employee.IsOrganizations==false){
+        me.employee.OrganizationName=null;
+        me.employee.TaxCode=null;
+        me.employee.OrganizationAddress=null;
+      }
       // thực hiện update nhân viên
       await axios
         .put(

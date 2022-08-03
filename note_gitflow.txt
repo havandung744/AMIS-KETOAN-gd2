@@ -17,12 +17,14 @@ có 2 loại:
 	vai trò: Thi công cho các PBI và sửa bug.
 	quyền hạn: tương tác các nhánh: feature, fixbug, release, hotfix.
 
-4. luồng thi công với gitflow
-	- pbi là gì?
-	- lỗi chỗ Giai đoạn triển khai môi trường test nội bộ - QC
- 	- bước conflict để làm gì
+4. một số phần nên tìm hiểu
+	tfs (xem video)
+	vuex
+	testesignapp
 
-5. một số phần nên tìm hiểu
+5. các luồng thi công của dự án
 
-
-	 
+6. fix bug
+	toggle trạng thái giữa là khách hàng và nhà cung cấp (font-end)
+	bug khi xuất exel (bên backend)
+	bug khi validate số chứng minh thư nhân dân, bug mã số thuế, bug email (bên backend)

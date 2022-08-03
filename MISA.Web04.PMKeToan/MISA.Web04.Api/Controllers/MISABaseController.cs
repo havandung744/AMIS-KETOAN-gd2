@@ -9,8 +9,8 @@ namespace MISA.Web04.Api.Controllers
     [ApiController]
     public class MISABaseController<Entity> : ControllerBase
     {
-      IBaseRepository<Entity> _baseRepository;
-        IBaseService<Entity> _baseService;
+        protected IBaseRepository<Entity> _baseRepository;
+        protected IBaseService<Entity> _baseService;
 
 
         /// <summary>

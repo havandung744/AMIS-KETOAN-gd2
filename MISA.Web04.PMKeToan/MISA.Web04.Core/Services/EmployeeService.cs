@@ -12,7 +12,7 @@ namespace MISA.Web04.Core.Services
 {
     public class EmployeeService : BaseService<Employee>, IEmployeeService
     {
-        IEmployeeRepository _employeeRepository;
+        private IEmployeeRepository _employeeRepository;
         public EmployeeService(IEmployeeRepository employeeRepository) : base(employeeRepository)
         {
             _employeeRepository = employeeRepository;
@@ -40,8 +40,14 @@ namespace MISA.Web04.Core.Services
             {string text = "EmployeeName";
                 ErrorData.Add(text, string.Format(Core.Resources.ResourceVN.NotEmptyProp, text));
             }
+            // số chứng minh thư nhân dân phải đúng định dạng
+            if (!string.IsNullOrEmpty(employee.IdentityNumber) && !CheckIndentityNumber(employee.IdentityNumber))
+            {
+                ErrorData.Add("IdentityNumber", Resources.ResourceVN.IdentityNumber);
+            }
+
             //// 1.3 thông tin email phải đúng định dạng
-            if (employee.Email != null && !IsValidEmail(employee.Email))
+            if (!string.IsNullOrEmpty(employee.Email) && !IsValidEmail(employee.Email))
             {
                 ErrorData.Add("Email", Resources.ResourceVN.checkValidateEmail);
             }
@@ -87,11 +93,14 @@ namespace MISA.Web04.Core.Services
                     string text = "OrganizationName";
                     ErrorData.Add(text, string.Format(Core.Resources.ResourceVN.NotEmptyProp, text));
                 }
-                //1.8.2 mã số thuế không được phép để trống
-                if (string.IsNullOrEmpty(employee.TaxCode))
+                //1.8.2 mã số thuế không được phép để trống và phải đúng định dạng
+                if (string.IsNullOrEmpty(employee.TaxCode) || !checkTaxCode(employee.TaxCode))
                 {
                     string text = "TaxCode";
+                    if(string.IsNullOrEmpty(employee.TaxCode))
                     ErrorData.Add(text, string.Format(Core.Resources.ResourceVN.NotEmptyProp, text));
+                    else
+                    ErrorData.Add(text, string.Format(Core.Resources.ResourceVN.TaxCodeNumber, text));
                 }
                 //1.8.3 địa chỉ đơn vị không được phép để trống
                 if (string.IsNullOrEmpty(employee.OrganizationAddress))
@@ -99,12 +108,6 @@ namespace MISA.Web04.Core.Services
                     string text = "OrganizationAddress";
                     ErrorData.Add(text, string.Format(Core.Resources.ResourceVN.NotEmptyProp, text));
                 }
-            }
-
-            //1.9 số chứng minh thư nhân dân phải đúng định dạng
-            if (employee.IdentityNumber != null && !CheckIndentityNumber(employee.IdentityNumber))
-            {
-                ErrorData.Add("IdentityNumber", Resources.ResourceVN.IdentityNumber);
             }
 
             if (ErrorData.Count > 0) return false;
@@ -121,7 +124,8 @@ namespace MISA.Web04.Core.Services
         /// </returns>
         /// CreateBy: HVDUNG (20/06/2022)
         protected override async Task<bool> ValidateForUpdate(Guid employeeId, Employee employee)
-        {        // 1.1 thông tin mã nhân viên không đươc phép để trống
+        {        
+            // 1.1 thông tin mã nhân viên không đươc phép để trống
             if (string.IsNullOrEmpty(employee.EmployeeCode))
             {
                 string text = "EmployeeCode";
@@ -141,8 +145,14 @@ namespace MISA.Web04.Core.Services
                 string text = "EmployeeName";
                 ErrorData.Add(text, string.Format(Core.Resources.ResourceVN.NotEmptyProp, text));
             }
+
+            // số chứng minh thư nhân dân phải đúng định dạng
+            if (!string.IsNullOrEmpty(employee.IdentityNumber) && !CheckIndentityNumber(employee.IdentityNumber))
+            {
+                ErrorData.Add("IdentityNumber", Resources.ResourceVN.IdentityNumber);
+            }
             //// 1.3 thông tin email phải đúng định dạng
-            if (employee.Email != null && !IsValidEmail(employee.Email))
+            if (!string.IsNullOrEmpty(employee.Email) && !IsValidEmail(employee.Email))
             {
                 ErrorData.Add("Email", Resources.ResourceVN.checkValidateEmail);
             }
@@ -163,6 +173,41 @@ namespace MISA.Web04.Core.Services
             //{   string text = "PositionId";
             //    ErrorData.Add(text, string.Format(Core.Resources.ResourceVN.NotEmptyProp, text));
             //}
+
+            //1.7 chức danh không được phép để trống
+            if (string.IsNullOrEmpty(employee.EmployeePosition))
+            {
+                string text = "EmployeePosition";
+                ErrorData.Add(text, string.Format(Core.Resources.ResourceVN.NotEmptyProp, text));
+            }
+
+            //1.8 các thông tin khi là nhà cung cấp không được phép để trống
+            if (employee.IsOrganizations)
+            {
+                //1.8.1 tên đơn vị không được phép để trống
+                if (string.IsNullOrEmpty(employee.OrganizationName))
+                {
+                    string text = "OrganizationName";
+                    ErrorData.Add(text, string.Format(Core.Resources.ResourceVN.NotEmptyProp, text));
+                }
+                //1.8.2 mã số thuế không được phép để trống và phải đúng định dạng
+                if (string.IsNullOrEmpty(employee.TaxCode) || !checkTaxCode(employee.TaxCode))
+                {
+                    string text = "TaxCode";
+                    if (string.IsNullOrEmpty(employee.TaxCode))
+                        ErrorData.Add(text, string.Format(Core.Resources.ResourceVN.NotEmptyProp, text));
+                    else
+                        ErrorData.Add(text, string.Format(Core.Resources.ResourceVN.TaxCodeNumber, text));
+                }
+                //1.8.3 địa chỉ đơn vị không được phép để trống
+                if (string.IsNullOrEmpty(employee.OrganizationAddress))
+                {
+                    string text = "OrganizationAddress";
+                    ErrorData.Add(text, string.Format(Core.Resources.ResourceVN.NotEmptyProp, text));
+                }
+            }
+
+
 
 
             if (ErrorData.Count > 0) return false;
@@ -233,12 +278,48 @@ namespace MISA.Web04.Core.Services
             return false;
         }
 
-        //bool checkTaxCode(string taxCode)
-        //{
-        //    if (taxCode.Length != 14)
-        //        return false;
-            
-        //}
+        /// <summary>
+        /// Thực hiện kiểm tra xem một chuỗi string có phải là dạng số không
+        /// </summary>
+        /// <param name="number">Chuỗi số</param>
+        /// <returns>
+        /// true: là chuỗi số
+        /// false: không là chuỗi số
+        /// </returns>
+        /// Author: HVDUNG(03/08/2022)
+        bool CheckNumber(string? number)
+        {
+            long n;
+            bool isNumeric = long.TryParse(number, out n);
+            if (isNumeric)
+                return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Thực hiện kiểm tra taxCode có đúng định dạng không
+        /// </summary>
+        /// <param name="taxCode">mã số thuế</param>
+        /// <returns>
+        /// true: đúng định dạng
+        /// false: không đúng định dạng
+        /// </returns>
+        /// Author: HVDUNG(03/08/2022)
+        bool checkTaxCode(string taxCode)
+        {
+            if (taxCode.Length != 14)
+                return false;
+            else
+            {
+                string temp_start = taxCode.Substring(0,10);
+                string temp_end = taxCode.Substring(11);
+                char temp_space = taxCode[10];
+                if (!this.CheckNumber(temp_start) || !this.CheckNumber(temp_end) || temp_space != '-')
+                    return false;
+                return true;
+            }
+
+        }
 
     }
 }

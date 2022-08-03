@@ -396,8 +396,8 @@ export default {
     async onChangeOrganization(event) {
       localStorage.setItem("checkOrganization", this.checkOrganization);
       console.log(event);
-      if (event == "true")  this.checkOrganization = "true";
-       else this.checkOrganization = "false";
+      if (event == "true") this.checkOrganization = "true";
+      else this.checkOrganization = "false";
       this.pagination(
         this.pageSize,
         1,
@@ -668,25 +668,6 @@ export default {
       this.checkReplication = false;
       // gán lại giá trị cho fromDetailMode là thêm mới
       this.formDetailMode = 1;
-      // thực hiện xóa đi đường viền đỏ
-      document.getElementById("EmployeeCode").classList.remove("d-input-error");
-      document.getElementById("EmployeeName").classList.remove("d-input-error");
-      document
-        .getElementById("IdentityNumber")
-        .classList.remove("d-input-error");
-      document
-        .getElementById("EmployeePosition")
-        .classList.remove("d-input-error");
-      document
-        .getElementById("OrganizationName")
-        .classList.remove("d-input-error");
-      document.getElementById("TaxCode").classList.remove("d-input-error");
-      document
-        .getElementById("OrganizationAddress")
-        .classList.remove("d-input-error");
-      // document.getElementById("check1").checked=false;
-      // document.getElementById("check2").checked=false;
-
       // thực hiện ẩn form dropdown nếu đang mở
       document.getElementsByClassName("dropdown")[0].style.display = "none";
       // thực hiện hiển thị form chi tiết
@@ -706,25 +687,6 @@ export default {
       this.checkReplication = false;
       // gán chế độ là update
       this.formDetailMode = 0;
-      // thực hiện xóa đi đường viền đỏ
-      document.getElementById("EmployeeCode").classList.remove("d-input-error");
-      document.getElementById("EmployeeName").classList.remove("d-input-error");
-      document
-        .getElementById("IdentityNumber")
-        .classList.remove("d-input-error");
-      document
-        .getElementById("EmployeePosition")
-        .classList.remove("d-input-error");
-      document
-        .getElementById("OrganizationName")
-        .classList.remove("d-input-error");
-      document.getElementById("TaxCode").classList.remove("d-input-error");
-      document
-        .getElementById("OrganizationAddress")
-        .classList.remove("d-input-error");
-      // document.getElementById("check1").checked=false;
-      // document.getElementById("check2").checked=false;
-
       // thực hiện ẩn form dropdown nếu đang mở
       document.getElementsByClassName("dropdown")[0].style.display = "none";
       // hiển thị form chi tiết
@@ -780,7 +742,7 @@ export default {
       try {
         axios
           .get(
-            `http://localhost:22454/api/v1/Employees/excel?employeeFilter=${this.textSearch}
+            `http://localhost:22454/api/v1/Employees/excel?employeeFilter=${this.textSearch.trim()}
           &bankName=${this.bankName}&gender=${this.gender}&departmentId=${this.departmentId}&IsOrganizations=${this.checkOrganization}`,
             {
               responseType: "blob",

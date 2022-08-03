@@ -14,8 +14,8 @@ namespace MISA.Web04.Api.Controllers
     [ApiController]
     public class EmployeesController : MISABaseController<Employee>
     {
-        IEmployeeRepository _employeeRepository;
-        IEmployeeService _employeeService;
+       private IEmployeeRepository _employeeRepository;
+       private IEmployeeService _employeeService;
 
         /// <summary>
         /// Thực hiện khởi tạo đối tượng
@@ -32,7 +32,7 @@ namespace MISA.Web04.Api.Controllers
 
         // danh sách cột tiêu đề cho file excel
         private readonly string[] theads = {"STT", "Mã nhân viên", "Tên nhân viên", "Giới tính", "Ngày sinh", "Số CMND",
-            "Chức danh", "Tên đơn vị", "Số tài khoản", "Tên ngân hàng", "Chi nhánh TK ngân hàng"};
+            "Chức danh", "Tên đơn vị", "Số tài khoản", "Tên ngân hàng", "Chi nhánh TK ngân hàng","Tên tổ chức", "Mã số thuế", "Địa chỉ tổ chức"};
 
         /// <summary>
         /// Thực hiện tạo style border 
@@ -80,6 +80,9 @@ namespace MISA.Web04.Api.Controllers
             worksheet.Column("I").Width = 19;
             worksheet.Column("J").Width = 25;
             worksheet.Column("K").Width = 31;
+            worksheet.Column("L").Width = 31;
+            worksheet.Column("M").Width = 31;
+            worksheet.Column("N").Width = 31;
         }
 
         /// <summary>
@@ -110,16 +113,16 @@ namespace MISA.Web04.Api.Controllers
                 var worksheet = workbook.Worksheets.Add("DANH SÁCH NHÂN VIÊN");
 
                 // định dạng title
-                var title = worksheet.Range("A1:K1");
+                var title = worksheet.Range("A1:N1");
                 title.Value = "DANH SÁCH NHÂN VIÊN";
                 title.Merge();
                 StyleTitle(title, 16, "Arial");
 
                 // tạo ra row rỗng để tạo khoảng cách
-                worksheet.Range("A2:K2").Merge();
+                worksheet.Range("A2:N2").Merge();
 
                 // tạo các cột tiêu đề
-                var headersGrid = worksheet.Range("A3:K3");
+                var headersGrid = worksheet.Range("A3:N3");
                 headersGrid.Style.Fill.BackgroundColor = XLColor.Green;
                 StyleBorder(headersGrid);
                 StyleTitle(headersGrid, 10, "Arial");
@@ -165,6 +168,9 @@ namespace MISA.Web04.Api.Controllers
                     worksheet.Cell(currentRow, 9).Value = $"'{employee.BankAccountNumber}";
                     worksheet.Cell(currentRow, 10).Value = employee.BankName;
                     worksheet.Cell(currentRow, 11).Value = employee.BankBranchName;
+                    worksheet.Cell(currentRow, 12).Value = employee.OrganizationName;
+                    worksheet.Cell(currentRow, 13).Value = employee.TaxCode;
+                    worksheet.Cell(currentRow, 14).Value = employee.OrganizationAddress;
 
                     currentRow++;
                 }
