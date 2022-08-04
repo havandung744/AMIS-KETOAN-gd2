@@ -185,13 +185,6 @@
         <div class="d-paging-center"></div>
         <div class="d-paging-right">
           <div class="d-row">
-            <!-- <select class="d-combobox" v-model="pageSize">
-              <option value="10">10 bản ghi trên 1 trang</option>
-              <option value="20">20 bản ghi trên 1 trang</option>
-              <option value="30">30 bản ghi trên 1 trang</option>
-              <option value="50">50 bản ghi trên 1 trang</option>
-              <option value="100">100 bản ghi trên 1 trang</option>
-            </select> -->
             <el-select
               v-model="pageSize"
               placeholder="Chọn số bản ghi/trang"
@@ -534,33 +527,6 @@ export default {
      * @param {string} textSearch nội dung tìm kiếm
      * Author: HVDUNG(08/06/2022)
      */
-    // async pagination(pageSize, pageNumber, textSearch) {
-    //   var me = this;
-    //   try {
-    //     me.isLoading = true;
-    //     await axios
-    //       .get(
-    //         `http://localhost:22454/api/v1/Employees/filter?pageSize=${pageSize}&pageNumber=${pageNumber}&employeeFilter=${textSearch}`
-    //       )
-    //       .then((response) => {
-    //         console.log(response.data);
-    //         me.employees = response.data.Data;
-    //         me.totalPages = response.data.TotalPages;
-    //         me.count = response.data.TotalRecords;
-    //         // thực hiện hiển thị icon và text không có dữ liệu khi tìm kiếm
-    //         if (me.totalPages == 0) me.checkTotalEmployee = true;
-    //         else me.checkTotalEmployee = false;
-    //         console.log(me.textSearch);
-    //       })
-    //       .catch(function (error) {
-    //         console.log(error);
-    //       });
-    //     me.isLoading = false;
-    //   } catch (error) {
-    //     me.isLoading = false;
-    //     console.log(error);
-    //   }
-    // },
 
     async pagination(
       pageSize,
@@ -580,9 +546,7 @@ export default {
             &pageNumber=${pageNumber}&employeeFilter=${textSearch}&bankName=${bankName}&gender=${gender}&departmentId=${departmentId}&IsOrganizations=${checkOrganization}`
           )
           .then((response) => {
-            console.log(response.data);
             me.employees = response.data.Data;
-            console.log(me.employees);
             me.totalPages = response.data.TotalPages;
             me.count = response.data.TotalRecords;
             // thực hiện hiển thị icon và text không có dữ liệu khi tìm kiếm
@@ -621,7 +585,6 @@ export default {
             me.departmentId,
             me.checkOrganization
           );
-          console.log(me.textSearch.length);
         }, 500);
       } else
         me.pagination(

@@ -176,7 +176,7 @@ namespace MISA.Web04.Api.Controllers
                 }
 
                 // Định dạng hiển thị dữ liệu
-                var rangeData = worksheet.Range($"A4:K{currentRow - 1}");
+                var rangeData = worksheet.Range($"A4:N{currentRow - 1}");
                 StyleBorder(rangeData);
                 rangeData.Style.Font.SetFontName("Times New Roman");
 
@@ -184,7 +184,7 @@ namespace MISA.Web04.Api.Controllers
                 SetColumnWidth(worksheet);
     
                 // Đặt căn trái cho tiêu đề cột
-                worksheet.Range($"A3:k3").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
+                worksheet.Range($"A3:N3").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
                 // Đặt căn phải cho STT
                 worksheet.Cell(3, 1).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Right);
                 // Đặt căn giữa cho ngày sinh

@@ -824,7 +824,6 @@ export default {
       }
 
       // thực hiện validate các trường khi là nhà cung cấp
-      // if(me.employee.IsOrganizations){
       if (document.getElementById("check2").checked == true) {
         if (!me.employee.OrganizationName) {
           arrayErrors.push(miSaResource.VI["OrganizationNameNotNull"]);
@@ -892,11 +891,6 @@ export default {
     async addEmployee() {
       var me = this;
       document.getElementsByClassName("loading")[0].style.display = "block";
-      // if(me.IsOrganizations==false){
-      //   me.employee.OrganizationName=null;
-      //   me.employee.TaxCode=null;
-      //   me.employee.OrganizationAddress=null;
-      // }
       await axios
         .post("http://localhost:22454/api/v1/Employees", me.employee)
         .then(function (res) {
@@ -910,8 +904,6 @@ export default {
             case 500:
               // hiển thị thông báo lỗi khi thêm mới
               alert(res.response.data.Data.EmployeeCode);
-              // alert(res.response.data.Data);
-              // console.log(res.response);
               break;
 
             default:
