@@ -439,9 +439,6 @@ export default {
         document.getElementById("check2").checked = false;
         this.isShowSupplier = false;
         this.employee.IsOrganizations = false;
-        // this.employee.OrganizationName = "";
-        // this.employee.TaxCode = "";
-        // this.employee.OrganizationAddress = "";
       }
       if (
         event.target.id === "check2" &&
@@ -449,9 +446,6 @@ export default {
       ) {
         document.getElementById("check1").checked = false;
         this.employee.IsOrganizations = true;
-        // this.employee.OrganizationName = this.temp_OrganizationName;
-        // this.employee.TaxCode = this.temp_TaxCode;
-        // this.employee.OrganizationAddress = this.temp_OrganizationAddress;
       }
     },
 
@@ -587,7 +581,7 @@ export default {
       document.getElementById("check1").checked=false;
       document.getElementById("check2").checked=false;
       
-      //Thực hiện đống form chi tiết
+      //Thực hiện đóng form chi tiết
       this.$emit("isShowDialog");
     },
 

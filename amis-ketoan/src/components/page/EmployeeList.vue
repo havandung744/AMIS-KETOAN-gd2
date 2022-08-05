@@ -349,6 +349,11 @@ export default {
   },
 
   methods: {
+    /**
+     * Thực hiện lấy dữ liệu theo phòng ban
+     * lưu id của phòng ban vào localstorage
+     * Author: HVDUNG(05/08/2022)
+     */
     onChangeDepartmentId() {
       localStorage.setItem("departmentId", this.departmentId);
       this.pagination(
@@ -362,6 +367,11 @@ export default {
       );
     },
 
+    /**
+     * Thực hiện lấy dữ liệu theo tên ngân hàng
+     * lưu tên ngân hàng vào localstorage
+     * Author: HVDUNG(05/08/2022)
+     */
     onChangeBankName() {
       localStorage.setItem("bankName", this.bankName);
       this.pagination(
@@ -374,6 +384,12 @@ export default {
         this.checkOrganization
       );
     },
+
+    /**
+     * Thực hiện lấy dữ liệu theo giới tính
+     * lưu giới tính vào localstorage
+     * Author: HVDUNG(05/08/2022)
+     */
     onChangeGender() {
       localStorage.setItem("gender", this.gender);
       this.pagination(
@@ -386,9 +402,14 @@ export default {
         this.checkOrganization
       );
     },
-    async onChangeOrganization(event) {
+
+    /**
+     * Thực hiện lấy dữ liệu theo vai trò
+     * lưu vai trò vào localstorage
+     * Author: HVDUNG(05/08/2022)
+     */
+     onChangeOrganization(event) {
       localStorage.setItem("checkOrganization", this.checkOrganization);
-      console.log(event);
       if (event == "true") this.checkOrganization = "true";
       else this.checkOrganization = "false";
       this.pagination(
@@ -424,15 +445,6 @@ export default {
         checkboxes.forEach(function (checkbox) {
           checkbox.checked = true;
         });
-        this.pagination(
-          this.pageSize,
-          this.pageNumberSelected,
-          this.textSearch,
-          this.bankName,
-          this.gender,
-          this.departmentId,
-          this.checkOrganization
-        );
         for (var emp of this.employees) {
           this.arrayEmployeeId.push(emp.EmployeeId);
         }
@@ -527,7 +539,6 @@ export default {
      * @param {string} textSearch nội dung tìm kiếm
      * Author: HVDUNG(08/06/2022)
      */
-
     async pagination(
       pageSize,
       pageNumber,
