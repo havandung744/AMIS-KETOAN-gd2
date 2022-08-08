@@ -62,25 +62,19 @@
             <div class="info-input-tr">
               <div class="info-input">
                 <label for="">Đơn vị</label><br />
-
-                <select
-                  tabindex="7"
+                <el-select
+                  id="d-selectDepartment"
                   v-model="employee.DepartmentId"
-                  class="cbxDepartment"
+                  placeholder="Chọn phòng ban"
+                  class="m-1 cbxDepartment"
                 >
-                  <option value="142cb08f-7c31-21fa-8e90-67245e8b283e">
-                    Phòng đào tạo
-                  </option>
-                  <option value="17120d02-6ab5-3e43-18cb-66948daf6128">
-                    Phòng nhân sự
-                  </option>
-                  <option value="469b3ece-744a-45d5-957d-e8c757976496">
-                    Phòng sản xuất
-                  </option>
-                  <option value="4e272fc4-7875-78d6-7d32-6a1673ffca7c">
-                    Phòng kế toán
-                  </option>
-                </select>
+                  <el-option
+                    v-for="item in this.departments"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  />
+                </el-select>
               </div>
             </div>
             <div class="info-input-tr">
@@ -386,8 +380,12 @@ import { miSaResource } from "../../js/miSaResource";
 
 export default {
   name: "EmployeeDetail",
-  components: {
+  components: {},
+
+  beforeUpdate() {
+    document.getElementById("d-selectDepartment").setAttribute("tabindex", "7");
   },
+
   props: [
     "employeeIdSelected",
     "formMode",
@@ -404,7 +402,29 @@ export default {
     return {
       employee: {},
       employees: {},
-      isShowSupplier: false
+      isShowSupplier: false,
+      departments: [
+        {
+          value: "",
+          label: "Chọn phòng ban",
+        },
+        {
+          value: "142cb08f-7c31-21fa-8e90-67245e8b283e",
+          label: "Phòng đào tạo",
+        },
+        {
+          value: "17120d02-6ab5-3e43-18cb-66948daf6128",
+          label: "Phòng nhân sự",
+        },
+        {
+          value: "469b3ece-744a-45d5-957d-e8c757976496",
+          label: "Phòng sản xuất",
+        },
+        {
+          value: "4e272fc4-7875-78d6-7d32-6a1673ffca7c",
+          label: "Phòng kế toán",
+        },
+      ],
     };
   },
   watch: {
@@ -558,7 +578,7 @@ export default {
      * Author: HVDUNG(05/06/2022)
      */
     btnCloseOnClick() {
-      this.isShowSupplier=false;
+      this.isShowSupplier = false;
       // thực hiện xóa đi đường viền đỏ
       document.getElementById("EmployeeCode").classList.remove("d-input-error");
       document.getElementById("EmployeeName").classList.remove("d-input-error");
@@ -578,9 +598,9 @@ export default {
 
       document.getElementById("Email").classList.remove("d-input-error");
       // thực hiện xóa đi checkbox đã chọn trong form cũ
-      document.getElementById("check1").checked=false;
-      document.getElementById("check2").checked=false;
-      
+      document.getElementById("check1").checked = false;
+      document.getElementById("check2").checked = false;
+
       //Thực hiện đóng form chi tiết
       this.$emit("isShowDialog");
     },
@@ -661,51 +681,51 @@ export default {
       }
     },
 
-   /**
-    * Thực hiện validate taxCode có bị trống và đã đúng định dạng chưa
-    * @param {event} event 
-    * Author: HVDUNG(02/08/2022)
-    */
-    validateCheckTaxCode(event){
+    /**
+     * Thực hiện validate taxCode có bị trống và đã đúng định dạng chưa
+     * @param {event} event
+     * Author: HVDUNG(02/08/2022)
+     */
+    validateCheckTaxCode(event) {
       let value = event.currentTarget.value;
-      if(value.trim()==''){
-         // thêm class vào trong input
+      if (value.trim() == "") {
+        // thêm class vào trong input
         event.currentTarget.classList.add("d-input-error");
         // thêm câu cảnh báo khi hover
         event.currentTarget.setAttribute("title", miSaResource.VI.infoNotNull);
-      }
-      else if(!this.checkTaxCode(value)){
-         // thêm class vào trong input
+      } else if (!this.checkTaxCode(value)) {
+        // thêm class vào trong input
         event.currentTarget.classList.add("d-input-error");
         // thêm câu cảnh báo khi hover
         event.currentTarget.setAttribute(
           "title",
           miSaResource.VI.TaxCodeFormat
         );
-      }
-      else {
+      } else {
         event.currentTarget.classList.remove("d-input-error");
         event.currentTarget.setAttribute("title", "");
       }
-
     },
 
-  /**
-   * Thực hiện kiểm tra mã số thuế có đúng định dạng hay không
-   * @param {string} taxCode 
-   * Author: HVDUNG(02/08/2022)
-   */
-    checkTaxCode(taxCode){
+    /**
+     * Thực hiện kiểm tra mã số thuế có đúng định dạng hay không
+     * @param {string} taxCode
+     * Author: HVDUNG(02/08/2022)
+     */
+    checkTaxCode(taxCode) {
       // không đủ 14 kí tự hoặc rỗng thì return false
-      if(taxCode.length!=14)
-      return false;
-      else{
-        var temp_start = taxCode.substring(0,10);
+      if (taxCode.length != 14) return false;
+      else {
+        var temp_start = taxCode.substring(0, 10);
         var temp_end = taxCode.substring(11);
         var temp_space = taxCode[10];
         // 10 kí tự đầu và 3 kí tự cuối không phải là số hoặc kí tự ngăn cách không phải '-' thì return false
-        if(!this.isNumeric(temp_start) || !this.isNumeric(temp_end) || temp_space != '-')
-        return false;
+        if (
+          !this.isNumeric(temp_start) ||
+          !this.isNumeric(temp_end) ||
+          temp_space != "-"
+        )
+          return false;
         return true;
       }
     },
@@ -825,7 +845,7 @@ export default {
         if (!me.employee.TaxCode) {
           arrayErrors.push(miSaResource.VI["TaxCodeNotNull"]);
         }
-        if(me.employee.TaxCode && !me.checkTaxCode(me.employee.TaxCode)){
+        if (me.employee.TaxCode && !me.checkTaxCode(me.employee.TaxCode)) {
           arrayErrors.push(miSaResource.VI["TaxCodeFormat"]);
         }
         if (!me.employee.OrganizationAddress) {
@@ -920,10 +940,10 @@ export default {
       //hiển thị loading
       document.getElementsByClassName("loading")[0].style.display = "block";
       // thực hiện xóa các trường thông tin khi đối tượng là khách hàng
-       if(me.employee.IsOrganizations==false){
-        me.employee.OrganizationName=null;
-        me.employee.TaxCode=null;
-        me.employee.OrganizationAddress=null;
+      if (me.employee.IsOrganizations == false) {
+        me.employee.OrganizationName = null;
+        me.employee.TaxCode = null;
+        me.employee.OrganizationAddress = null;
       }
       // thực hiện update nhân viên
       await axios

@@ -34,10 +34,11 @@ export default {
     },
 
     /**
-     * Thực hiện hiển thị form thông báo
+     * Thực hiện hiển thị form nhân bản
      * Author: HVDUNG (05/06/2022)
      */
     btnOnReplication() {
+      // hiển thị form detail
       this.$emit("isShowDialog");
       // ẩn form dropdown
       this.$emit("isShowDropDown");
@@ -57,8 +58,8 @@ export default {
       // hiển thị form notice
       document.getElementsByClassName("d-dialog-box")[0].style.display =
         "block";
-      //ẩn form dialogDelete
-      document.getElementsByClassName("dropdown")[0].style.display = "none";
+      // ẩn form dropdown
+      this.$emit("isShowDropDown");
     }
   },
 };

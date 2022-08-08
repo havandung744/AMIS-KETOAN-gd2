@@ -165,21 +165,17 @@
 }
 
 #batch-execution {
-    /* background-color: yellow;
-    position: absolute;
-    left: 40px; */
-    padding: 0 32px 0px 16px;
-    border: 2px solid #3b3c3f;
-    border-radius: 30px;
-    color: #111;
-    background-color: transparent;
-    cursor: pointer;
     box-sizing: border-box;
-    font-weight: 400;
+    margin-right: 16px;
+    padding: 0 32px 0px 16px;
+    left: 40px;
+    border: 1px solid #bbbbbb;
+    background-color: #ffffff;
+    cursor: pointer;
     width: 183px;
     height: 36px;
     font-family: GoogleSans SemiBold;
-    margin-right: 16px;
+    border-radius: 30px;
 }
 
 .icon-expand-more-box {
@@ -195,13 +191,22 @@
 
 .deleteMany {
     position: absolute;
-    bottom: -28px;
-    left: 90px;
+    box-sizing: border-box;
+    bottom: -29px;
+    left: 75px;
     z-index: 999;
     padding: 5px 10px;
     box-sizing: border-box;
-    width: 80px;
     background-color: #fff;
     outline: none;
     border-color: #bbbbbb;
+    width: 100px;
+    height: 28px;
+    border: 1px solid #bbbbbb;
+    cursor: pointer;
+    text-align: left;
+}
+
+.deleteMany:hover {
+    background-color: #e5e8ec;
 }
