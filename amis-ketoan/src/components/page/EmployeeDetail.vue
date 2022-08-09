@@ -59,7 +59,7 @@
                 />
               </div>
             </div>
-            <div class="info-input-tr">
+            <div class="info-input-tr" style="margin-top: 4px;">
               <div class="info-input">
                 <label for="">Đơn vị</label><br />
                 <el-select

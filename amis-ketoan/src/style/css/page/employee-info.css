@@ -260,3 +260,7 @@ input[type="checkbox"] {
 el-date-table tr:hover {
     background-color: yellow !important;
 }
+
+.cbxDepartment .el-input__wrapper {
+    height: 30px !important;
+}

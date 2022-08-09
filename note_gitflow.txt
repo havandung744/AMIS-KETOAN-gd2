@@ -28,3 +28,13 @@ có 2 loại:
 	toggle trạng thái giữa là khách hàng và nhà cung cấp (font-end)
 	bug khi xuất exel (bên backend)
 	bug khi validate số chứng minh thư nhân dân, bug mã số thuế, bug email (bên backend)
+
+7. tổng hợp các phần đã làm
+ - bộ lọc phòng ban, giới tính, tên ngân hàng, là khách hàng hay là nhà cung cấp
+ - xuất excel theo bộ lọc đã chọn
+ - đặt asyn await cho các đầu api
+ - lưu lại bộ lọc tại thời điểm gần nhất
+ - xử lí vai trò là nhà cung cấp hoặc là khách hàng
+ - validate: số chứng minh, mã số thuế
+ - tìm hiểu cơ bản về gitflow, tfs, vuex, các tài liệu về nghiệp vụ, luồng thi công của dự án, unit test
+	
